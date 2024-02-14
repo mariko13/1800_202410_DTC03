@@ -16,3 +16,13 @@ button.text-light {
 button.text-light:hover{
   background-color: #7676a7;
 }
+
+.material-icons.md-60 { font-size: 60px; }
+
+.material-icons {
+  color: #202032;
+}
+
+.footer {
+  background-color: #F6CD46;
+}
