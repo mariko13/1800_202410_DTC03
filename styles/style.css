@@ -17,7 +17,7 @@ button.text-light:hover{
   background-color: #7676a7;
 }
 
-.material-icons.md-60 { font-size: 60px; }
+.material-icons.md-68 { font-size: 68px; }
 
 .material-icons {
   color: #202032;
@@ -25,4 +25,12 @@ button.text-light:hover{
 
 .footer {
   background-color: #F6CD46;
+}
+
+#footer_icon:hover {
+  color: #484870;
+}
+
+#footer_icon:active {
+  color: #101019;
 }
