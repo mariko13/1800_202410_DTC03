@@ -1,1 +1,10 @@
+.navbar-brand {
+  font-family: 'pacifico', cursive;
+  /*change the font name for what you have*/
+  font-size: 1.5rem;
 
+}
+
+nav {
+  background-color: #f6cd46;
+}
