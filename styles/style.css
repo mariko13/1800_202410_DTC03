@@ -8,3 +8,11 @@
 nav {
   background-color: #f6cd46;
 }
+
+button.text-light {
+  background-color: #484870;
+}
+
+button.text-light:hover{
+  background-color: #7676a7;
+}
