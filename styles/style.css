@@ -13,11 +13,13 @@ button.text-light {
   background-color: #484870;
 }
 
-button.text-light:hover{
+button.text-light:hover {
   background-color: #7676a7;
 }
 
-.material-icons.md-68 { font-size: 68px; }
+.material-icons.md-68 {
+  font-size: 68px;
+}
 
 .material-icons {
   color: #202032;
@@ -33,4 +35,46 @@ button.text-light:hover{
 
 #footer_icon:active {
   color: #101019;
+}
+
+.main-button {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background-color: #f6cd46;
+  color: #101019;
+  font-size: 48px;
+  border: none;
+  cursor: pointer;
+  font-family: 'pacifico', cursive;
+  transition: transform 0.2s;
+}
+
+.main-button:hover {
+  transform: scale(1.1);
+}
+
+.main-button:active {
+  transform: scale(1);
+}
+
+.input-button {
+  width: 165px;
+  height: 165px;
+  border-radius: 50%;
+  background-color: #f6cd46;
+  color: #101019;
+  font-size: 36px;
+  border: none;
+  cursor: pointer;
+  font-family: 'pacifico', cursive;
+  transition: transform 0.2s;
+}
+
+.input-button:focus {
+  transform: scale(1.1);
+}
+
+.input-button:active {
+  transform: scale(1.0);
 }
