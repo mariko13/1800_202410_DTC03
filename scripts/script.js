@@ -1,4 +1,3 @@
-function sayHello() {
-    
+function navigateToPage(pageUrl) {  
+    window.location.href = pageUrl;
 }
-//sayHello();
