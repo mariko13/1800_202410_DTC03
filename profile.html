@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Profile page</title>
+  <meta name="comp1800 template" content="My 1800 App">
+
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap Library CSS CDN go here -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <!-- Boostrap Library JS CDN  go here -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+
+  <!-- Other libraries go here -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Link to styles of your own -->
+  <link rel="stylesheet" href="./styles/style.css">
+
+</head>
+
+<body>
+
+  <!------------------------------>
+  <!------------------------------>
+  <!-- Stuff for body goes here -->
+
+  <!-- Welcome -->
+  <div style="height: 62px;">
+    <nav class="navbar p fixed-top d-block">
+      <div class="container-fluid text-center">
+        <a class="navbar-brand col-12" href="#">Profile</a>
+      </div>
+    </nav>
+  </div>
+  <div class="d-flex flex-row justify-content-around border-bottom">
+    <img src="https://randomuser.me/api/portraits/women/14.jpg" alt="profile picture"
+      class="rounded-circle img-thumbnail my-2">
+    <div class="mt-2">
+      <h1>Name</h1>
+      <h6>Age</h6>
+      <h6>Gender</h6>
+      <h6>Location</h6>
+    </div>
+  </div>
+  <div class="d-flex flex-column">
+    <div class="d-flex flex-row justify-content-between p-2">
+      <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <rect width="31" height="31" fill="url(#pattern0)"/>
+        <defs>
+        <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+        <use xlink:href="#image0_130_135" transform="scale(0.0104167)"/>
+        </pattern>
+        <image id="image0_130_135" width="96" height="96" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAsTAAALEwEAmpwYAAADsElEQVR4nO2cvWsUQRiHHzWQCFGwEKLBRpJ0BhRR8AvFxj9AY4LY2lhZisVFEYWQ2mhiKhEi1mIpIhgJFoqgIFioiCRBDXrBS4KODHkXz/Mgt58zu/s+8DbH3c3M7zc7H/vOLiiKoiiKoiiKoiiKoiiKf2wGhoAJYAaYA5Yl5uSzcWAQ2OS6skWiD5gEFgHTYtjv3gZ6XVc+z2wERoGVEMI3hr06RoAO143JG73AqxjCN8Y0sM11o/LCbhnTTcLxEeh33bg89Py5FMSvN6HLdSN9pQN4kaL4QTyX+UVpYDQD8YO43Fh42emLudoJGz90KPqXyQzFD+KGo87m5Q530YEBVd0xrzLkQPwgTksdSs2EQwNuuW68D8w4NMDukEvPvEMDZkuvPrDk0ICaGoAa4Jp5HYLcMqOTsFvGHRpw03HbvWDQoQGnXDfeBzrltkDW4lelbIXVBHrWBtihT6nLhC1nKL7de+wMCldWGcnQgOtSptKQkpzOQPynQHt9wcpfbML8Q4rifwK668pTmtAvpxeSFt8au6tZgcr/bAUeJzzs6HGUkLTL6YVqzNXONR3z49ElCfQwRlQl26VLzQTplByuvX/zTJIpSxKz8tkYMKA7XEVRFEVRFEVRFEVRFEUJxxZgP3AWuArcAx7JU47v5EhjTe5+fgW+AG8kjzAlD/2dA44B21X8tfPBh4FLwMOUzot+Bh4AV4ATZb9jugE4IsmSJ3U9OctYkUyZvbr2AesoOOuB43IIK82n4U2MhP2YXImFMqNbLvv3HohsWoy3wMUEXvBxQeYn++KRvTh46cbdjE+8mYSjJqnNngjtH274rwVZVKROj6xCfnsgoEkovgE7YoifiQntMqHlucebJvEdOJiA+KmasAd47YFYxrH4J1v830RNGHD0qgHjmfiWNhl+WzUh9sR8vmBjvYkhfhQT7OooMmeAXx6IZTwYdtoimmBvn0R+v89PD8Qynky4UxFNsPuESCR5cNYUZLUT1gT7+0gc8EAsk3DYs6RHY4gfxP0mJtj7Xncavlchp8/1Gg97vgl5JUTu+QEvPRDNeCr+WibYCTs2Cx4IZzwadkyI4SgRXAtnciB+qiaYAgw7hzIQP4hEhp2iGFDNqOcnstopmgHVIoifVwOqRREfD8Q0ZRYfDwQ1ZRYfD0Q1ZRYfD4Q1ZRYfD8Q1ZRa/aAyr+O5Q8R2i4qv45cXohJtPAyqO610YjIqfLwMqjutbOIyKnw8DKo7rWViMiu+3AZUsa/MHSPfugbe2brYAAAAASUVORK5CYII="/>
+        </defs>
+        </svg>
+        <p>Edit Preferences</p>
+        <p>></p>
+    </div>
+    <div class="d-flex flex-row justify-content-between p-2">
+      <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M23.1275 15.6358C23.1758 15.2733 23.2 14.8987 23.2 14.5C23.2 14.1133 23.1758 13.7267 23.1154 13.3642L25.5683 11.455C25.7858 11.2858 25.8463 10.9596 25.7133 10.7179L23.3933 6.70624C23.2483 6.44041 22.9463 6.35583 22.6804 6.44041L19.7925 7.60041C19.1883 7.14124 18.5479 6.75458 17.835 6.46458L17.4 3.39541C17.3517 3.10541 17.11 2.89999 16.82 2.89999H12.18C11.89 2.89999 11.6604 3.10541 11.6121 3.39541L11.1771 6.46458C10.4642 6.75458 9.81167 7.15333 9.21958 7.60041L6.33167 6.44041C6.06583 6.34374 5.76375 6.44041 5.61875 6.70624L3.31083 10.7179C3.16583 10.9717 3.21417 11.2858 3.45583 11.455L5.90875 13.3642C5.84833 13.7267 5.8 14.1254 5.8 14.5C5.8 14.8746 5.82417 15.2733 5.88458 15.6358L3.43167 17.545C3.21417 17.7142 3.15375 18.0404 3.28667 18.2821L5.60667 22.2937C5.75167 22.5596 6.05375 22.6442 6.31958 22.5596L9.2075 21.3996C9.81167 21.8587 10.4521 22.2454 11.165 22.5354L11.6 25.6046C11.6604 25.8946 11.89 26.1 12.18 26.1H16.82C17.11 26.1 17.3517 25.8946 17.3879 25.6046L17.8229 22.5354C18.5358 22.2454 19.1883 21.8587 19.7804 21.3996L22.6683 22.5596C22.9342 22.6562 23.2362 22.5596 23.3813 22.2937L25.7013 18.2821C25.8463 18.0162 25.7858 17.7142 25.5562 17.545L23.1275 15.6358ZM14.5 18.85C12.1075 18.85 10.15 16.8925 10.15 14.5C10.15 12.1075 12.1075 10.15 14.5 10.15C16.8925 10.15 18.85 12.1075 18.85 14.5C18.85 16.8925 16.8925 18.85 14.5 18.85Z" fill="black"/>
+        </svg>
+        <p>settings</p>
+        <p>></p>        
+    </div>
+  </div>
+  <!-- Sticky footer -->
+  <footer class="navbar justify-content-evenly fixed-bottom footer">
+    <div class="container">
+      <a id="footer_icon" class="material-icons text-decoration-none md-68" href="#">history</a>
+      <a id="footer_icon" class="material-icons text-decoration-none md-68" href="#">home</a>
+      <a id="footer_icon" class="material-icons text-decoration-none md-68" href="#">account_circle</a>
+    </div>
+  </footer>
+
+  <!---------------------------------------------->
+  <!-- Your own JavaScript functions go here    -->
+  <!---------------------------------------------->
+
+  <!-- Link to scripts of your own -->
+  <!-- <script src="./scripts/script.js"></script> -->
+
+</body>
+
+</html>
