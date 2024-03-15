@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>My BCIT Project</title>
+    <meta name="comp1800 template" content="My 1800 App">
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Tailwind Library CSS CDN go here-->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Bootstrap Library CSS CDN go here -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Boostrap Library JS CDN  go here -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <!-- Other libraries go here -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Cloud Firestore -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <script src="./scripts/firebaseAPI_DTC03.js"></script>
+
+    <!-- Link to styles of your own -->
+    <link rel="stylesheet" href="./styles/style.css">
+</head>
+
+<body class="flex flex-col h-screen">
+
+    <!-- Header -->
+    <div style="height: 62px;">
+        <nav class="navbar p fixed-top d-block">
+            <div class="container-fluid text-center">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    class="icon icon-tabler icon-tabler-arrow-left position-absolute" width="44" height="44"
+                    viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round"
+                    stroke-linejoin="round" onclick="goBack()">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M5 12l14 0" />
+                    <path d="M5 12l6 6" />
+                    <path d="M5 12l6 -6" />
+                </svg>
+                <p class="navbar-brand col-12" href="#">
+                    Current State Selection
+                </p>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Mood Section -->
+    <div id="moodSection" class="container mx-auto my-auto">
+        <div class="flex flex-col">
+            <button class="input-button self-start" onclick="showCostSection(); selectMood('content')">Content</button>
+            <button class="input-button self-end" onclick="showCostSection(); selectMood('neutral')">Neutral</button>
+            <button class="input-button self-start" onclick="showCostSection(); selectMood('sad')">Sad</button>
+        </div>
+    </div>
+
+    <!-- Cost Section -->
+    <div id="costSection" class="container mx-auto my-auto d-none">
+        <div class="flex flex-col">
+            <button class="input-button self-end" onclick="showTimeSection(); selectCost('$')">$</button>
+            <button class="input-button self-start" onclick="showTimeSection(); selectCost('$$')">$$</button>
+            <button class="input-button self-end" onclick="showTimeSection(); selectCost('$$$')">$$$</button>
+        </div>
+    </div>
+
+    <!-- Time Section -->
+    <div id="timeSection" class="container mx-auto my-auto d-none">
+        <div class="flex flex-col">
+            <button class="input-button self-start" onclick="showDoorsSection(); selectTime('short')">Short</button>
+            <button class="input-button self-end" onclick="showDoorsSection(); selectTime('medium')">Medium</button>
+            <button class="input-button self-start" onclick="showDoorsSection(); selectTime('long')">Long</button>
+        </div>
+    </div>
+
+    <!-- Doors Section-->
+    <div id="doorsSection" class="container mx-auto my-auto d-none">
+        <div class="flex flex-col">
+            <button class="input-button self-end" onclick="showGroupSection(); selectDoors('indoors')">Indoors</button>
+            <button class="input-button self-start" onclick="showGroupSection(); selectDoors('outdoors')">Outdoors</button>
+        </div>
+    </div>
+
+    <!-- Group Section-->
+    <div id="groupSection" class="container mx-auto my-auto d-none">
+        <div class="flex flex-col">
+            <button class="input-button self-start" onclick="navigateToPage('activitysuggestion.html'); selectGroup('alone')">Alone</button>
+            <button class="input-button self-end" onclick="navigateToPage('activitysuggestion.html'); selectGroup('group')">Group</button>
+        </div>
+    </div>
+
+    <!-- Sticky footer -->
+    <div style="height: 84px;">
+        <footer class="navbar justify-content-evenly fixed-bottom footer d-block">
+            <div class="container">
+                <a id="footer_icon" class="material-icons text-decoration-none md-68" href="#"
+                    onclick="navigateToPage('history.html')">history</a>
+                <a id="footer_icon" class="material-icons text-decoration-none md-68" href="#"
+                    onclick="navigateToPage('home.html')">home</a>
+                <a id="footer_icon" class="material-icons text-decoration-none md-68" href="#"
+                    onclick="navigateToPage('profile.html')">account_circle</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts specific for this HTML-->
+    <script>
+
+        function goBack() {
+            var sections = ['moodSection', 'costSection', 'timeSection', 'doorsSection', 'groupSection'];
+            for (var i = 0; i < sections.length; i++) {
+                var section = document.getElementById(sections[i]);
+                if (!section.classList.contains('d-none')) {
+                    section.classList.add('d-none');
+                    if (i > 0) {
+                        var prevSection = document.getElementById(sections[i - 1]);
+                        prevSection.classList.remove('d-none');
+                    } else if (i === 0) {
+                        navigateToPage('home.html');
+                    }
+                    break;
+                }
+            }
+        }
+
+        function selectMood(mood) {
+            selectedMood = mood;
+            localStorage.setItem('selectedMood', selectedMood);
+            console.log('Selected mood:', selectedMood);
+        }
+
+        function selectCost(cost) {
+            selectedCost = cost;
+            localStorage.setItem('selectedCost', selectedCost);
+            console.log('Selected cost:', selectedCost);
+        }
+
+        function selectTime(time) {
+            selectedTime = time;
+            localStorage.setItem('selectedTime', selectedTime);
+            console.log('Selected time:', selectedTime);
+        }
+
+        function selectDoors(doors) {
+            selectedDoors = doors;
+            localStorage.setItem('selectedDoors', selectedDoors);
+            console.log('Selected doors:', selectedDoors);
+        }
+
+        function selectGroup(group) {
+            selectedGroup = group;
+            localStorage.setItem('selectedGroup', selectedGroup);
+            console.log('Selected group:', selectedGroup);
+        }
+
+        function showMoodSection() {
+            document.getElementById('costSection').classList.add('d-none');
+            document.getElementById('moodSection').classList.remove('d-none');
+        }
+
+        function showCostSection() {
+            document.getElementById('moodSection').classList.add('d-none');
+            document.getElementById('costSection').classList.remove('d-none');
+        }
+
+        function showTimeSection() {
+            document.getElementById('costSection').classList.add('d-none');
+            document.getElementById('timeSection').classList.remove('d-none');
+        }
+
+        function showDoorsSection() {
+            document.getElementById('timeSection').classList.add('d-none');
+            document.getElementById('doorsSection').classList.remove('d-none');
+        }
+
+        function showGroupSection() {
+            document.getElementById('doorsSection').classList.add('d-none');
+            document.getElementById('groupSection').classList.remove('d-none');
+        }
+
+    </script>
+
+    <!-- External scripts -->
+    <script src="./scripts/script.js"></script>
+
+</body>
+
+</html>
