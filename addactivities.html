@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>addactivities</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <script src="./scripts/firebaseAPI_DTC03.js"></script>
+    <script>
+        function addMockData() {
+            const activities = [
+                {
+                    activityID: 'Reading',
+                    image: 'reading.jpg',
+                    description: 'Engage in the joy of books and literature.',
+                    mood: 'sad',
+                    cost: '$',
+                    time: 'short',
+                    indoors: true,
+                    group: false,
+                },
+                {
+                    activityID: 'Hiking',
+                    image: 'hiking.jpg',
+                    description: 'Explore nature trails and enjoy breathtaking views.',
+                    mood: 'content',
+                    cost: '$$',
+                    time: 'long',
+                    indoors: false,
+                    group: false,
+                },
+                {
+                    activityID: 'Painting',
+                    image: 'painting.jpg',
+                    description: 'Express your creativity through colors and brushes.',
+                    mood: 'content',
+                    cost: '$',
+                    time: 'short',
+                    indoors: true,
+                    group: false,
+                },
+                {
+                    activityID: 'Yoga',
+                    image: 'yoga.jpg',
+                    description: 'Find balance and inner peace through mindful movement.',
+                    mood: 'sad',
+                    cost: '$',
+                    time: 'medium',
+                    indoors: true,
+                    group: false,
+                },
+                {
+                    activityID: 'Running',
+                    image: 'running.jpg',
+                    description: 'Stay fit and energized while exploring your surroundings.',
+                    mood: 'sad',
+                    cost: '$',
+                    time: 'short',
+                    indoors: false,
+                    group: false,
+                },
+                {
+                    activityID: 'Gaming',
+                    image: 'gaming.jpg',
+                    description: 'Immerse yourself in exciting virtual worlds and challenges.',
+                    mood: 'neutral',
+                    cost: '$$',
+                    time: 'short',
+                    indoors: true,
+                    group: true,
+                },
+                {
+                    activityID: 'Gardening',
+                    image: 'gardening.jpg',
+                    description: 'Nurture plants and create a beautiful outdoor space.',
+                    mood: 'content',
+                    cost: '$$',
+                    time: 'medium',
+                    indoors: false,
+                    group: false,
+                },
+                {
+                    activityID: 'Dancing',
+                    image: 'dancing.jpg',
+                    description: 'Move to the rhythm and let loose on the dance floor.',
+                    mood: 'content',
+                    cost: '$',
+                    time: 'short',
+                    indoors: true,
+                    group: true,
+                },
+                {
+                    activityID: 'Writing',
+                    image: 'writing.jpg',
+                    description: 'Capture your thoughts and ideas through words and stories.',
+                    mood: 'neutral',
+                    cost: '$',
+                    time: 'medium',
+                    indoors: true,
+                    group: false,
+                },
+                {
+                    activityID: 'Cycling',
+                    image: 'cycling.jpg',
+                    description: 'Pedal through scenic routes and enjoy the thrill of the ride.',
+                    mood: 'content',
+                    cost: '$$',
+                    time: 'medium',
+                    indoors: false,
+                    group: false,
+                },
+                {
+                    activityID: 'Drawing',
+                    image: 'drawing.jpg',
+                    description: 'Sketch and doodle to bring your imagination to life.',
+                    mood: 'sad',
+                    cost: '$',
+                    time: 'short',
+                    indoors: true,
+                    group: false,
+                },
+                {
+                    activityID: 'Photography',
+                    image: 'photography.jpg',
+                    description: 'Capture moments and memories through the lens of a camera.',
+                    mood: 'sad',
+                    cost: '$$',
+                    time: 'medium',
+                    indoors: false,
+                    group: false,
+                },
+                {
+                    activityID: 'Camping',
+                    image: 'camping.jpg',
+                    description: 'Disconnect from the world and reconnect with nature under the stars.',
+                    mood: 'content',
+                    cost: '$$$',
+                    time: 'long',
+                    indoors: false,
+                    group: true,
+                },
+                {
+                    activityID: 'Fishing',
+                    image: 'fishing.jpg',
+                    description: 'Cast your line and reel in the excitement of the great outdoors.',
+                    mood: 'content',
+                    cost: '$$$',
+                    time: 'long',
+                    indoors: false,
+                    group: false,
+                },
+                {
+                    activityID: 'Crafting',
+                    image: 'crafting.jpg',
+                    description: 'Create handmade treasures and unleash your artistic side.',
+                    mood: 'neutral',
+                    cost: '$$',
+                    time: 'medium',
+                    indoors: true,
+                    group: false,
+                },
+                {
+                    activityID: 'Meditation',
+                    image: 'meditation.jpg',
+                    description: 'Find serenity and calmness through mindfulness and deep breathing.',
+                    mood: 'sad',
+                    cost: '$',
+                    time: 'short',
+                    indoors: true,
+                    group: false,
+                },
+                {
+                    activityID: 'Knitting',
+                    image: 'knitting.jpg',
+                    description: 'Weave yarn into cozy creations and enjoy the soothing rhythm of knitting.',
+                    mood: 'sad',
+                    cost: '$$',
+                    time: 'long',
+                    indoors: true,
+                    group: false,
+                },
+                {
+                    activityID: 'Sculpting',
+                    image: 'sculpting.jpg',
+                    description: 'Mold clay or other materials into beautiful works of art.',
+                    mood: 'neutral',
+                    cost: '$$',
+                    time: 'long',
+                    indoors: true,
+                    group: false,
+                },
+                {
+                    activityID: 'Surfing',
+                    image: 'surfing.jpg',
+                    description: 'Ride the waves and experience the thrill of the ocean.',
+                    mood: 'content',
+                    cost: '$$$',
+                    time: 'long',
+                    indoors: false,
+                    group: true,
+                },
+                {
+                    activityID: 'Skiing',
+                    image: 'skiing.jpg',
+                    description: 'Glide down snow-covered slopes and feel the rush of adrenaline.',
+                    mood: 'content',
+                    cost: '$$$',
+                    time: 'long',
+                    indoors: false,
+                    group: false,
+                },
+                {
+                    activityID: 'Skateboarding',
+                    image: 'skateboarding.jpg',
+                    description: 'Master tricks and maneuvers on a skateboard.',
+                    mood: 'content',
+                    cost: '$$',
+                    time: 'medium',
+                    indoors: false,
+                    group: true,
+                },
+                {
+                    activityID: 'Climbing',
+                    image: 'climbing.jpg',
+                    description: 'Scale rock faces and conquer new heights.',
+                    mood: 'content',
+                    cost: '$$',
+                    time: 'long',
+                    indoors: false,
+                    group: false,
+                },
+                {
+                    activityID: 'Volunteering',
+                    image: 'volunteering.jpg',
+                    description: 'Give back to your community and make a positive impact.',
+                    mood: 'content',
+                    cost: '$',
+                    time: 'medium',
+                    indoors: false,
+                    group: false,
+                },
+                {
+                    activityID: 'Bowling',
+                    image: 'bowling.jpg',
+                    description: 'Roll strikes and spares with friends for a fun night out.',
+                    mood: 'content',
+                    cost: '$$',
+                    time: 'medium',
+                    indoors: true,
+                    group: false,
+                },
+                {
+                    activityID: 'Pottery',
+                    image: 'pottery.jpg',
+                    description: 'Shape clay into pottery and unleash your creativity.',
+                    mood: 'neutral',
+                    cost: '$$',
+                    time: 'medium',
+                    indoors: true,
+                    group: true,
+                },
+                {
+                    activityID: 'Archery',
+                    image: 'archery.jpg',
+                    description: 'Aim for the bullseye and hone your precision skills.',
+                    mood: 'content',
+                    cost: '$$',
+                    time: 'medium',
+                    indoors: false,
+                    group: true,
+                },
+                {
+                    activityID: 'Rafting',
+                    image: 'rafting.jpg',
+                    description: 'Navigate through rapids and experience the thrill of whitewater rafting.',
+                    mood: 'content',
+                    cost: '$$',
+                    time: 'long',
+                    indoors: false,
+                    group: false,
+                },
+                {
+                    activityID: 'Sailing',
+                    image: 'sailing.jpg',
+                    description: 'Hoist the sails and set off on an adventure across the open sea.',
+                    mood: 'content',
+                    cost: '$$',
+                    time: 'long',
+                    indoors: false,
+                    group: false,
+                },
+                {
+                    activityID: 'Cooking',
+                    image: 'cooking.jpg',
+                    description: 'Create delicious dishes and experiment with flavors.',
+                    mood: 'content',
+                    cost: '$$',
+                    time: 'short',
+                    indoors: true,
+                    group: true,
+                },
+                {
+                    activityID: 'Ice skating',
+                    image: 'ice_skating.jpg',
+                    description: 'Glide gracefully on ice and enjoy the exhilarating sensation.',
+                    mood: 'content',
+                    cost: '$$',
+                    time: 'medium',
+                    indoors: false,
+                    group: false,
+                },
+                {
+                    activityID: 'Karaoke',
+                    image: 'karaoke.jpg',
+                    description: 'Sing your heart out and enjoy a night of musical fun.',
+                    mood: 'content',
+                    cost: '$$',
+                    time: 'medium',
+                    indoors: true,
+                    group: false,
+                },
+                {
+                    activityID: 'Concerts',
+                    image: 'concerts.jpg',
+                    description: 'Immerse yourself in live music and unforgettable performances.',
+                    mood: 'content',
+                    cost: '$$$',
+                    time: 'medium',
+                    indoors: false,
+                    group: true,
+                },
+                {
+                    activityID: 'Picnicking',
+                    image: 'picnicking.jpg',
+                    description: 'Relax outdoors and enjoy a meal surrounded by nature.',
+                    mood: 'content',
+                    cost: '$$',
+                    time: 'medium',
+                    indoors: false,
+                    group: true,
+                },
+                {
+                    activityID: 'Golfing',
+                    image: 'golfing.jpg',
+                    description: 'Tee off on lush green courses and enjoy a leisurely round of golf.',
+                    mood: 'content',
+                    cost: '$$$',
+                    time: 'medium',
+                    indoors: false,
+                    group: true,
+                },
+                {
+                    activityID: 'Sightseeing',
+                    image: 'sightseeing.jpg',
+                    description: 'Discover landmarks and attractions in new and familiar places.',
+                    mood: 'content',
+                    cost: '$$',
+                    time: 'medium',
+                    indoors: false,
+                    group: false,
+                }
+            ];
+
+            activities.forEach(function (activity) {
+                db.collection('activities').doc(activity.activityID).set(activity)
+                    .then(function (docRef) {
+                        console.log('Document written with ID: ', docRef.id);
+                    })
+                    .catch(function (error) {
+                        console.error('Error adding document: ', error);
+                    });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            addMockData();
+        });
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
