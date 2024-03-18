@@ -22,6 +22,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="./scripts/firebaseAPI_DTC03.js"></script>
 
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="./styles/style.css">
@@ -48,7 +49,7 @@
         <div class="col-lg-6 mx-auto">
             <p class="lead mb-4">Let Mood Mingle brighten your mood</p>
             <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                <button type="button" class="btn text-light btn-lg px-4 gap-3">Login</button>
+                <a role="button" href="login.html" class="btn text-light btn-lg px-4 gap-3">Login</a>
             </div>
         </div>
     </div>
@@ -56,9 +57,12 @@
     <!-- Sticky footer -->
     <footer class="navbar justify-content-evenly fixed-bottom footer">
         <div class="container">
-             <a id = "footer_icon" class="material-icons text-decoration-none md-68" href = "#" onclick="navigateToPage('history.html')">history</a>
-             <a id = "footer_icon" class="material-icons text-decoration-none md-68" href = "#" onclick="navigateToPage('home.html')">home</a>
-             <a id = "footer_icon" class="material-icons text-decoration-none md-68" href = "#" onclick="navigateToPage('profile.html')">account_circle</a>
+            <a id="footer_icon" class="material-icons text-decoration-none md-68" href="#"
+                onclick="navigateToPage('history.html')">history</a>
+            <a id="footer_icon" class="material-icons text-decoration-none md-68" href="#"
+                onclick="navigateToPage('home.html')">home</a>
+            <a id="footer_icon" class="material-icons text-decoration-none md-68" href="#"
+                onclick="navigateToPage('profile.html')">account_circle</a>
         </div>
     </footer>
 
@@ -67,7 +71,10 @@
     <!---------------------------------------------->
 
     <!-- Link to scripts of your own -->
+    <script src="./scripts/firebaseAPI_DTC03.js"></script>
     <script src="./scripts/script.js"></script>
+    <script src="./scripts/authentication.js"></script>
+    
 
 </body>
 
