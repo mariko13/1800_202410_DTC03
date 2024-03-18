@@ -2,13 +2,14 @@
 <html lang="en">
 
 <head>
-  <title>age page</title>
+  <title>Personal info</title>
   <meta name="comp1800 template" content="My 1800 App">
 
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <!-- Tailwind Library CSS CDN go here-->
+  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
   <!-- Bootstrap Library CSS CDN go here -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -23,49 +24,74 @@
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+
+
   <!-- Link to styles of your own -->
   <link rel="stylesheet" href="./styles/style.css">
-
 </head>
 
-<body>
+<body class="flex flex-col">
 
   <!------------------------------>
-  <!------------------------------>
-  <!-- Stuff for body goes here -->
-
-  <!-- Welcome -->
   <div style="height: 62px;">
-    <nav class="navbar p fixed-top d-block">
-      <div class="container-fluid text-center">
-        <a href="#" onclick="navigateToPage('preferences.html')">
-          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-left position-absolute"
-            width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-            <path d="M5 12l14 0" />
-            <path d="M5 12l6 6" />
-            <path d="M5 12l6 -6" />
-          </svg>
-        </a>
-        <a class="navbar-brand col-12" href="#">
-          Age
+    <nav class="navbar p fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          Mood Mingle
         </a>
       </div>
     </nav>
   </div>
-  <div class="d-flex flex-column">
+  <!------------------------------>
+  <!-- Stuff for body goes here -->
+  <h1 class="display-4">Welcome, <span id="name-goes-here"></span></h1>
+  <div class="d-flex flex-column border">
     <div class="p-2">
       <p> Enter your age</p>
     </div>
     <div class="p-2">
       <input type="text" placeholder="eg: 25">
     </div>
+  </div>
+  </div>
+  <br>
+  <div class="d-flex flex-column">
     <div class="p-2">
-      <button>Confirm</button>
+      <p> Choose your gender</p>
+    </div>
+    <div class="input-group mb-3">
+      <label class="input-group-text" for="inputGroupSelect01">Options</label>
+      <select class="form-select" id="inputGroupSelect01">
+        <option selected>Choose...</option>
+        <option value="1">Female</option>
+        <option value="2">Male</option>
+        <option value="3">Prefer not to say</option>
+      </select>
+    </div>
+
+  </div>
+  </div>
+  <br>
+  <div class="d-flex flex-column border">
+    <div class="p-2">
+      <p> Enter your Location</p>
+    </div>
+    <div class="p-2">
+      <input type="text" placeholder="eg: Vancouver">
     </div>
   </div>
   </div>
+  <div class="p-2">
+    <button>Confirm</button>
+  </div>
+
   <!-- Sticky footer -->
   <footer class="navbar justify-content-evenly fixed-bottom footer">
     <div class="container">
@@ -83,7 +109,11 @@
   <!---------------------------------------------->
 
   <!-- Link to scripts of your own -->
+  <script src="./scripts/firebaseAPI_DTC03.js"></script>
+  <script src="./scripts/authentication.js"></script>
   <script src="./scripts/script.js"></script>
+  <script src="./scripts/home.js"></script>
+  <script src="./scripts/personalinfo.js"></script>
 
 </body>
 
