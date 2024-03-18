@@ -78,3 +78,13 @@ a.text-light:hover {
 .input-button:active {
   transform: scale(1.0);
 }
+
+.dark-purple-text {
+  background-color: #fff;
+  color: #484870;
+}
+
+.dark-purple-bg .active{
+  background-color: #484870;
+  color: #fff;
+}
