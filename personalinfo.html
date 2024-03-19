@@ -57,7 +57,7 @@
       <p> Enter your age</p>
     </div>
     <div class="p-2">
-      <input type="text" placeholder="eg: 25">
+      <input id="age" type="text" placeholder="eg: 25">
     </div>
   </div>
   </div>
@@ -68,11 +68,11 @@
     </div>
     <div class="input-group mb-3">
       <label class="input-group-text" for="inputGroupSelect01">Options</label>
-      <select class="form-select" id="inputGroupSelect01">
+      <select class="form-select" id="genderselect">
         <option selected>Choose...</option>
-        <option value="1">Female</option>
-        <option value="2">Male</option>
-        <option value="3">Prefer not to say</option>
+        <option value="femal">Female</option>
+        <option value="male">Male</option>
+        <option value="other">Prefer not to say</option>
       </select>
     </div>
 
@@ -84,12 +84,12 @@
       <p> Enter your Location</p>
     </div>
     <div class="p-2">
-      <input type="text" placeholder="eg: Vancouver">
+      <input id="location" type="text" placeholder="eg: Vancouver">
     </div>
   </div>
   </div>
   <div class="p-2">
-    <button>Confirm</button>
+    <a href="home.html"><button onclick="saveUserInfo()">Confirm</button></a>
   </div>
 
   <!-- Sticky footer -->
@@ -113,7 +113,7 @@
   <script src="./scripts/authentication.js"></script>
   <script src="./scripts/script.js"></script>
   <script src="./scripts/home.js"></script>
-  <script src="./scripts/personalinfo.js"></script>
+  <!-- <script src="./scripts/personalinfo.js"></script> -->
 
 </body>
 
