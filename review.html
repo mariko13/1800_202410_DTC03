@@ -44,8 +44,16 @@
   <div style="height: 62px;">
     <nav class="navbar p fixed-top d-block">
       <div class="container-fluid text-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-left position-absolute"
+          width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M5 12l14 0" />
+          <path d="M5 12l6 6" />
+          <path d="M5 12l6 -6" />
+        </svg>
         <a class="navbar-brand col-12" href="#">
-          Activity History
+          Review
         </a>
       </div>
     </nav>
@@ -53,53 +61,47 @@
   <!------------------------------>
   <!-- Stuff for body goes here -->
 
-  <!-- Filter Buttons -->
-  <!-- <ul class="nav nav-pills mb-3 justify-content-center nav-justified p-2" id="pills-tab" role="tablist">
-    <li class="nav-item">
-      <a class="nav-link active dark-purple-bg dark-purple-text" id="pills-all-tab" data-toggle="pill" href="#pills-all" role="tab"
-        aria-controls="pills-all" aria-selected="true">All</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link dark-purple-bg dark-purple-text" id="pills-blocked-tab" data-toggle="pill" href="#pills-blocked" role="tab"
-        aria-controls="pills-blocked" aria-selected="false">Blocked</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link dark-purple-bg dark-purple-text" id="pills-favourited-tab" data-toggle="pill" href="#pills-favourited" role="tab"
-        aria-controls="pills-favourited" aria-selected="false">Favourited</a>
-    </li>
-  </ul> -->
-
-  <!-- Container for past activity list -->
-  <!-- <div class="tab-content" id="pills-tabContent">
-    <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">all</div>
-    <div class="tab-pane fade" id="pills-blocked" role="tabpanel" aria-labelledby="pills-blocked-tab">blocked</div>
-    <div class="tab-pane fade" id="pills-favourited" role="tabpanel" aria-labelledby="pills-favourited-tab">favourited</div>
-  </div> -->
-
-  <!-- Container for past activity list -->
-  <div class="container" id="activityCardGroup" onclick="saveActivityDocumentIDAndRedirect()"></div>
-
-  <!-- Template for past activity card -->
-  <template id="activityCardTemplate">
-    <div class="card bg-light my-2">
-      <div class="card-body">
-        <h5 class="card-title" id="activityName">Activity Name</h5>
-        <p class="card-date text-uppercase text-secondary" id="date">Month Day, Year</p>
+  <!-- Review -->
+  <div class="container">
+    <br>
+    <h1>Review for <span id="ActivityName"> Past Activity Name</span></h1>
+    <br>
+    <form>
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Add a title</label>
+        <input type="text" class="form-control" id="title" placeholder="Title">
+      </div><br>
+      <div class="form-group">
+        <div class="card-body">
+          <p>Rate your overall experience:</p>
+          <span class="material-icons star" id="star1">star_outline</span>
+          <span class="material-icons star" id="star2">star_outline</span>
+          <span class="material-icons star" id="star3">star_outline</span>
+          <span class="material-icons star" id="star4">star_outline</span>
+          <span class="material-icons star" id="star5">star_outline</span>
+        </div>
+        <br>
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">What did you think of the activity?</label>
+          <textarea class="form-control" id="description" rows="3"></textarea>
+        </div>
+        <br>
+        <br>
+        <div class="d-flex justify-content-end">
+          <button type="button" class="btn btn-lg btn-primary pull-right" onclick="writeReview()">Submit</button>
+        </div>
       </div>
-    </div>
-  </template>
+    </form>
+  </div>
 
-  <!------------------------------> 
+  <!------------------------------>
   <!-- Sticky footer -->
   <div style="height: 84px;">
     <footer class="navbar justify-content-evenly fixed-bottom footer d-block">
       <div class="container">
-        <a id="footer_icon" class="material-icons text-decoration-none md-68" href="#"
-          onclick="navigateToPage('history.html')">history</a>
-        <a id="footer_icon" class="material-icons text-decoration-none md-68" href="#"
-          onclick="navigateToPage('home.html')">home</a>
-        <a id="footer_icon" class="material-icons text-decoration-none md-68" href="#"
-          onclick="navigateToPage('profile.html')">account_circle</a>
+        <a id="footer_icon" class="material-icons text-decoration-none md-68" href="#">history</a>
+        <a id="footer_icon" class="material-icons text-decoration-none md-68" href="#">home</a>
+        <a id="footer_icon" class="material-icons text-decoration-none md-68" href="#">account_circle</a>
       </div>
     </footer>
   </div>
@@ -107,10 +109,9 @@
   <!---------------------------------------------->
   <!-- Your own JavaScript functions go here    -->
   <!---------------------------------------------->
-  <script src="./scripts/firebaseAPI_DTC03.js"></script>
-  <script src="./scripts/history.js"></script>
+
   <!-- Link to scripts of your own -->
-  <script src="./scripts/script.js"></script>
+  <!-- <script src="./scripts/script.js"></script> -->
 
 </body>
 
