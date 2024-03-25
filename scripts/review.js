@@ -1,16 +1,37 @@
-var hikeDocID = localStorage.getItem("hikeDocID");    //visible to all functions on this page
+let params = new URL(window.location.href) //get the url from the search bar
+let activityDocID = params.searchParams.get("docID");
 
-function getHikeName(id) {
-  db.collection("hikes")
+function getActivityName(id) {
+  console.log("id:",id)
+  var user = firebase.auth().currentUser;
+  if (user) {
+    var currentUser = db.collection("users").doc(user.uid);
+    var userID = user.uid;
+
+    // Get the document for the current user.
+    db.collection("reviews")
+      .doc(id)
+      .get()
+      .then((thisActivity) => {
+        var activityName = thisActivity.data().activityID;
+        console.log("activityName: ", activityName)
+        document.getElementById("activityName").innerHTML = activityName;
+      });
+  } else {
+    console.log("No user is signed in");
+    window.location.href = 'review.html';
+  }
+  db.collection("reviews")
     .doc(id)
     .get()
-    .then((thisHike) => {
-      var hikeName = thisHike.data().name;
-      document.getElementById("hikeName").innerHTML = hikeName;
+    .then((thisActivity) => {
+      var activityName = thisActivity.data().activityID;
+      console.log("activityName: ",activityName)
+      document.getElementById("activityName").innerHTML = activityName;
     });
 }
 
-getHikeName(hikeDocID);
+getActivityName(activityDocID);
 
 
 // Add this JavaScript code to make stars clickable
@@ -33,28 +54,24 @@ stars.forEach((star, index) => {
 
 function writeReview() {
   console.log("inside write review");
-  let hikeTitle = document.getElementById("title").value;
-  let hikeLevel = document.getElementById("level").value;
-  let hikeSeason = document.getElementById("season").value;
-  let hikeDescription = document.getElementById("description").value;
-  let hikeFlooded = document.querySelector('input[name="flooded"]:checked').value;
-  let hikeScrambled = document.querySelector('input[name="scrambled"]:checked').value;
+  let reviewTitle = document.getElementById("title").value;
+  let reviewDescription = document.getElementById("description").value;
 
   // Get the star rating
   // Get all the elements with the class "star" and store them in the 'stars' variable
   const stars = document.querySelectorAll('.star');
-  // Initialize a variable 'hikeRating' to keep track of the rating count
-  let hikeRating = 0;
+  // Initialize a variable 'activityRating' to keep track of the rating count
+  let activityRating = 0;
   // Iterate through each element in the 'stars' NodeList using the forEach method
   stars.forEach((star) => {
     // Check if the text content of the current 'star' element is equal to the string 'star'
     if (star.textContent === 'star') {
-      // If the condition is met, increment the 'hikeRating' by 1
-      hikeRating++;
+      // If the condition is met, increment the 'activityRating' by 1
+      activityRating++;
     }
   });
 
-  console.log(hikeTitle, hikeLevel, hikeSeason, hikeDescription, hikeFlooded, hikeScrambled, hikeRating);
+  console.log(reviewTitle, reviewDescription, activityRating);
 
   var user = firebase.auth().currentUser;
   if (user) {
@@ -63,19 +80,26 @@ function writeReview() {
 
     // Get the document for the current user.
     db.collection("reviews").add({
-      hikeDocID: hikeDocID,
-      userID: userID,
-      title: hikeTitle,
-      level: hikeLevel,
-      season: hikeSeason,
-      description: hikeDescription,
-      flooded: hikeFlooded,
-      scrambled: hikeScrambled,
-      rating: hikeRating, // Include the rating in the review
-      timestamp: firebase.firestore.FieldValue.serverTimestamp()
-    }).then(() => {
-      window.location.href = "thanks.html"; // Redirect to the thanks page
-    });
+      title: reviewTitle,
+      description: reviewDescription,
+      stars: activityRating, // Include the rating in the review
+    })
+  } else {
+    console.log("No user is signed in");
+    window.location.href = 'review.html';
+  }
+}
+
+function blockActivity() { //still need to ask for confirmation and show hange once an activity is blocked
+  var user = firebase.auth().currentUser;
+  if (user) {
+    var currentUser = db.collection("users").doc(user.uid);
+    var userID = user.uid;
+
+    // Get the document for the current user.
+    db.collection("reviews").add({
+      block: true,
+    })
   } else {
     console.log("No user is signed in");
     window.location.href = 'review.html';

@@ -64,7 +64,7 @@
   <!-- Review -->
   <div class="container">
     <br>
-    <h1>Review for <span id="ActivityName"> Past Activity Name</span></h1>
+    <h1>Review for <span id="activityName"> Past Activity Name</span></h1>
     <br>
     <form>
       <div class="form-group">
@@ -83,12 +83,16 @@
         <br>
         <div class="form-group">
           <label for="exampleFormControlTextarea1">What did you think of the activity?</label>
-          <textarea class="form-control" id="description" rows="3"></textarea>
+          <textarea class="form-control" id="description" rows="3" placeholder="Comment..."></textarea>
         </div>
         <br>
         <br>
         <div class="d-flex justify-content-end">
           <button type="button" class="btn btn-lg btn-primary pull-right" onclick="writeReview()">Submit</button>
+        </div>
+        <br>
+        <div>
+          <button type="button" class="btn btn-large btn-danger my-4" onclick="blockActivity()">Block Activity</button>
         </div>
       </div>
     </form>
@@ -111,7 +115,7 @@
   <!---------------------------------------------->
 
   <!-- Link to scripts of your own -->
-  <!-- <script src="./scripts/script.js"></script> -->
+  <script src="./scripts/review.js"></script>
 
 </body>
 
