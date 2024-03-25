@@ -32,6 +32,7 @@ function populateUserInfo() {
             currentUser.get()
                 .then(userDoc => {
                     //get the data fields of the user
+                    let userImage = userDoc.data().image;
                     let userAge = userDoc.data().age;
                     let userGender = userDoc.data().gender;
                     let userLocation = userDoc.data().location;
@@ -71,10 +72,10 @@ function saveUserInfo() {
         location: userLocation
     })
         .then(() => {
-            console.log("Document successfully updated!");
-            alert('Your information has been saved');
-            navigateToPage('home.html')
-        })
+        console.log("Document successfully updated!");
+        alert('Your information has been saved');
+        navigateToPage('home.html')
+    })
     //c) disable edit 
 }
 // function clicked() {
