@@ -19,7 +19,7 @@ function displayCardsDynamically() {
             let newcard = activityCardTemplate.content.cloneNode(true);
             newcard.querySelector(".card-title").textContent = activityName;
             newcard.querySelector(".card-text").textContent = activityDate.toLocaleString(); // to display the date
-            newcard.querySelector(".card-body").href = "review.html?docID=" + docID;
+            newcard.querySelector("a").href = "review.html?docID=" + docID;
             activityCardGroup.appendChild(newcard);
           });
         })
