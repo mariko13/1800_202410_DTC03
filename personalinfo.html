@@ -52,6 +52,15 @@
   <!------------------------------>
   <!-- Stuff for body goes here -->
   <h1 class="display-4">Welcome, <span id="name-goes-here"></span></h1>
+  <!--upload profile picture-->
+  <div class="d-flex flex-column border">
+    <p class="p-2">Upload your profile picture</p>
+    <div class="input-group mb-3">
+      <input type="file" class="form-control" id="profile_picture">
+      <label class="input-group-text" for="profile_picture">Upload</label>
+    </div>
+  </div>
+  <!--enter age-->
   <div class="d-flex flex-column border">
     <div class="p-2">
       <p> Enter your age</p>
@@ -62,23 +71,23 @@
   </div>
   </div>
   <br>
+  <!--choose gender-->
   <div class="d-flex flex-column">
     <div class="p-2">
       <p> Choose your gender</p>
     </div>
     <div class="input-group mb-3">
       <label class="input-group-text" for="inputGroupSelect01">Options</label>
-      <select class="form-select" id="genderselect">
+      <select class="form-select" id="genderselect" placeholder="eg: 25">
         <option selected>Choose...</option>
-        <option value="femal">Female</option>
+        <option value="female">Female</option>
         <option value="male">Male</option>
         <option value="other">Prefer not to say</option>
       </select>
     </div>
-
-  </div>
   </div>
   <br>
+  <!--enter location-->
   <div class="d-flex flex-column border">
     <div class="p-2">
       <p> Enter your Location</p>
@@ -89,7 +98,8 @@
   </div>
   </div>
   <div class="p-2">
-    <a href="home.html"><button onclick="saveUserInfo()">Confirm</button></a>
+    <button onclick="saveUserInfo()">Confirm</button>
+    <!-- <a href="home.html"></a> -->
   </div>
 
   <!-- Sticky footer -->
