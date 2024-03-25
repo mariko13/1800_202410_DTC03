@@ -26,6 +26,15 @@
   <!-- Link to styles of your own -->
   <link rel="stylesheet" href="./styles/style.css">
 
+  <!--firebase links-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+
 </head>
 
 <body>
@@ -46,10 +55,10 @@
     <img src="https://randomuser.me/api/portraits/women/14.jpg" alt="profile picture"
       class="rounded-circle img-thumbnail my-2">
     <div class="mt-2">
-      <h1>Name</h1>
-      <h6>Age</h6>
-      <h6>Gender</h6>
-      <h6>Location</h6>
+      <h1>Name: <span id="name-goes-here"></span></h1>
+      <h6>Age: <span id="age-goes-here"></span></h6>
+      <h6>Gender: <span id="gender-goes-here"></span></h6>
+      <h6>Location: <span id="location-goes-here"></span></h6>
     </div>
   </div>
   <div class="d-flex flex-column">
@@ -106,7 +115,11 @@
   <!---------------------------------------------->
 
   <!-- Link to scripts of your own -->
+  <script src="./scripts/firebaseAPI_DTC03.js"></script>
+  <script src="./scripts/authentication.js"></script>
   <script src="./scripts/script.js"></script>
+  <!-- <script src="./scripts/home.js"></script> -->
+  <script src="./scripts/profile.js"></script>
 
 </body>
 
