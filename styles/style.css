@@ -1,3 +1,144 @@
+:root {
+  --first-color: #F6CD46;
+  --image-color: #F9DA77;
+  --title-color: #D81E5B;
+  --button-color: #021327;
+  --white-color: #F1F0F9;
+  --body-color: #031D3A;
+  --container-color: #003952;
+
+  --body-font: "Arial", sans-serif;
+  --h2-font-size: 1.25rem;
+  --normal-font-size: 1rem;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  background-color: var(--body-color);
+  color: var(--white-color);
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+
+.container_swiper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 100px 0;
+}
+
+.card_container {
+  padding-block: 5rem;
+}
+
+.card_content {
+  margin-inline: 1.75rem;
+  border-radius: 1.25rem;
+  overflow: hidden;
+}
+
+.card_article {
+  width: 300px;
+  border-radius: 1.25rem;
+  overflow: hidden;
+}
+
+.card_image {
+  position: relative;
+  background-color: var(--image-color);
+  padding-top: 1.5rem;
+  margin-bottom: -.75rem;
+}
+
+.card_data {
+  background-color: var(--container-color);
+  padding: 1.5rem 2rem;
+  border-radius: 1rem;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+}
+
+.card_img {
+  width: 200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 5;
+}
+
+.card_name {
+  font-size: var(--h2-font-size);
+  color: var(--title-color);
+  margin-bottom: .75rem;
+}
+
+.card_description {
+  font-weight: 500;
+  margin-bottom: 1.75rem;
+}
+
+.card_button {
+  display: inline-block;
+  background-color: var(--first-color);
+  padding: .75rem 1.5rem;
+  border-radius: .25rem;
+  color: var(--button-color);
+  font-weight: 600;
+}
+
+.swiper-pagination {
+  position: relative;
+  padding-top: 20px;
+}
+
+.swiper-pagination-bullet {
+  background-color: #456487;
+  opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: var(--title-color);
+}
+
+/* SCREEN SIZE BREAKPOINTS */
+@media screen and (max-width: 320px) {
+  .card_data {
+      padding: 1rem;
+  }
+}
+
+/* For medium devices */
+@media screen and (min-width: 768px) {
+  .card_content {
+      margin-inline: 3rem;
+  }
+}
+
+/* For large devices */
+@media screen and (min-width: 1025px) {
+  .card_container {
+      max-width: 1025px;
+  }
+}
+
+
 .navbar-brand {
   font-family: 'pacifico', cursive;
   /*change the font name for what you have*/
@@ -17,8 +158,8 @@ a.text-light:hover {
   background-color: #7676a7;
 }
 
-.material-icons.md-68 {
-  font-size: 68px;
+.material-icons.md-50 {
+  font-size: 50px;
 }
 
 .material-icons {
@@ -79,7 +220,7 @@ a.text-light:hover {
   transform: scale(1.0);
 }
 
-.dark-purple-text {
+/* .dark-purple-text {
   background-color: #fff;
   color: #484870;
 }
@@ -87,4 +228,4 @@ a.text-light:hover {
 .dark-purple-bg .active{
   background-color: #484870;
   color: #fff;
-}
+} */
