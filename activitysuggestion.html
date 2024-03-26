@@ -36,45 +36,7 @@
     <!-- Swiper Library -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <!-- <style> -->
-        <!-- :root {
-            --first-color: #F6CD46;
-            --image-color: #F9DA77;
-            --title-color: #D81E5B;
-            --button-color: #021327;
-            --white-color: #F1F0F9;
-            --body-color: #031D3A;
-            --container-color: #003952;
-
-            --body-font: "Arial", sans-serif;
-            --h2-font-size: 1.25rem;
-            --normal-font-size: 1rem;
-        }
-
-        * {
-            box-sizing: border-box;
-            padding: 0;
-            margin: 0;
-        }
-
-        body {
-            font-family: var(--body-font);
-            font-size: var(--normal-font-size);
-            background-color: var(--body-color);
-            color: var(--white-color);
-        }
-
-        a {
-            text-decoration: none;
-        }
-
-        img {
-            display: block;
-            max-width: 100%;
-            height: auto;
-        }
-
-
+    <style>
         .container_swiper {
             display: flex;
             justify-content: center;
@@ -175,14 +137,14 @@
             .card_container {
                 max-width: 1025px;
             }
-        } -->
-    <!-- </style> -->
+        }
+    </style>
 </head>
 
 <body class="flex flex-col h-screen">
 
     <!-- Sticky Header -->
-    <nav class="navbar p fixed-top d-block">
+    <nav class="navbar p fixed-top d-block" style="height: 62px">
         <div class="container-fluid text-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-left position-absolute"
                 width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
@@ -212,11 +174,11 @@
     <!-- Sticky Footer -->
     <footer class="navbar justify-content-evenly footer fixed-bottom d-block">
         <div class="container">
-            <a id="footer_icon" class="material-icons text-decoration-none md-50" href="#"
+            <a id="footer_icon" class="material-icons text-decoration-none md-68" href="#"
                 onclick="navigateToPage('history.html')">history</a>
-            <a id="footer_icon" class="material-icons text-decoration-none md-50" href="#"
+            <a id="footer_icon" class="material-icons text-decoration-none md-68" href="#"
                 onclick="navigateToPage('home.html')">home</a>
-            <a id="footer_icon" class="material-icons text-decoration-none md-50" href="#"
+            <a id="footer_icon" class="material-icons text-decoration-none md-68" href="#"
                 onclick="navigateToPage('profile.html')">account_circle</a>
         </div>
     </footer>
