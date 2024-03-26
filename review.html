@@ -44,14 +44,16 @@
   <div style="height: 62px;">
     <nav class="navbar p fixed-top d-block">
       <div class="container-fluid text-center">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-left position-absolute"
-          width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
-          stroke-linecap="round" stroke-linejoin="round">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <path d="M5 12l14 0" />
-          <path d="M5 12l6 6" />
-          <path d="M5 12l6 -6" />
-        </svg>
+        <a href="#" onclick="navigateToPage('history.html')">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-left position-absolute"
+            width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M5 12l14 0" />
+            <path d="M5 12l6 6" />
+            <path d="M5 12l6 -6" />
+          </svg>
+        </a>
         <a class="navbar-brand col-12" href="#">
           Review
         </a>
@@ -64,16 +66,16 @@
   <!-- Review -->
   <div class="container">
     <br>
-    <h1>Review for <span id="activityName"> Past Activity Name</span></h1>
+    <h1>Review for <span id="activityName"></span></h1>
     <br>
     <form>
       <div class="form-group">
-        <label for="exampleFormControlInput1">Add a title</label>
+        <label for="exampleFormControlInput1" class="review-form-label">Add a title</label>
         <input type="text" class="form-control" id="title" placeholder="Title">
       </div><br>
       <div class="form-group">
         <div class="card-body">
-          <p>Rate your overall experience:</p>
+          <p class="review-form-label">Rate your overall experience:</p>
           <span class="material-icons star" id="star1">star_outline</span>
           <span class="material-icons star" id="star2">star_outline</span>
           <span class="material-icons star" id="star3">star_outline</span>
@@ -82,13 +84,13 @@
         </div>
         <br>
         <div class="form-group">
-          <label for="exampleFormControlTextarea1">What did you think of the activity?</label>
+          <label for="exampleFormControlTextarea1" class="review-form-label">What did you think of the activity?</label>
           <textarea class="form-control" id="description" rows="3" placeholder="Comment..."></textarea>
         </div>
         <br>
         <br>
         <div class="d-flex justify-content-end">
-          <button type="button" class="btn btn-lg btn-primary pull-right" onclick="writeReview()">Submit</button>
+          <button type="button" class="btn btn-lg submit-review-btn btn-primary pull-right" onclick="writeReview()">Submit</button>
         </div>
         <br>
         <div>
@@ -113,9 +115,10 @@
   <!---------------------------------------------->
   <!-- Your own JavaScript functions go here    -->
   <!---------------------------------------------->
-
-  <!-- Link to scripts of your own -->
+  <script src="./scripts/firebaseAPI_DTC03.js"></script>
   <script src="./scripts/review.js"></script>
+  <!-- Link to scripts of your own -->
+  <script src="./scripts/script.js"></script>
 
 </body>
 
