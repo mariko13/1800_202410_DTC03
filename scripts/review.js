@@ -3,30 +3,14 @@ let activityDocID = params.searchParams.get("docID");
 
 function getActivityName(id) {
   console.log("id:",id)
-  var user = firebase.auth().currentUser;
-  if (user) {
-    var currentUser = db.collection("users").doc(user.uid);
-    var userID = user.uid;
-
-    // Get the document for the current user.
-    db.collection("reviews")
-      .doc(id)
-      .get()
-      .then((thisActivity) => {
-        var activityName = thisActivity.data().activityID;
-        console.log("activityName: ", activityName)
-        document.getElementById("activityName").innerHTML = activityName;
-      });
-  } else {
-    console.log("No user is signed in");
-    window.location.href = 'review.html';
-  }
-  db.collection("reviews")
+  
+  // Get the document for the current user.
+  db.collection("reviews") //giving the error !!!
     .doc(id)
     .get()
     .then((thisActivity) => {
       var activityName = thisActivity.data().activityID;
-      console.log("activityName: ",activityName)
+      console.log("activityName: ", activityName)
       document.getElementById("activityName").innerHTML = activityName;
     });
 }
