@@ -69,6 +69,10 @@ a.text-light:hover {
   font-size: 50px;
 }
 
+.star {
+  color: #e9b91f;
+}
+
 .footer {
   background-color: #F6CD46;
 }
@@ -121,6 +125,20 @@ a.text-light:hover {
 
 .input-button:active {
   transform: scale(1.0);
+}
+
+.review-btn {
+  background-color: #484870;
+  color: white;
+}
+
+.review-btn:hover {
+  background-color: #D81E5B;
+  color: white;
+}
+
+.review-form-label {
+  color: #D81E5B;
 }
 
 /* .dark-purple-text {
