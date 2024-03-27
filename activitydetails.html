@@ -58,13 +58,21 @@
     </div>
 
     <!-- Main Section -->
-    <section class="container py-12" id="activitiesContainer">
+    <articles class="flex flex-col container p-10">
+        <section id="activitiesContainer" class="flex flex-col place-items-center">
 
-    </section>
+        </section>
+        <button>
+
+        </button>
+        <section id="reviewsContainer">
+
+        </section>
+    </articles>
 
 
     <!-- Sticky footer -->
-    <div style="height: 84px;">
+    <div style="height: 62px;">
         <footer class="navbar justify-content-evenly fixed-bottom footer d-block">
             <div class="container">
                 <a id="footer_icon" class="material-icons text-decoration-none md-68" href="#"
@@ -83,71 +91,100 @@
             navigateToPage('activitysuggestion.html');
         }
 
-        // Retrieve selected mood from local storage: either 'content', 'neutral', 'sad'
         var selectedMood = localStorage.getItem('selectedMood');
         console.log('Selected mood from previous page:', selectedMood);
 
-        // Retrieve selected cost from local storage: either '$', '$$', '$$$'
         var selectedCost = localStorage.getItem('selectedCost');
         console.log('Selected mood from previous page:', selectedCost);
 
-        // Retrieve selected time from local storage: either 'short', 'mediunm', 'long'
         var selectedTime = localStorage.getItem('selectedTime');
         console.log('Selected mood from previous page:', selectedTime);
 
-        // Retrieve selected doors from local storage: either 'indoors', 'outdoors'
         var selectedDoors = localStorage.getItem('selectedDoors');
         console.log('Selected mood from previous page:', selectedDoors);
 
-        // Retrieve selected group from local storage: either 'alone', 'group'
         var selectedGroup = localStorage.getItem('selectedGroup');
         console.log('Selected mood from previous page:', selectedGroup);
 
-        // Retrieve selected actibityID from local storage
         var selectedActivity = localStorage.getItem('selectedActivity');
         console.log('Selected activity from previous page:', selectedActivity);
 
-        // Interact with Firestore Cloud
+
         var activitiesContainer = document.getElementById('activitiesContainer');
 
         activitiesContainer.innerHTML = '';
 
-        const docRef = db.collection('activities').doc(selectedActivity)
+        let totalStars = 0;
+        let totalReviews = 0;
+        let activityRatingRounded;
 
-        docRef
-        .get()
-        .then((snapshot) => {
-            if (snapshot.empty) {
-                activitiesContainer.innerHTML = '<p>Selected activity not found in db.</p>';
+        db.collection('reviews')
+            .where('activityID', '==', selectedActivity)
+            .get()
+            .then((snapshot) => {
+                snapshot.forEach((doc) => {
+                    totalStars += Number(doc.data().stars);
+                    totalReviews += 1;
+                })
+                let activityRating = totalStars / totalReviews; // 3.5
+                activityRatingRounded = roundToNearestHalf(activityRating); // 4
+                useActivityRatingRounded();
+            })
+            .catch(error => {
+                console.log('Error getting documents: ', error);
+            });
+
+
+        let useActivityRatingRounded = () => activityRatingRounded;
+
+
+        db.collection('activities').doc(selectedActivity)
+            .get()
+            .then((snapshot) => {
+                if (snapshot.empty) {
+                    activitiesContainer.innerHTML = '<p>Selected activity not found in db.</p>';
+                }
+                else {
+                    var data = snapshot.data();
+                    var image = snapshot.data().image;
+                    var activityID = snapshot.data().activityID;
+                    var description = snapshot.data().description;
+                    var rating = useActivityRatingRounded();
+                    var stars = generateStarsHTML(rating)
+                    var activityDetails = `
+                        <img src='./images/${image}' class='activity-image'>
+                        <h1 class="font-bold mb-2" id="activity-detail-title">${activityID}</h1>
+                        <div>${stars}</div>
+                        <p>${description}</p>
+                        `;
+                    
+                    activitiesContainer.innerHTML += activityDetails;
+                }
+            })
+            .catch(error => {
+                console.log("Error getting documents: ", error);
+            });
+
+        function generateStarsHTML(rating) {
+            const numFullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 !== 0;
+            const numEmptyStars = 5 - numFullStars - (hasHalfStar ? 1 : 0);
+            let starsHTML = '';
+            for (let i = 0; i < numFullStars; i++) {
+                starsHTML += '<i class="material-icons star">star</i>';
             }
-            else {
-                var data = snapshot.data();
-                var activityID = snapshot.data().activityID;
-                var description = snapshot.data().description;
-                var mood = snapshot.data().mood;
-                var cost = snapshot.data().cost;
-                var time = snapshot.data().time;
-                var doors = snapshot.data().doors;
-                var group = snapshot.data().group;
-                var image = snapshot.data().image;
-
-                var activityDetails = `
-                    <h1>${activityID}</h1>
-                    <p>Description: ${description}</p>
-                    <p>Mood: ${mood}</p>
-                    <p>Cost: ${cost}</p>
-                    <p>Time: ${time}</p>
-                    <p>Doors: ${doors}</p>
-                    <p>Group: ${group}</p>
-                    <img src="${image}" alt="${activityID}" style="max-width: 100%; height: auto;">
-                `;
-
-                activitiesContainer.innerHTML = activityDetails;
+            if (hasHalfStar) {
+                starsHTML += '<i class="material-icons star">star_half</i>';
             }
-        })
-        .catch(error => {
-            console.log("Error getting documents: ", error);
-        });
+            for (let i = 0; i < numEmptyStars; i++) {
+                starsHTML += '<i class="material-icons star">star_border</i>';
+            }
+            return starsHTML;
+        }
+
+        function roundToNearestHalf(number) {
+            return Math.round(number * 2) / 2;
+        }
     </script>
     <script src="./scripts/script.js"></script>
 

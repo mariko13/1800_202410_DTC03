@@ -235,11 +235,12 @@
                             // Create item for each activity
                             var activityID = doc.data().activityID;
                             var description = doc.data().description;
+                            var image = doc.data().image;
                             // For each item, add basic information on each of the activities 
                             var activitiesItem = `
                             <article class="card_article swiper-slide">
-                                <div class="card_image">
-                                    <img src="https://picsum.photos/seed/picsum/400/400" alt="image" class="card_img">
+                                <div class="card_image flex justify-center items-center">
+                                    <img src='./images/${image}' class='activity-image size-60'>
                                     <div class="card_shadow"></div>
                                 </div>
                                 <div class="card_data">

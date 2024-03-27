@@ -41,16 +41,25 @@ img {
   height: auto;
 }
 
+
+h1#activity-detail-title {
+  color: var(--title-color);
+  font-size: 30px;
+}
+
+.activity-image {
+  width:300px;
+}
+
 .navbar-brand {
   font-family: 'pacifico', cursive;
-  /*change the font name for what you have*/
   font-size: 1.5rem;
-
 }
 
 nav {
   background-color: #f6cd46;
 }
+
 
 a.text-light {
   background-color: #484870;
