@@ -91,11 +91,6 @@
             navigateToPage('activitysuggestion.html');
         }
 
-        function roundToNearestHalf(number) {
-            return Math.round(number * 2) / 2;
-        }
-
-
         var selectedMood = localStorage.getItem('selectedMood');
         console.log('Selected mood from previous page:', selectedMood);
 
@@ -185,6 +180,10 @@
                 starsHTML += '<i class="material-icons star">star_border</i>';
             }
             return starsHTML;
+        }
+
+        function roundToNearestHalf(number) {
+            return Math.round(number * 2) / 2;
         }
     </script>
     <script src="./scripts/script.js"></script>
