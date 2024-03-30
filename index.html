@@ -8,7 +8,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <!-- Tailwind Library CSS CDN go here-->
+    <script src="https://cdn.tailwindcss.com"></script>
     <!-- Bootstrap Library CSS CDN go here -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -23,7 +24,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+    <!-- Lottie -->
+    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
 
+    <!-- Firestore Cloud -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
@@ -35,56 +39,141 @@
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="./styles/style.css">
 
+    <!-- Swiper Library -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <style>
+        .navbar-shadow {
+            transition: box-shadow 0.2s ease;
+        }
+    </style>
+
+    <script>
+        window.addEventListener('scroll', function () {
+            var navbar = document.querySelector('.navbar');
+            if (window.scrollY > 0) {
+                navbar.classList.add('shadow-md');
+            } else {
+                navbar.classList.remove('shadow-md');
+            }
+        });
+    </script>
 </head>
 
 <body>
 
-    <!------------------------------>
-    <nav class="navbar p">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                Mood Mingle
-            </a>
-        </div>
-    </nav>
-    <!------------------------------>
-    <!-- Stuff for body goes here -->
-
-    <!-- Welcome -->
-    <div class="px-4 py-5 my-5 text-center">
-        <img class="d-block mx-auto mb-4" src="./images/MoodMingleLogo.png" alt="" width="100">
-        <h1 class="display-5 fw-bold">Welcome to Mood Mingle!</h1>
-        <div class="col-lg-6 mx-auto">
-            <p class="lead mb-4">Let Mood Mingle brighten your mood</p>
-            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                <a role="button" href="login.html" class="btn text-light btn-lg px-4 gap-3">Login</a>
+    <div style="height: 62px;">
+        <nav class="navbar p fixed-top d-block navbar-shadow">
+            <div class="container-fluid">
+                <p class="navbar-brand col-12" href="#">
+                    Mood Mingle
+                </p>
             </div>
-        </div>
+        </nav>
     </div>
 
-    <!-- Sticky footer -->
-    <footer class="navbar justify-content-evenly fixed-bottom footer">
-        <div class="container">
-            <a id="footer_icon" class="material-icons text-decoration-none md-68" href="#"
-                onclick="navigateToPage('#')">history</a>
-            <a id="footer_icon" class="material-icons text-decoration-none md-68" href="#"
-                onclick="navigateToPage('#')">home</a>
-            <a id="footer_icon" class="material-icons text-decoration-none md-68" href="#"
-                onclick="navigateToPage('#')">account_circle</a>
+    <!-- Welcome -->
+    <div class="px-4 mt-5 text-center mx-auto lg:w-1/2">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-semibold">
+            Choose your <span class="text-[#D81E5B]">adventure</span> today! Let <span class="text-[#F4C015]">Mood
+                Mingle</span> brighten your mood!
+        </h1>
+        <br>
+        <div class="flex flex-col justify-center items-center mx-auto lg:w-3/4">
+            <p class="text-base md:text-2xl lg:text-3xl text-light">
+                Mood Mingle takes away the complexity of searching for what you want to do. It suggests activities best
+                tailored to how you feel.
+            </p>
+            <div class="mt-10">
+                <a role="button" href="login.html"
+                    class="text-xl font-semibold px-4 py-3 bg-[#F4C015] text-[#792A76] font-bold rounded-full mx-auto">Login
+                    or Get Started</a>
+            </div>
         </div>
-    </footer>
+        <dotlottie-player src="https://lottie.host/d1bba15a-db7c-49e1-9916-a8beaea109b3/goomYm3HxE.json"
+            class="mx-auto size-full" background="transparent" speed="1" direction="1" playMode="normal" loop
+            autoplay></dotlottie-player>
+    </div>
 
-    <!---------------------------------------------->
-    <!-- Your own JavaScript functions go here    -->
-    <!---------------------------------------------->
+    <section class="bg-[#FDFFFC] py-8">
+        <article class="flex flex-col lg:w-3/4 p-4 mx-auto">
+            <h1 class="font-bold text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900 text-center tracking-normal">Personalized
+                Activity Matchmaker</h1>
+            <p class="text-sm md:text-lg lg:text-xl font-thin text-slate-500 text-center my-2 tracking-wide">Find the perfect activity for
+                your mood, preferences, and start mingling!</p>
+            <div class="swiper-container overflow-hidden">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide px-4 flex flex-col justify-center items-center">
+                        <dotlottie-player src="https://lottie.host/0160f3dc-1c8f-4e87-9502-2fc00325bf94/GQYr9rqigm.json" background="transparent" speed="1" style="width: 300px; height: 300px" direction="1" playMode="normal" loop autoplay></dotlottie-player>
+                        <p class="font-bold text-lg text-base text-center text-slate-700">Let Mood Mingle know how you are!</p>
+                    </div>
+                    <div class="swiper-slide px-4 flex flex-col justify-center items-center">
+                        <dotlottie-player src="https://lottie.host/ca347ec3-b7dc-4523-95ba-67466e763163/WuyZIMqu3l.json" background="transparent" speed="1" style="width: 300px; height: 300px" direction="1" playMode="normal" loop autoplay></dotlottie-player>
+                        <p class="font-bold text-lg text-base text-center text-slate-700">Activities tailored for your mood!</p>
+                    </div>
+                    <div class="swiper-slide px-4 flex flex-col justify-center items-center">
+                        <dotlottie-player src="https://lottie.host/68051da4-3006-4b58-ab61-59ba804a6232/VIcBHfXaFB.json" background="transparent" speed="1" style="width: 300px; height: 300px" direction="1" playMode="normal" loop autoplay></dotlottie-player>                        
+                        <p class="font-bold text-lg text-base text-center text-slate-700">Start mingling with others!</p>
+                    </div>                
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </article>
+    </section>
 
-    <!-- Link to scripts of your own -->
+
+    <section class="bg-[#F8D04F] py-8">
+        <article class="flex flex-col lg:w-3/4 p-4 mx-auto">
+            <h1 class="font-bold text-2xl md:text-3xl lg:text-4xl font-bold text-pink-900 text-center tracking-normal">Explore Beyond
+                Your Personal Bubble</h1>
+            <p class="text-sm md:text-lg lg:text-xl font-thin text-pink-600 text-center my-2 tracking-wide">Socialize with others, explore
+                local events, and stay ahead in weather updates!</p>
+            <div class="swiper-container overflow-hidden">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide px-4 flex flex-col justify-center items-center">
+                        <dotlottie-player src="https://lottie.host/9f41b19f-e429-4828-9d81-63d2171fa772/mHzjBb5COD.json" background="transparent" speed="1" style="width: 300px; height: 300px" direction="1" playMode="normal" loop autoplay></dotlottie-player>
+                        <p class="font-bold text-lg text-base text-center text-pink-800">Mood Mingle, your new weather whisperer!</p>
+                    </div>
+                    <div class="swiper-slide px-4 flex flex-col justify-center items-center">
+                        <dotlottie-player src="https://lottie.host/291e6a8f-eb2b-4d3d-ad96-672c9f4dae7f/sW35syuOtq.json" background="transparent" speed="1" style="width: 300px; height: 300px" direction="1" playMode="normal" loop autoplay></dotlottie-player>
+                        <p class="font-bold text-lg text-base text-center text-pink-800">Discover exciting local events!</p>
+                    </div>
+                    <div class="swiper-slide px-4 flex flex-col justify-center items-center">
+                        <dotlottie-player src="https://lottie.host/378815f8-baf3-42c8-9042-5fb45398988e/jYZwUryOph.json" background="transparent" speed="1" style="width: 300px; height: 300px" direction="1" playMode="normal" loop autoplay></dotlottie-player>                        
+                        <p class="font-bold text-lg text-base text-center text-pink-800">Join others in their activities!</p>
+                    </div>                
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </article>
+    </section>
+
+    <!-- Link to scripts of your own -->    
     <script src="./scripts/firebaseAPI_DTC03.js"></script>
     <script src="./scripts/authentication.js"></script>
     <script src="./scripts/script.js"></script>
 
 
-
+    <script>
+        // Initialize Swiper
+        var swiper = new Swiper('.swiper-container', {
+            slidesPerView: 1,
+            loop: false,
+            spaceBetween: 32,
+            pagination: {
+                el: '.swiper-pagination',
+            },
+            breakpoints: {
+                600: {
+                    slidesPerView: 2,
+                },
+                968: {
+                    slidesPerView: 3,
+                },
+            },
+        });
+    </script>
 </body>
 
 </html>
