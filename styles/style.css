@@ -57,8 +57,8 @@ h1#activity-detail-title {
   color: var(--first-color);
 }
 
-.navbar:hover {
-  color: var(--first-color);
+.navbar-shadow {
+  transition: box-shadow 0.2s ease;
 }
 
 button#startMingleButton {
