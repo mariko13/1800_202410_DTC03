@@ -58,15 +58,15 @@
     </div>
 
     <!-- Main Section -->
-    <articles class="flex flex-col container p-10">
+    <articles class="flex flex-col container px-10 py-20 mx-auto lg:w-1/2 justify-center items-center">
         <section id="activitiesContainer" class="flex flex-col place-items-center">
-
         </section>
-        <button>
-
+        <button id="startMingleButton" class="my-4 p-2 rounded font-bold w-1/2 mx-auto">
+            Start Mingling!
         </button>
-        <section id="reviewsContainer">
-
+        <section class="flex flex-col w-full lg:w-1/2">
+            <p>Reviews:</p>
+            <div id="reviewsContainer" class="flex flex-col"></div>
         </section>
     </articles>
 
@@ -86,106 +86,7 @@
     </div>
 
     <!-- Link to scripts of your own -->
-    <script>
-        function goBack() {
-            navigateToPage('activitysuggestion.html');
-        }
-
-        var selectedMood = localStorage.getItem('selectedMood');
-        console.log('Selected mood from previous page:', selectedMood);
-
-        var selectedCost = localStorage.getItem('selectedCost');
-        console.log('Selected mood from previous page:', selectedCost);
-
-        var selectedTime = localStorage.getItem('selectedTime');
-        console.log('Selected mood from previous page:', selectedTime);
-
-        var selectedDoors = localStorage.getItem('selectedDoors');
-        console.log('Selected mood from previous page:', selectedDoors);
-
-        var selectedGroup = localStorage.getItem('selectedGroup');
-        console.log('Selected mood from previous page:', selectedGroup);
-
-        var selectedActivity = localStorage.getItem('selectedActivity');
-        console.log('Selected activity from previous page:', selectedActivity);
-
-
-        var activitiesContainer = document.getElementById('activitiesContainer');
-
-        activitiesContainer.innerHTML = '';
-
-        let totalStars = 0;
-        let totalReviews = 0;
-        let activityRatingRounded;
-
-        db.collection('reviews')
-            .where('activityID', '==', selectedActivity)
-            .get()
-            .then((snapshot) => {
-                snapshot.forEach((doc) => {
-                    totalStars += Number(doc.data().stars);
-                    totalReviews += 1;
-                })
-                let activityRating = totalStars / totalReviews; // 3.5
-                activityRatingRounded = roundToNearestHalf(activityRating); // 4
-                useActivityRatingRounded();
-            })
-            .catch(error => {
-                console.log('Error getting documents: ', error);
-            });
-
-
-        let useActivityRatingRounded = () => activityRatingRounded;
-
-
-        db.collection('activities').doc(selectedActivity)
-            .get()
-            .then((snapshot) => {
-                if (snapshot.empty) {
-                    activitiesContainer.innerHTML = '<p>Selected activity not found in db.</p>';
-                }
-                else {
-                    var data = snapshot.data();
-                    var image = snapshot.data().image;
-                    var activityID = snapshot.data().activityID;
-                    var description = snapshot.data().description;
-                    var rating = useActivityRatingRounded();
-                    var stars = generateStarsHTML(rating)
-                    var activityDetails = `
-                        <img src='./images/${image}' class='activity-image'>
-                        <h1 class="font-bold mb-2" id="activity-detail-title">${activityID}</h1>
-                        <div>${stars}</div>
-                        <p>${description}</p>
-                        `;
-                    
-                    activitiesContainer.innerHTML += activityDetails;
-                }
-            })
-            .catch(error => {
-                console.log("Error getting documents: ", error);
-            });
-
-        function generateStarsHTML(rating) {
-            const numFullStars = Math.floor(rating);
-            const hasHalfStar = rating % 1 !== 0;
-            const numEmptyStars = 5 - numFullStars - (hasHalfStar ? 1 : 0);
-            let starsHTML = '';
-            for (let i = 0; i < numFullStars; i++) {
-                starsHTML += '<i class="material-icons star">star</i>';
-            }
-            if (hasHalfStar) {
-                starsHTML += '<i class="material-icons star">star_half</i>';
-            }
-            for (let i = 0; i < numEmptyStars; i++) {
-                starsHTML += '<i class="material-icons star">star_border</i>';
-            }
-            return starsHTML;
-        }
-
-        function roundToNearestHalf(number) {
-            return Math.round(number * 2) / 2;
-        }
-    </script>
+    <script src="./scripts/activitydetails.js"></script>
     <script src="./scripts/script.js"></script>
 
 </body>
