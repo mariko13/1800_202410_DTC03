@@ -1,10 +1,10 @@
 :root {
-  --first-color: #F6CD46;
-  --image-color: #F9DA77;
-  --title-color: #D81E5B;
+  --first-color: #F4C015;
+  --image-color: #F8D04F;
+  --title-color: #E22866;
   --button-color: #021327;
-  --white-color: #F1F0F9;
-  --body-color: #031D3A;
+  --white-color: #FDFFFC;
+  --body-color: #792A76;
   --container-color: #003952;
 
   --body-font: "Arial", sans-serif;
@@ -54,12 +54,21 @@ h1#activity-detail-title {
 .navbar-brand {
   font-family: 'pacifico', cursive;
   font-size: 1.5rem;
+  color: var(--first-color);
+}
+
+.navbar:hover {
+  color: var(--first-color);
+}
+
+button#startMingleButton {
+  background-color: var(--first-color);
+  color: var(--button-color)
 }
 
 nav {
-  background-color: #f6cd46;
+  background-color: var(--body-color);
 }
-
 
 a.text-light {
   background-color: #484870;
