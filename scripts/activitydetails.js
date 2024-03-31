@@ -76,15 +76,16 @@ function fillReviews() {
                         let starsHTML = generateSmallStarsHTML(rating);
                         let description = doc.data().description || "No Description";
                         let reviewDetails = `
-                <section class="flex flex-col my-2">  
-                    <div class="flex flex-row justify-between"> 
-                        <h3>${title}</h3>
-                        <div>${starsHTML}</div>
-                    </div>
-                    <p>${description}</p>
-                </section>
-            `;
+                                <section class="flex flex-col my-2">  
+                                    <div class="flex flex-row justify-between"> 
+                                        <h3>${title}</h3>
+                                        <div>${starsHTML}</div>
+                                    </div>
+                                    <p>${description}</p>
+                                </section>
+                            `;
                         reviewsContainer.innerHTML += reviewDetails;
+
                     }
                 });
             }
