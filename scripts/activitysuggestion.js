@@ -41,8 +41,8 @@ function displayActivities() {
     // From collection 'activities',
     db.collection('activities')
         .where('mood', 'array-contains', selectedMood)
+        .where('time', 'array-contains', selectedTime)
         .where('cost', 'in', costFilter)
-        .where('time', '==', selectedTime)
         .where('doors', '==', selectedDoors)
         .where('group', '==', selectedGroup)
         // Fetch all documents,
