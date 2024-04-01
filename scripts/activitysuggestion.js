@@ -29,10 +29,19 @@ function displayActivities() {
     // Clear previous content
     activitiesContainer.innerHTML = '';
 
+    var costFilter = null;
+    if (selectedCost === '$$$') {
+        costFilter = ['$', '$$', '$$$'];
+    } else if (selectedCost === '$$') {
+        costFilter = ['$', '$$'];
+    } else if (selectedCost === '$') {
+        costFilter = ['$'];
+    }
+
     // From collection 'activities',
     db.collection('activities')
-        .where('mood', '==', selectedMood)
-        .where('cost', '==', selectedCost)
+        .where('mood', 'array-contains', selectedMood)
+        .where('cost', 'in', costFilter)
         .where('time', '==', selectedTime)
         .where('doors', '==', selectedDoors)
         .where('group', '==', selectedGroup)
