@@ -7,7 +7,8 @@
   --body-color: #792A76;
   --container-color: #003952;
   --card1-color: #3D3264;
-  --card2-color: #174B62
+  --card2-color: #174B62;
+  --footer-color: #E22866;
 
   --body-font: "Arial", sans-serif;
   --h2-font-size: 1.25rem;
@@ -103,12 +104,16 @@ a.text-light:hover {
   background-color: var(--first-color);
 }
 
+#footer_icon {
+  color: var(--footer-color);
+}
+
 #footer_icon:hover {
-  color: #484870;
+  color: #90143D;
 }
 
 #footer_icon:active {
-  color: #101019;
+  color: #E95D8C;
 }
 
 .main-button {
