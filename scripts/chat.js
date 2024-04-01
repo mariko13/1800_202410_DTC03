@@ -47,11 +47,7 @@ function displayCardsDynamically() {
               .then((sender) => {
                 let senderName = sender.data().name;
 
-                // let newcard = messageCardTemplate.content.cloneNode(true);
-                
                 newcard.querySelector(".card-title").textContent = senderName;
-                // newcard.querySelector(".card-date").textContent = date
-                // newcard.querySelector(".card-text").textContent = message;
 
                 messageCardGroup.appendChild(newcard);
               });
