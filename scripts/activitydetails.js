@@ -142,6 +142,9 @@ function createReviewDoc(callback) {
                 .then((snapshot) => {
                     if (!snapshot.empty) {
                         console.log("User already has a review document for this activity");
+                        if (callback) {
+                            callback();
+                        }
                         return;
                     }
                     db.collection("reviews").doc(user.uid + '_' + selectedActivity).set({
