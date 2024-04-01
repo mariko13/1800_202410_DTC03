@@ -100,7 +100,7 @@ a.text-light:hover {
 }
 
 .footer {
-  background-color: #F6CD46;
+  background-color: var(--first-color);
 }
 
 #footer_icon:hover {
@@ -135,8 +135,8 @@ a.text-light:hover {
   width: 165px;
   height: 165px;
   border-radius: 50%;
-  background-color: #f6cd46;
-  color: #101019;
+  background-color: var(--first-color);
+  color: var(--title-color);
   font-size: 36px;
   border: none;
   cursor: pointer;
