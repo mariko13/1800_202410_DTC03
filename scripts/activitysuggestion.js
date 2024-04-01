@@ -29,31 +29,43 @@ function displayActivities() {
     // Clear previous content
     activitiesContainer.innerHTML = '';
 
-    var costFilter = null;
+    var costAndTimeFilter = [];
+
     if (selectedCost === '$$$') {
-        costFilter = ['$', '$$', '$$$'];
+        costAndTimeFilter.push(['$', '$$', '$$$']);
     } else if (selectedCost === '$$') {
-        costFilter = ['$', '$$'];
+        costAndTimeFilter.push(['$', '$$']);
     } else if (selectedCost === '$') {
-        costFilter = ['$'];
+        costAndTimeFilter.push(['$']);
+    }
+
+    if (selectedTime === 'short') {
+        costAndTimeFilter.push(['short', 'medium', 'long']);
+    } else if (selectedTime === 'medium') {
+        costAndTimeFilter.push(['medium', 'long']);
+    } else if (selectedTime === 'long') {
+        costAndTimeFilter.push(['long']);
     }
 
     // From collection 'activities',
     db.collection('activities')
         .where('mood', 'array-contains', selectedMood)
-        .where('time', 'array-contains', selectedTime)
-        .where('cost', 'in', costFilter)
         .where('doors', '==', selectedDoors)
         .where('group', '==', selectedGroup)
         // Fetch all documents,
         .get()
         .then(snapshot => {
+            const filteredActivities = snapshot.docs.filter(doc => {
+                const activityCost = doc.data().cost;
+                const activityTime = doc.data().time;
+                return costAndTimeFilter.some(filter => filter.includes(activityCost) || filter.includes(activityTime));
+            });
             // Check if any matching documents exist
-            if (snapshot.empty) {
+            if (filteredActivities.length === 0) {
                 activitiesContainer.innerHTML = '<p>No activities found.</p>';
             } else {
                 // Iterate through matching documents
-                snapshot.forEach(doc => {
+                filteredActivities.forEach(doc => {
                     // Create item for each activity
                     var activityID = doc.data().activityID;
                     var description = doc.data().description;
