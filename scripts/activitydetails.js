@@ -27,7 +27,6 @@ activitiesContainer.innerHTML = '';
 var reviewsContainer = document.getElementById('reviewsContainer');
 reviewsContainer.innerHTML = '';
 
-
 let totalStars = 0;
 let totalReviews = 0;
 let activityRatingRounded;
