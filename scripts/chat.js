@@ -1,21 +1,9 @@
-// let params = new URL(window.location.href) //get the url from the search bar
-// let activityDocID = params.searchParams.get("docID");
-
 var selectedActivity = localStorage.getItem('selectedActivity');
 console.log('Selected activity from previous page:', selectedActivity);
 
 function getActivityName(id) {
   console.log("id:", id)
-  activityName.innerHTML = id + "!";
-  // // Get the document for the current user.
-  // db.collection("reviews")
-  //   .doc(id)
-  //   .get()
-  //   .then((thisActivity) => {
-  //     var activityName = thisActivity.data().activityID;
-  //     console.log("activityName: ", activityName)
-  //     document.getElementById("activityName").innerHTML = activityName;
-  //   });
+  chatActivityName.innerHTML = id;
 }
 getActivityName(selectedActivity);
 
@@ -29,24 +17,44 @@ function displayCardsDynamically() {
     if (user) {
       db.collection("chats")
         .doc(selectedActivity)
-        .collection(entries)
-        .doc()
-        //.where("userID", "==", user.uid) // Filter reviews by user ID
+        .collection("entries")
+        .orderBy("timestamp")
+        .limit(50)
         .onSnapshot((activityMessages) => {
+          console.log("inside db in displayCardsDynamically")
           // Clear existing cards before updating
           messageCardGroup.innerHTML = '';
           activityMessages.forEach((doc) => {
-            let activityName = doc.data().activityID;
-            let activityDate = doc.data().date.toDate();
-            let docID = doc.id;
-            localStorage.setItem('reviewsDocID', docID);
+            console.log("doc id: ", doc.id);
+            let message = doc.data().message;
 
-            // Clone template and populate with data
+            let timestamp = doc.data().timestamp.toDate();
+            console.log("timestamp: ", timestamp);
+            let date = (timestamp.getMonth() + 1) + "/" + timestamp.getDate() + "/" + timestamp.getFullYear();
+            let time = timestamp.getHours() + ":" + timestamp.getMinutes()
+            date += " " + time;
+
             let newcard = messageCardTemplate.content.cloneNode(true);
-            newcard.querySelector(".card-title").textContent = activityName;
-            newcard.querySelector(".card-text").textContent = activityDate.toLocaleString(); // to display the date
-            newcard.querySelector("a").href = "review.html?docID=" + docID;
-            messageCardGroup.appendChild(newcard);
+
+            newcard.querySelector(".card-date").textContent = date
+            newcard.querySelector(".card-text").textContent = message;
+
+            let senderUserID = doc.data().userID;
+
+            db.collection("users")
+              .doc(senderUserID)
+              .get()
+              .then((sender) => {
+                let senderName = sender.data().name;
+
+                // let newcard = messageCardTemplate.content.cloneNode(true);
+                
+                newcard.querySelector(".card-title").textContent = senderName;
+                // newcard.querySelector(".card-date").textContent = date
+                // newcard.querySelector(".card-text").textContent = message;
+
+                messageCardGroup.appendChild(newcard);
+              });
           });
         }, (error) => {
           console.log("Error getting past activities: ", error);
@@ -58,3 +66,28 @@ function displayCardsDynamically() {
 }
 
 displayCardsDynamically();
+
+
+function sendMessage() {
+  console.log("inside send message");
+  let usersMessage = document.getElementById("message").value;
+
+  console.log(usersMessage);
+
+  var user = firebase.auth().currentUser;
+  if (user) {
+    db.collection("chats")
+      .doc(selectedActivity)
+      .collection("entries")
+      .add({
+        userID: user.uid,
+        message: usersMessage,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      }).then(() => {
+        message.value = "";
+      })
+  } else {
+    console.log("No user is signed in");
+    window.location.href = 'index.html';
+  }
+}

@@ -166,12 +166,21 @@ a.text-light:hover {
   color: #D81E5B;
 }
 
-/* .dark-purple-text {
-  background-color: #fff;
-  color: #484870;
+.chatUserName {
+  color: #F6CD46;
+  font-size: 17px;
 }
 
-.dark-purple-bg .active{
-  background-color: #484870;
-  color: #fff;
-} */
+#chatActivityName {
+  color: #D81E5B;
+  /* font-weight: 800; */
+}
+
+.sendMessageBtn {
+  background-color: #D81E5B;
+}
+
+#messageCardGroup {
+  /* margin-bottom: 122px; */
+  overflow: auto;
+}
