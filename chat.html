@@ -45,6 +45,16 @@
   <div style="height: 62px;">
     <nav class="navbar p fixed-top d-block">
       <div class="container-fluid text-center">
+        <a href="#" onclick="navigateToPage('history.html')">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-left position-absolute"
+            width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#F4C015" fill="none"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M5 12l14 0" />
+            <path d="M5 12l6 6" />
+            <path d="M5 12l6 -6" />
+          </svg>
+        </a>
         <a class="navbar-brand col-12" href="#">
           <span id="chatActivityName"></span>
           Forum
@@ -52,6 +62,7 @@
       </div>
     </nav>
   </div>
+
   <!------------------------------>
   <!-- Stuff for body goes here -->
 
@@ -88,7 +99,7 @@
         <div style="height: 84px;"></div>
       </div>
       <div class="pl-1">
-        <button type="button" class="btn text-light sendMessageBtn" onclick="sendMessage()">Submit</button>
+        <button type="button" class="btn text-light sendMessageBtn" onclick="sendMessage()">Send</button>
       </div>
     </div>
   </div>
