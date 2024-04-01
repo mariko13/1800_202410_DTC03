@@ -2,10 +2,12 @@
   --first-color: #F4C015;
   --image-color: #F8D04F;
   --title-color: #E22866;
-  --button-color: #021327;
+  --button-color: #001D29;
   --white-color: #FDFFFC;
   --body-color: #792A76;
   --container-color: #003952;
+  --card1-color: #3D3264;
+  --card2-color: #174B62
 
   --body-font: "Arial", sans-serif;
   --h2-font-size: 1.25rem;
@@ -69,7 +71,7 @@ h1#activity-detail-title {
 
 button#startMingleButton {
   background-color: var(--first-color);
-  color: var(--button-color)
+  color: var(--button-color);
 }
 
 nav {
