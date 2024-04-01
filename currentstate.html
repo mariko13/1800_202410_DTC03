@@ -61,45 +61,57 @@
     </div>
 
     <!-- Mood Section -->
-    <div id="moodSection" class="container mx-auto my-auto">
+    <!-- <div id="moodSection" class="container mx-auto my-auto">
         <div class="flex flex-col">
             <button class="input-button self-start" onclick="showCostSection(); selectMood('content')">Content</button>
             <button class="input-button self-end" onclick="showCostSection(); selectMood('neutral')">Neutral</button>
             <button class="input-button self-start" onclick="showCostSection(); selectMood('sad')">Sad</button>
         </div>
-    </div>
+    </div> -->
 
     <!-- Cost Section -->
-    <div id="costSection" class="container mx-auto my-auto d-none">
+    <!-- <div id="costSection" class="container mx-auto my-auto d-none">
         <div class="flex flex-col">
             <button class="input-button self-end" onclick="showTimeSection(); selectCost('$')">$</button>
             <button class="input-button self-start" onclick="showTimeSection(); selectCost('$$')">$$</button>
             <button class="input-button self-end" onclick="showTimeSection(); selectCost('$$$')">$$$</button>
+        </div>
+    </div> -->
+
+    <!-- Mood Section -->
+    <div id="moodSection" class="container mx-auto my-auto">
+        <div class="flex flex-col">
+            <button class="input-button self-start" onclick="showTimeSection(); selectMood('content')">Content</button>
+            <button class="input-button self-end" onclick="showTimeSection(); selectMood('neutral')">Neutral</button>
+            <button class="input-button self-start" onclick="showTimeSection(); selectMood('sad')">Sad</button>
         </div>
     </div>
 
     <!-- Time Section -->
     <div id="timeSection" class="container mx-auto my-auto d-none">
         <div class="flex flex-col">
-            <button class="input-button self-start" onclick="showDoorsSection(); selectTime('short')">Short</button>
-            <button class="input-button self-end" onclick="showDoorsSection(); selectTime('medium')">Medium</button>
-            <button class="input-button self-start" onclick="showDoorsSection(); selectTime('long')">Long</button>
+            <button class="input-button self-end" onclick="showDoorsSection(); selectTime('short')">Short</button>
+            <button class="input-button self-start" onclick="showDoorsSection(); selectTime('medium')">Medium</button>
+            <button class="input-button self-end" onclick="showDoorsSection(); selectTime('long')">Long</button>
         </div>
     </div>
 
     <!-- Doors Section-->
     <div id="doorsSection" class="container mx-auto my-auto d-none">
         <div class="flex flex-col">
-            <button class="input-button self-end" onclick="showGroupSection(); selectDoors('indoors')">Indoors</button>
-            <button class="input-button self-start" onclick="showGroupSection(); selectDoors('outdoors')">Outdoors</button>
+            <button class="input-button self-start" onclick="showGroupSection(); selectDoors('indoors')">Indoors</button>
+            <button class="input-button self-end"
+                onclick="showGroupSection(); selectDoors('outdoors')">Outdoors</button>
         </div>
     </div>
 
     <!-- Group Section-->
     <div id="groupSection" class="container mx-auto my-auto d-none">
         <div class="flex flex-col">
-            <button class="input-button self-start" onclick="navigateToPage('activitysuggestion.html'); selectGroup('alone')">Alone</button>
-            <button class="input-button self-end" onclick="navigateToPage('activitysuggestion.html'); selectGroup('group')">Group</button>
+            <button class="input-button self-end"
+                onclick="navigateToPage('activitysuggestion.html'); selectGroup('alone')">Alone</button>
+            <button class="input-button self-start"
+                onclick="navigateToPage('activitysuggestion.html'); selectGroup('group')">Group</button>
         </div>
     </div>
 
@@ -121,7 +133,7 @@
     <script>
 
         function goBack() {
-            var sections = ['moodSection', 'costSection', 'timeSection', 'doorsSection', 'groupSection'];
+            var sections = ['moodSection', 'timeSection', 'doorsSection', 'groupSection'];
             for (var i = 0; i < sections.length; i++) {
                 var section = document.getElementById(sections[i]);
                 if (!section.classList.contains('d-none')) {
@@ -143,11 +155,11 @@
             console.log('Selected mood:', selectedMood);
         }
 
-        function selectCost(cost) {
-            selectedCost = cost;
-            localStorage.setItem('selectedCost', selectedCost);
-            console.log('Selected cost:', selectedCost);
-        }
+        // function selectCost(cost) {
+        //     selectedCost = cost;
+        //     localStorage.setItem('selectedCost', selectedCost);
+        //     console.log('Selected cost:', selectedCost);
+        // }
 
         function selectTime(time) {
             selectedTime = time;
@@ -168,17 +180,17 @@
         }
 
         function showMoodSection() {
-            document.getElementById('costSection').classList.add('d-none');
+            document.getElementById('timeSection').classList.add('d-none');
             document.getElementById('moodSection').classList.remove('d-none');
         }
 
-        function showCostSection() {
-            document.getElementById('moodSection').classList.add('d-none');
-            document.getElementById('costSection').classList.remove('d-none');
-        }
+        // function showCostSection() {
+        //     document.getElementById('moodSection').classList.add('d-none');
+        //     document.getElementById('costSection').classList.remove('d-none');
+        // }
 
         function showTimeSection() {
-            document.getElementById('costSection').classList.add('d-none');
+            document.getElementById('moodSection').classList.add('d-none');
             document.getElementById('timeSection').classList.remove('d-none');
         }
 

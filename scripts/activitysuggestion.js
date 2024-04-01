@@ -7,8 +7,8 @@ var selectedMood = localStorage.getItem('selectedMood');
 console.log('Selected mood from previous page:', selectedMood);
 
 // Retrieve selected cost from local storage: either '$', '$$', '$$$'
-var selectedCost = localStorage.getItem('selectedCost');
-console.log('Selected mood from previous page:', selectedCost);
+// var selectedCost = localStorage.getItem('selectedCost');
+// console.log('Selected mood from previous page:', selectedCost);
 
 // Retrieve selected time from local storage: either 'short', 'mediunm', 'long'
 var selectedTime = localStorage.getItem('selectedTime');
@@ -29,43 +29,40 @@ function displayActivities() {
     // Clear previous content
     activitiesContainer.innerHTML = '';
 
-    var costAndTimeFilter = [];
+    // var costFilter = null;
+    // if (selectedCost === '$$$') {
+    //     costFilter = ['$', '$$', '$$$'];
+    // } else if (selectedCost === '$$') {
+    //     costFilter = ['$', '$$'];
+    // } else if (selectedCost === '$') {
+    //     costFilter = ['$'];
+    // }
 
-    if (selectedCost === '$$$') {
-        costAndTimeFilter.push(['$', '$$', '$$$']);
-    } else if (selectedCost === '$$') {
-        costAndTimeFilter.push(['$', '$$']);
-    } else if (selectedCost === '$') {
-        costAndTimeFilter.push(['$']);
-    }
-
-    if (selectedTime === 'short') {
-        costAndTimeFilter.push(['short', 'medium', 'long']);
+    var timeFilter = null;
+    if (selectedTime === 'long') {
+        timeFilter = ['short', 'medium', 'long'];
     } else if (selectedTime === 'medium') {
-        costAndTimeFilter.push(['medium', 'long']);
-    } else if (selectedTime === 'long') {
-        costAndTimeFilter.push(['long']);
+        timeFilter = ['short', 'medium'];
+    } else if (selectedTime === 'short') {
+        timeFilter = ['short'];
     }
 
     // From collection 'activities',
     db.collection('activities')
         .where('mood', 'array-contains', selectedMood)
+        // .where('cost', 'in', costFilter)
+        .where('time', 'in', timeFilter)
         .where('doors', '==', selectedDoors)
         .where('group', '==', selectedGroup)
         // Fetch all documents,
         .get()
         .then(snapshot => {
-            const filteredActivities = snapshot.docs.filter(doc => {
-                const activityCost = doc.data().cost;
-                const activityTime = doc.data().time;
-                return costAndTimeFilter.some(filter => filter.includes(activityCost) || filter.includes(activityTime));
-            });
             // Check if any matching documents exist
-            if (filteredActivities.length === 0) {
+            if (snapshot.empty) {
                 activitiesContainer.innerHTML = '<p>No activities found.</p>';
             } else {
                 // Iterate through matching documents
-                filteredActivities.forEach(doc => {
+                snapshot.forEach(doc => {
                     // Create item for each activity
                     var activityID = doc.data().activityID;
                     var description = doc.data().description;
