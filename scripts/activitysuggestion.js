@@ -75,7 +75,7 @@ function displayActivities() {
                             <div class="card_shadow"></div>
                         </div>
                         <div class="card_data">
-                            <h3 class="card_name" id="name_${activityID}">${activityID}</h3>
+                            <h3 class="card_name font-bold text-2xl tracking-wide" id="name_${activityID}">${activityID}</h3>
                             <p class="card_description id="description_${activityID}">${description}</p>
                             <a href="#" class="card_button" onclick="navigateToPage('activitydetails.html'); viewMore('${activityID}')">View More</a>
                         </div>

@@ -32,6 +32,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
     <script src="./scripts/firebaseAPI_DTC03.js"></script>
     <!-- Link to styles of your own -->
+    <script src="https://kit.fontawesome.com/b36d3b3870.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./styles/style.css">
 </head>
 
@@ -57,8 +58,12 @@
     </div>
 
 
-    <!-- Main -->
-
+    <!-- Main Section -->
+    <articles class="flex flex-col container px-4 py-4 mx-auto xl:w-1/4 justify-center items-center">
+        <div class="font-bold text-2xl text-[#F4C015] mb-2">Current Top 20 Activities</div>
+        <section id="topTenContainer" class="flex flex-col w-full">
+        </section>
+    </articles>
 
     <!-- Sticky footer -->
     <div style="height: 62px;">
@@ -74,9 +79,8 @@
         </footer>
     </div>
 
-    <script>
-
-    </script>
+    <script src="./scripts/toptenactivities.js"></script>
+    <script src="./scripts/script.js"></script>
 </body>
 
 </html>
