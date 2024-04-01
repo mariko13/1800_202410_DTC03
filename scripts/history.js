@@ -5,15 +5,16 @@ function displayCardsDynamically() {
   // Check if user is logged in
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-      // Query Firestore for reviews related to the logged-in user
       db.collection("reviews")
         .where("userID", "==", user.uid) // Filter reviews by user ID
-        .get()
-        .then((usersPastActivities) => {
+        .onSnapshot((usersPastActivities) => {
+          // Clear existing cards before updating
+          activityCardGroup.innerHTML = '';
           usersPastActivities.forEach((doc) => {
             let activityName = doc.data().activityID;
             let activityDate = doc.data().date.toDate();
             let docID = doc.id;
+            localStorage.setItem('reviewsDocID', docID);
 
             // Clone template and populate with data
             let newcard = activityCardTemplate.content.cloneNode(true);
@@ -22,8 +23,7 @@ function displayCardsDynamically() {
             newcard.querySelector("a").href = "review.html?docID=" + docID;
             activityCardGroup.appendChild(newcard);
           });
-        })
-        .catch((error) => {
+        }, (error) => {
           console.log("Error getting past activities: ", error);
         });
     } else {
