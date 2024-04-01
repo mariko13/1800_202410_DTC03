@@ -7,8 +7,8 @@ var selectedMood = localStorage.getItem('selectedMood');
 console.log('Selected mood from previous page:', selectedMood);
 
 // Retrieve selected cost from local storage: either '$', '$$', '$$$'
-var selectedCost = localStorage.getItem('selectedCost');
-console.log('Selected mood from previous page:', selectedCost);
+// var selectedCost = localStorage.getItem('selectedCost');
+// console.log('Selected mood from previous page:', selectedCost);
 
 // Retrieve selected time from local storage: either 'short', 'mediunm', 'long'
 var selectedTime = localStorage.getItem('selectedTime');
@@ -29,11 +29,29 @@ function displayActivities() {
     // Clear previous content
     activitiesContainer.innerHTML = '';
 
+    // var costFilter = null;
+    // if (selectedCost === '$$$') {
+    //     costFilter = ['$', '$$', '$$$'];
+    // } else if (selectedCost === '$$') {
+    //     costFilter = ['$', '$$'];
+    // } else if (selectedCost === '$') {
+    //     costFilter = ['$'];
+    // }
+
+    var timeFilter = null;
+    if (selectedTime === 'long') {
+        timeFilter = ['short', 'medium', 'long'];
+    } else if (selectedTime === 'medium') {
+        timeFilter = ['short', 'medium'];
+    } else if (selectedTime === 'short') {
+        timeFilter = ['short'];
+    }
+
     // From collection 'activities',
     db.collection('activities')
-        .where('mood', '==', selectedMood)
-        .where('cost', '==', selectedCost)
-        .where('time', '==', selectedTime)
+        .where('mood', 'array-contains', selectedMood)
+        // .where('cost', 'in', costFilter)
+        .where('time', 'in', timeFilter)
         .where('doors', '==', selectedDoors)
         .where('group', '==', selectedGroup)
         // Fetch all documents,
@@ -57,7 +75,7 @@ function displayActivities() {
                             <div class="card_shadow"></div>
                         </div>
                         <div class="card_data">
-                            <h3 class="card_name" id="name_${activityID}">${activityID}</h3>
+                            <h3 class="card_name font-bold text-2xl tracking-wide" id="name_${activityID}">${activityID}</h3>
                             <p class="card_description id="description_${activityID}">${description}</p>
                             <a href="#" class="card_button" onclick="navigateToPage('activitydetails.html'); viewMore('${activityID}')">View More</a>
                         </div>

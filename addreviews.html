@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>addMockReviews</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <script src="./scripts/firebaseAPI_DTC03.js"></script>
+    <script>
+        const reviews = [
+            {
+                activityID: "Archery",
+                description: "This is MOCK_REVIEW_Archery_1",
+                stars: "5",
+                title: "MOCK_REVIEW_Archery_1",
+                userID: "MOCK_USER_1"
+            },
+            {
+                activityID: "Archery",
+                description: "This is MOCK_REVIEW_Archery_2",
+                stars: "5",
+                title: "MOCK_REVIEW_Archery_2",
+                userID: "MOCK_USER_2"
+            },
+            {
+                activityID: "Archery",
+                description: "This is MOCK_REVIEW_Archery_3",
+                stars: "5",
+                title: "MOCK_REVIEW_Archery_3",
+                userID: "MOCK_USER_3"
+            },
+
+            {
+                activityID: "Bowling",
+                description: "This is MOCK_REVIEW_Bowling_1",
+                stars: "5",
+                title: "MOCK_REVIEW_Bowling_1",
+                userID: "MOCK_USER_1"
+            },
+            {
+                activityID: "Bowling",
+                description: "This is MOCK_REVIEW_Bowling_2",
+                stars: "5",
+                title: "MOCK_REVIEW_Bowling_2",
+                userID: "MOCK_USER_2"
+            },
+            {
+                activityID: "Bowling",
+                description: "This is MOCK_REVIEW_Bowling_3",
+                stars: "4",
+                title: "MOCK_REVIEW_Bowling_3",
+                userID: "MOCK_USER_3"
+            },
+
+            {
+                activityID: "Camping",
+                description: "This is MOCK_REVIEW_Camping_1",
+                stars: "5",
+                title: "MOCK_REVIEW_Camping_1",
+                userID: "MOCK_USER_1"
+            },
+            {
+                activityID: "Camping",
+                description: "This is MOCK_REVIEW_Camping_2",
+                stars: "5",
+                title: "MOCK_REVIEW_Camping_2",
+                userID: "MOCK_USER_2"
+            },
+            {
+                activityID: "Camping",
+                description: "This is MOCK_REVIEW_Camping_3",
+                stars: "3",
+                title: "MOCK_REVIEW_Camping_3",
+                userID: "MOCK_USER_3"
+            },
+
+            {
+                activityID: "Climbing",
+                description: "This is MOCK_REVIEW_Climbing_1",
+                stars: "5",
+                title: "MOCK_REVIEW_Climbing_1",
+                userID: "MOCK_USER_1"
+            },
+            {
+                activityID: "Climbing",
+                description: "This is MOCK_REVIEW_Climbing_2",
+                stars: "5",
+                title: "MOCK_REVIEW_Climbing_2",
+                userID: "MOCK_USER_2"
+            },
+            {
+                activityID: "Climbing",
+                description: "This is MOCK_REVIEW_Climbing_3",
+                stars: "2",
+                title: "MOCK_REVIEW_Climbing_3",
+                userID: "MOCK_USER_3"
+            },
+
+            {
+                activityID: "Concerts",
+                description: "This is MOCK_REVIEW_Concerts_1",
+                stars: "5",
+                title: "MOCK_REVIEW_Concerts_1",
+                userID: "MOCK_USER_1"
+            },
+            {
+                activityID: "Concerts",
+                description: "This is MOCK_REVIEW_Concerts_2",
+                stars: "5",
+                title: "MOCK_REVIEW_Concerts_2",
+                userID: "MOCK_USER_2"
+            },
+            {
+                activityID: "Concerts",
+                description: "This is MOCK_REVIEW_Concerts_3",
+                stars: "1",
+                title: "MOCK_REVIEW_Concerts_3",
+                userID: "MOCK_USER_3"
+            },
+
+            {
+                activityID: "Cooking",
+                description: "This is MOCK_REVIEW_Cooking_1",
+                stars: "5",
+                title: "MOCK_REVIEW_Cooking_1",
+                userID: "MOCK_USER_1"
+            },
+            {
+                activityID: "Cooking",
+                description: "This is MOCK_REVIEW_Cooking_2",
+                stars: "4",
+                title: "MOCK_REVIEW_Cooking_2",
+                userID: "MOCK_USER_2"
+            },
+            {
+                activityID: "Cooking",
+                description: "This is MOCK_REVIEW_Cooking_3",
+                stars: "4",
+                title: "MOCK_REVIEW_Cooking_3",
+                userID: "MOCK_USER_3"
+            },
+
+            {
+                activityID: "Crafting",
+                description: "This is MOCK_REVIEW_Crafting_1",
+                stars: "5",
+                title: "MOCK_REVIEW_Crafting_1",
+                userID: "MOCK_USER_1"
+            },
+            {
+                activityID: "Crafting",
+                description: "This is MOCK_REVIEW_Crafting_2",
+                stars: "4",
+                title: "MOCK_REVIEW_Crafting_2",
+                userID: "MOCK_USER_2"
+            },
+            {
+                activityID: "Crafting",
+                description: "This is MOCK_REVIEW_Crafting_3",
+                stars: "3",
+                title: "MOCK_REVIEW_Crafting_3",
+                userID: "MOCK_USER_3"
+            },
+
+            {
+                activityID: "Cycling",
+                description: "This is MOCK_REVIEW_Cycling_1",
+                stars: "5",
+                title: "MOCK_REVIEW_Cycling_1",
+                userID: "MOCK_USER_1"
+            },
+            {
+                activityID: "Cycling",
+                description: "This is MOCK_REVIEW_Cycling_2",
+                stars: "4",
+                title: "MOCK_REVIEW_Cycling_2",
+                userID: "MOCK_USER_2"
+            },
+            {
+                activityID: "Cycling",
+                description: "This is MOCK_REVIEW_Cycling_3",
+                stars: "2",
+                title: "MOCK_REVIEW_Cycling_3",
+                userID: "MOCK_USER_3"
+            },
+
+            {
+                activityID: "Dancing",
+                description: "This is MOCK_REVIEW_Dancing_1",
+                stars: "5",
+                title: "MOCK_REVIEW_Dancing_1",
+                userID: "MOCK_USER_1"
+            },
+            {
+                activityID: "Dancing",
+                description: "This is MOCK_REVIEW_Dancing_2",
+                stars: "4",
+                title: "MOCK_REVIEW_Dancing_2",
+                userID: "MOCK_USER_2"
+            },
+            {
+                activityID: "Dancing",
+                description: "This is MOCK_REVIEW_Dancing_3",
+                stars: "1",
+                title: "MOCK_REVIEW_Dancing_3",
+                userID: "MOCK_USER_3"
+            },
+
+            {
+                activityID: "Drawing",
+                description: "This is MOCK_REVIEW_Drawing_1",
+                stars: "5",
+                title: "MOCK_REVIEW_Drawing_1",
+                userID: "MOCK_USER_1"
+            },
+            {
+                activityID: "Drawing",
+                description: "This is MOCK_REVIEW_Drawing_2",
+                stars: "3",
+                title: "MOCK_REVIEW_Drawing_2",
+                userID: "MOCK_USER_2"
+            },
+            {
+                activityID: "Drawing",
+                description: "This is MOCK_REVIEW_Drawing_3",
+                stars: "3",
+                title: "MOCK_REVIEW_Drawing_3",
+                userID: "MOCK_USER_3"
+            },
+
+            {
+                activityID: "Fishing",
+                description: "This is MOCK_REVIEW_Fishing_1",
+                stars: "5",
+                title: "MOCK_REVIEW_Fishing_1",
+                userID: "MOCK_USER_1"
+            },
+            {
+                activityID: "Fishing",
+                description: "This is MOCK_REVIEW_Fishing_2",
+                stars: "3",
+                title: "MOCK_REVIEW_Fishing_2",
+                userID: "MOCK_USER_2"
+            },
+            {
+                activityID: "Fishing",
+                description: "This is MOCK_REVIEW_Fishing_3",
+                stars: "2",
+                title: "MOCK_REVIEW_Fishing_3",
+                userID: "MOCK_USER_3"
+            },
+
+            {
+                activityID: "Gaming",
+                description: "This is MOCK_REVIEW_Gaming_1",
+                stars: "5",
+                title: "MOCK_REVIEW_Gaming_1",
+                userID: "MOCK_USER_1"
+            },
+            {
+                activityID: "Gaming",
+                description: "This is MOCK_REVIEW_Gaming_2",
+                stars: "3",
+                title: "MOCK_REVIEW_Gaming_2",
+                userID: "MOCK_USER_2"
+            },
+            {
+                activityID: "Gaming",
+                description: "This is MOCK_REVIEW_Gaming_3",
+                stars: "1",
+                title: "MOCK_REVIEW_Gaming_3",
+                userID: "MOCK_USER_3"
+            },
+
+            {
+                activityID: "Gardening",
+                description: "This is MOCK_REVIEW_Gardening_1",
+                stars: "5",
+                title: "MOCK_REVIEW_Gardening_1",
+                userID: "MOCK_USER_1"
+            },
+            {
+                activityID: "Gardening",
+                description: "This is MOCK_REVIEW_Gardening_2",
+                stars: "2",
+                title: "MOCK_REVIEW_Gardening_2",
+                userID: "MOCK_USER_2"
+            },
+            {
+                activityID: "Gardening",
+                description: "This is MOCK_REVIEW_Gardening_3",
+                stars: "2",
+                title: "MOCK_REVIEW_Gardening_3",
+                userID: "MOCK_USER_3"
+            },
+
+            {
+                activityID: "Golfing",
+                description: "This is MOCK_REVIEW_Golfing_1",
+                stars: "5",
+                title: "MOCK_REVIEW_Golfing_1",
+                userID: "MOCK_USER_1"
+            },
+            {
+                activityID: "Golfing",
+                description: "This is MOCK_REVIEW_Golfing_2",
+                stars: "2",
+                title: "MOCK_REVIEW_Golfing_2",
+                userID: "MOCK_USER_2"
+            },
+            {
+                activityID: "Golfing",
+                description: "This is MOCK_REVIEW_Golfing_3",
+                stars: "1",
+                title: "MOCK_REVIEW_Golfing_3",
+                userID: "MOCK_USER_3"
+            },
+
+            {
+                activityID: "Hiking",
+                description: "This is MOCK_REVIEW_Hiking_1",
+                stars: "5",
+                title: "MOCK_REVIEW_Hiking_1",
+                userID: "MOCK_USER_1"
+            },
+            {
+                activityID: "Hiking",
+                description: "This is MOCK_REVIEW_Hiking_2",
+                stars: "1",
+                title: "MOCK_REVIEW_Hiking_2",
+                userID: "MOCK_USER_2"
+            },
+            {
+                activityID: "Hiking",
+                description: "This is MOCK_REVIEW_Hiking_3",
+                stars: "1",
+                title: "MOCK_REVIEW_Hiking_3",
+                userID: "MOCK_USER_3"
+            },
+
+            {
+                activityID: "Ice skating",
+                description: "This is MOCK_REVIEW_Ice skating_1",
+                stars: "4",
+                title: "MOCK_REVIEW_Ice skating_1",
+                userID: "MOCK_USER_1"
+            },
+            {
+                activityID: "Ice skating",
+                description: "This is MOCK_REVIEW_Ice skating_2",
+                stars: "4",
+                title: "MOCK_REVIEW_Ice skating_2",
+                userID: "MOCK_USER_2"
+            },
+            {
+                activityID: "Ice skating",
+                description: "This is MOCK_REVIEW_Ice skating_3",
+                stars: "4",
+                title: "MOCK_REVIEW_Ice skating_3",
+                userID: "MOCK_USER_3"
+            },
+            
+            {
+                activityID: "Karaoke",
+                description: "This is MOCK_REVIEW_Karaoke_1",
+                stars: "4",
+                title: "MOCK_REVIEW_Karaoke_1",
+                userID: "MOCK_USER_1"
+            },
+            {
+                activityID: "Karaoke",
+                description: "This is MOCK_REVIEW_Karaoke_2",
+                stars: "4",
+                title: "MOCK_REVIEW_Karaoke_2",
+                userID: "MOCK_USER_2"
+            },
+            {
+                activityID: "Karaoke",
+                description: "This is MOCK_REVIEW_Karaoke_3",
+                stars: "3",
+                title: "MOCK_REVIEW_Karaoke_3",
+                userID: "MOCK_USER_3"
+            },
+
+            {
+                activityID: "Knitting",
+                description: "This is MOCK_REVIEW_Knitting_1",
+                stars: "4",
+                title: "MOCK_REVIEW_Knitting_1",
+                userID: "MOCK_USER_1"
+            },
+            {
+                activityID: "Knitting",
+                description: "This is MOCK_REVIEW_Knitting_2",
+                stars: "4",
+                title: "MOCK_REVIEW_Knitting_2",
+                userID: "MOCK_USER_2"
+            },
+            {
+                activityID: "Knitting",
+                description: "This is MOCK_REVIEW_Knitting_3",
+                stars: "2",
+                title: "MOCK_REVIEW_Knitting_3",
+                userID: "MOCK_USER_3"
+            },
+
+            {
+                activityID: "Meditation",
+                description: "This is MOCK_REVIEW_Meditation_1",
+                stars: "4",
+                title: "MOCK_REVIEW_Meditation_1",
+                userID: "MOCK_USER_1"
+            },
+            {
+                activityID: "Meditation",
+                description: "This is MOCK_REVIEW_Meditation_2",
+                stars: "4",
+                title: "MOCK_REVIEW_Meditation_2",
+                userID: "MOCK_USER_2"
+            },
+            {
+                activityID: "Meditation",
+                description: "This is MOCK_REVIEW_Meditation_3",
+                stars: "1",
+                title: "MOCK_REVIEW_Meditation_3",
+                userID: "MOCK_USER_3"
+            },
+
+            {
+                activityID: "Painting",
+                description: "This is MOCK_REVIEW_Painting_1",
+                stars: "4",
+                title: "MOCK_REVIEW_Painting_1",
+                userID: "MOCK_USER_1"
+            },
+            {
+                activityID: "Painting",
+                description: "This is MOCK_REVIEW_Painting_2",
+                stars: "3",
+                title: "MOCK_REVIEW_Painting_2",
+                userID: "MOCK_USER_2"
+            },
+            {
+                activityID: "Painting",
+                description: "This is MOCK_REVIEW_Painting_3",
+                stars: "3",
+                title: "MOCK_REVIEW_Painting_3",
+                userID: "MOCK_USER_3"
+            },
+
+            {
+                activityID: "Photography",
+                description: "This is MOCK_REVIEW_Photography_1",
+                stars: "4",
+                title: "MOCK_REVIEW_Photography_1",
+                userID: "MOCK_USER_1"
+            },
+            {
+                activityID: "Photography",
+                description: "This is MOCK_REVIEW_Photography_2",
+                stars: "3",
+                title: "MOCK_REVIEW_Photography_2",
+                userID: "MOCK_USER_2"
+            },
+            {
+                activityID: "Photography",
+                description: "This is MOCK_REVIEW_Photography_3",
+                stars: "2",
+                title: "MOCK_REVIEW_Photography_3",
+                userID: "MOCK_USER_3"
+            },
+
+            {
+                activityID: "Picnicking",
+                description: "This is MOCK_REVIEW_Picnicking_1",
+                stars: "4",
+                title: "MOCK_REVIEW_Picnicking_1",
+                userID: "MOCK_USER_1"
+            },
+            {
+                activityID: "Picnicking",
+                description: "This is MOCK_REVIEW_Picnicking_2",
+                stars: "3",
+                title: "MOCK_REVIEW_Picnicking_2",
+                userID: "MOCK_USER_2"
+            },
+            {
+                activityID: "Picnicking",
+                description: "This is MOCK_REVIEW_Picnicking_3",
+                stars: "1",
+                title: "MOCK_REVIEW_Picnicking_3",
+                userID: "MOCK_USER_3"
+            },
+
+            {
+                activityID: "Pottery",
+                description: "This is MOCK_REVIEW_Pottery_1",
+                stars: "4",
+                title: "MOCK_REVIEW_Pottery_1",
+                userID: "MOCK_USER_1"
+            },
+            {
+                activityID: "Pottery",
+                description: "This is MOCK_REVIEW_Pottery_2",
+                stars: "2",
+                title: "MOCK_REVIEW_Pottery_2",
+                userID: "MOCK_USER_2"
+            },
+            {
+                activityID: "Pottery",
+                description: "This is MOCK_REVIEW_Pottery_3",
+                stars: "2",
+                title: "MOCK_REVIEW_Pottery_3",
+                userID: "MOCK_USER_3"
+            },
+
+            {
+                activityID: "Rafting",
+                description: "This is MOCK_REVIEW_Rafting_1",
+                stars: "4",
+                title: "MOCK_REVIEW_Rafting_1",
+                userID: "MOCK_USER_1"
+            },
+            {
+                activityID: "Rafting",
+                description: "This is MOCK_REVIEW_Rafting_2",
+                stars: "2",
+                title: "MOCK_REVIEW_Rafting_2",
+                userID: "MOCK_USER_2"
+            },
+            {
+                activityID: "Rafting",
+                description: "This is MOCK_REVIEW_Rafting_3",
+                stars: "1",
+                title: "MOCK_REVIEW_Rafting_3",
+                userID: "MOCK_USER_3"
+            },
+
+            {
+                activityID: "Reading",
+                description: "This is MOCK_REVIEW_Reading_1",
+                stars: "4",
+                title: "MOCK_REVIEW_Reading_1",
+                userID: "MOCK_USER_1"
+            },
+            {
+                activityID: "Reading",
+                description: "This is MOCK_REVIEW_Reading_2",
+                stars: "1",
+                title: "MOCK_REVIEW_Reading_2",
+                userID: "MOCK_USER_2"
+            },
+            {
+                activityID: "Reading",
+                description: "This is MOCK_REVIEW_Reading_3",
+                stars: "1",
+                title: "MOCK_REVIEW_Reading_3",
+                userID: "MOCK_USER_3"
+            },
+
+            {
+                activityID: "Running",
+                description: "This is MOCK_REVIEW_Running_1",
+                stars: "3",
+                title: "MOCK_REVIEW_Running_1",
+                userID: "MOCK_USER_1"
+            },
+            {
+                activityID: "Running",
+                description: "This is MOCK_REVIEW_Running_2",
+                stars: "3",
+                title: "MOCK_REVIEW_Running_2",
+                userID: "MOCK_USER_2"
+            },
+            {
+                activityID: "Running",
+                description: "This is MOCK_REVIEW_Running_3",
+                stars: "3",
+                title: "MOCK_REVIEW_Running_3",
+                userID: "MOCK_USER_3"
+            },
+
+            {
+                activityID: "Sailing",
+                description: "This is MOCK_REVIEW_Sailing_1",
+                stars: "3",
+                title: "MOCK_REVIEW_Sailing_1",
+                userID: "MOCK_USER_1"
+            },
+            {
+                activityID: "Sailing",
+                description: "This is MOCK_REVIEW_Sailing_2",
+                stars: "3",
+                title: "MOCK_REVIEW_Sailing_2",
+                userID: "MOCK_USER_2"
+            },
+            {
+                activityID: "Sailing",
+                description: "This is MOCK_REVIEW_Sailing_3",
+                stars: "2",
+                title: "MOCK_REVIEW_Sailing_3",
+                userID: "MOCK_USER_3"
+            },
+
+            {
+                activityID: "Sculpting",
+                description: "This is MOCK_REVIEW_Sculpting_1",
+                stars: "3",
+                title: "MOCK_REVIEW_Sculpting_1",
+                userID: "MOCK_USER_1"
+            },
+            {
+                activityID: "Sculpting",
+                description: "This is MOCK_REVIEW_Sculpting_2",
+                stars: "3",
+                title: "MOCK_REVIEW_Sculpting_2",
+                userID: "MOCK_USER_2"
+            },
+            {
+                activityID: "Sculpting",
+                description: "This is MOCK_REVIEW_Sculpting_3",
+                stars: "1",
+                title: "MOCK_REVIEW_Sculpting_3",
+                userID: "MOCK_USER_3"
+            },
+
+            {
+                activityID: "Sightseeing",
+                description: "This is MOCK_REVIEW_Sightseeing_1",
+                stars: "3",
+                title: "MOCK_REVIEW_Sightseeing_1",
+                userID: "MOCK_USER_1"
+            },
+            {
+                activityID: "Sightseeing",
+                description: "This is MOCK_REVIEW_Sightseeing_2",
+                stars: "2",
+                title: "MOCK_REVIEW_Sightseeing_2",
+                userID: "MOCK_USER_2"
+            },
+            {
+                activityID: "Sightseeing",
+                description: "This is MOCK_REVIEW_Sightseeing_3",
+                stars: "2",
+                title: "MOCK_REVIEW_Sightseeing_3",
+                userID: "MOCK_USER_3"
+            },
+
+            {
+                activityID: "Skateboarding",
+                description: "This is MOCK_REVIEW_Skateboarding_1",
+                stars: "3",
+                title: "MOCK_REVIEW_Skateboarding_1",
+                userID: "MOCK_USER_1"
+            },
+            {
+                activityID: "Skateboarding",
+                description: "This is MOCK_REVIEW_Skateboarding_2",
+                stars: "2",
+                title: "MOCK_REVIEW_Skateboarding_2",
+                userID: "MOCK_USER_2"
+            },
+            {
+                activityID: "Skateboarding",
+                description: "This is MOCK_REVIEW_Skateboarding_3",
+                stars: "1",
+                title: "MOCK_REVIEW_Skateboarding_3",
+                userID: "MOCK_USER_3"
+            },
+
+            {
+                activityID: "Skiing",
+                description: "This is MOCK_REVIEW_Skiing_1",
+                stars: "3",
+                title: "MOCK_REVIEW_Skiing_1",
+                userID: "MOCK_USER_1"
+            },
+            {
+                activityID: "Skiing",
+                description: "This is MOCK_REVIEW_Skiing_2",
+                stars: "1",
+                title: "MOCK_REVIEW_Skiing_2",
+                userID: "MOCK_USER_2"
+            },
+            {
+                activityID: "Skiing",
+                description: "This is MOCK_REVIEW_Skiing_3",
+                stars: "1",
+                title: "MOCK_REVIEW_Skiing_3",
+                userID: "MOCK_USER_3"
+            },
+
+            {
+                activityID: "Surfing",
+                description: "This is MOCK_REVIEW_Surfing_1",
+                stars: "2",
+                title: "MOCK_REVIEW_Surfing_1",
+                userID: "MOCK_USER_1"
+            },
+            {
+                activityID: "Surfing",
+                description: "This is MOCK_REVIEW_Surfing_2",
+                stars: "2",
+                title: "MOCK_REVIEW_Surfing_2",
+                userID: "MOCK_USER_2"
+            },
+            {
+                activityID: "Surfing",
+                description: "This is MOCK_REVIEW_Surfing_3",
+                stars: "2",
+                title: "MOCK_REVIEW_Surfing_3",
+                userID: "MOCK_USER_3"
+            },
+
+            {
+                activityID: "Volunteering",
+                description: "This is MOCK_REVIEW_Volunteering_1",
+                stars: "2",
+                title: "MOCK_REVIEW_Volunteering_1",
+                userID: "MOCK_USER_1"
+            },
+            {
+                activityID: "Volunteering",
+                description: "This is MOCK_REVIEW_Volunteering_2",
+                stars: "2",
+                title: "MOCK_REVIEW_Volunteering_2",
+                userID: "MOCK_USER_2"
+            },
+            {
+                activityID: "Volunteering",
+                description: "This is MOCK_REVIEW_Volunteering_3",
+                stars: "1",
+                title: "MOCK_REVIEW_Volunteering_3",
+                userID: "MOCK_USER_3"
+            },
+
+            {
+                activityID: "Writing",
+                description: "This is MOCK_REVIEW_Writing_1",
+                stars: "2",
+                title: "MOCK_REVIEW_Writing_1",
+                userID: "MOCK_USER_1"
+            },
+            {
+                activityID: "Writing",
+                description: "This is MOCK_REVIEW_Writing_2",
+                stars: "1",
+                title: "MOCK_REVIEW_Writing_2",
+                userID: "MOCK_USER_2"
+            },
+            {
+                activityID: "Writing",
+                description: "This is MOCK_REVIEW_Writing_3",
+                stars: "1",
+                title: "MOCK_REVIEW_Writing_3",
+                userID: "MOCK_USER_3"
+            },
+
+            {
+                activityID: "Yoga",
+                description: "This is MOCK_REVIEW_Yoga_1",
+                stars: "1",
+                title: "MOCK_REVIEW_Yoga_1",
+                userID: "MOCK_USER_1"
+            },
+            {
+                activityID: "Yoga",
+                description: "This is MOCK_REVIEW_Yoga_2",
+                stars: "1",
+                title: "MOCK_REVIEW_Yoga_2",
+                userID: "MOCK_USER_2"
+            },
+            {
+                activityID: "Yoga",
+                description: "This is MOCK_REVIEW_Yoga_3",
+                stars: "1",
+                title: "MOCK_REVIEW_Yoga_3",
+                userID: "MOCK_USER_3"
+            },
+
+            
+        ];
+
+        function addReviewsToFirestore() {
+            const activityCounts = {};
+            reviews.forEach((review) => {
+                const { activityID } = review;
+                if (!activityCounts[activityID]) {
+                    activityCounts[activityID] = 1;
+                }
+                const count = activityCounts[activityID];
+                const docName = `MOCK_${activityID}_${count}`;
+                activityCounts[activityID]++;
+
+                db.collection('reviews').doc(docName).set(review)
+                    .then(() => {
+                        console.log(`Added review ${docName} to Firestore`);
+                    })
+                    .catch((error) => {
+                        console.error(`Error adding review ${docName} to Firestore:`, error);
+                    });
+            });
+
+            console.log('All reviews added');
+        }
+
+        addReviewsToFirestore();
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

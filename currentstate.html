@@ -61,50 +61,62 @@
     </div>
 
     <!-- Mood Section -->
-    <div id="moodSection" class="container mx-auto my-auto">
+    <!-- <div id="moodSection" class="container mx-auto my-auto">
         <div class="flex flex-col">
             <button class="input-button self-start" onclick="showCostSection(); selectMood('content')">Content</button>
             <button class="input-button self-end" onclick="showCostSection(); selectMood('neutral')">Neutral</button>
             <button class="input-button self-start" onclick="showCostSection(); selectMood('sad')">Sad</button>
         </div>
-    </div>
+    </div> -->
 
     <!-- Cost Section -->
-    <div id="costSection" class="container mx-auto my-auto d-none">
+    <!-- <div id="costSection" class="container mx-auto my-auto d-none">
         <div class="flex flex-col">
             <button class="input-button self-end" onclick="showTimeSection(); selectCost('$')">$</button>
             <button class="input-button self-start" onclick="showTimeSection(); selectCost('$$')">$$</button>
             <button class="input-button self-end" onclick="showTimeSection(); selectCost('$$$')">$$$</button>
+        </div>
+    </div> -->
+
+    <!-- Mood Section -->
+    <div id="moodSection" class="container mx-auto my-auto">
+        <div class="flex flex-col">
+            <button class="input-button self-start" onclick="showTimeSection(); selectMood('content')">Content</button>
+            <button class="input-button self-end" onclick="showTimeSection(); selectMood('neutral')">Neutral</button>
+            <button class="input-button self-start" onclick="showTimeSection(); selectMood('sad')">Sad</button>
         </div>
     </div>
 
     <!-- Time Section -->
     <div id="timeSection" class="container mx-auto my-auto d-none">
         <div class="flex flex-col">
-            <button class="input-button self-start" onclick="showDoorsSection(); selectTime('short')">Short</button>
-            <button class="input-button self-end" onclick="showDoorsSection(); selectTime('medium')">Medium</button>
-            <button class="input-button self-start" onclick="showDoorsSection(); selectTime('long')">Long</button>
+            <button class="input-button self-end" onclick="showDoorsSection(); selectTime('short')">Short</button>
+            <button class="input-button self-start" onclick="showDoorsSection(); selectTime('medium')">Medium</button>
+            <button class="input-button self-end" onclick="showDoorsSection(); selectTime('long')">Long</button>
         </div>
     </div>
 
     <!-- Doors Section-->
     <div id="doorsSection" class="container mx-auto my-auto d-none">
         <div class="flex flex-col">
-            <button class="input-button self-end" onclick="showGroupSection(); selectDoors('indoors')">Indoors</button>
-            <button class="input-button self-start" onclick="showGroupSection(); selectDoors('outdoors')">Outdoors</button>
+            <button class="input-button self-start" onclick="showGroupSection(); selectDoors('indoors')">Indoors</button>
+            <button class="input-button self-end"
+                onclick="showGroupSection(); selectDoors('outdoors')">Outdoors</button>
         </div>
     </div>
 
     <!-- Group Section-->
     <div id="groupSection" class="container mx-auto my-auto d-none">
         <div class="flex flex-col">
-            <button class="input-button self-start" onclick="navigateToPage('activitysuggestion.html'); selectGroup('alone')">Alone</button>
-            <button class="input-button self-end" onclick="navigateToPage('activitysuggestion.html'); selectGroup('group')">Group</button>
+            <button class="input-button self-end"
+                onclick="navigateToPage('activitysuggestion.html'); selectGroup('alone')">Alone</button>
+            <button class="input-button self-start"
+                onclick="navigateToPage('activitysuggestion.html'); selectGroup('group')">Group</button>
         </div>
     </div>
 
     <!-- Sticky footer -->
-    <div style="height: 84px;">
+    <div style="height: 62px;">
         <footer class="navbar justify-content-evenly fixed-bottom footer d-block">
             <div class="container">
                 <a id="footer_icon" class="material-icons text-decoration-none md-68" href="#"
@@ -117,86 +129,8 @@
         </footer>
     </div>
 
-    <!-- Scripts specific for this HTML-->
-    <script>
-
-        function goBack() {
-            var sections = ['moodSection', 'costSection', 'timeSection', 'doorsSection', 'groupSection'];
-            for (var i = 0; i < sections.length; i++) {
-                var section = document.getElementById(sections[i]);
-                if (!section.classList.contains('d-none')) {
-                    section.classList.add('d-none');
-                    if (i > 0) {
-                        var prevSection = document.getElementById(sections[i - 1]);
-                        prevSection.classList.remove('d-none');
-                    } else if (i === 0) {
-                        navigateToPage('home.html');
-                    }
-                    break;
-                }
-            }
-        }
-
-        function selectMood(mood) {
-            selectedMood = mood;
-            localStorage.setItem('selectedMood', selectedMood);
-            console.log('Selected mood:', selectedMood);
-        }
-
-        function selectCost(cost) {
-            selectedCost = cost;
-            localStorage.setItem('selectedCost', selectedCost);
-            console.log('Selected cost:', selectedCost);
-        }
-
-        function selectTime(time) {
-            selectedTime = time;
-            localStorage.setItem('selectedTime', selectedTime);
-            console.log('Selected time:', selectedTime);
-        }
-
-        function selectDoors(doors) {
-            selectedDoors = doors;
-            localStorage.setItem('selectedDoors', selectedDoors);
-            console.log('Selected doors:', selectedDoors);
-        }
-
-        function selectGroup(group) {
-            selectedGroup = group;
-            localStorage.setItem('selectedGroup', selectedGroup);
-            console.log('Selected group:', selectedGroup);
-        }
-
-        function showMoodSection() {
-            document.getElementById('costSection').classList.add('d-none');
-            document.getElementById('moodSection').classList.remove('d-none');
-        }
-
-        function showCostSection() {
-            document.getElementById('moodSection').classList.add('d-none');
-            document.getElementById('costSection').classList.remove('d-none');
-        }
-
-        function showTimeSection() {
-            document.getElementById('costSection').classList.add('d-none');
-            document.getElementById('timeSection').classList.remove('d-none');
-        }
-
-        function showDoorsSection() {
-            document.getElementById('timeSection').classList.add('d-none');
-            document.getElementById('doorsSection').classList.remove('d-none');
-        }
-
-        function showGroupSection() {
-            document.getElementById('doorsSection').classList.add('d-none');
-            document.getElementById('groupSection').classList.remove('d-none');
-        }
-
-    </script>
-
-    <!-- External scripts -->
+    <script src="./scripts/currentstate.js"></script>
     <script src="./scripts/script.js"></script>
 
 </body>
-
 </html>
