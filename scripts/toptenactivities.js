@@ -1,3 +1,7 @@
+function goBack() {
+    navigateToPage('home.html');
+}
+
 function fillTopTenContainer() {
     db.collection('reviews')
         .get()
