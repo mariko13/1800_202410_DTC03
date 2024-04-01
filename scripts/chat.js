@@ -1,21 +1,9 @@
-// let params = new URL(window.location.href) //get the url from the search bar
-// let activityDocID = params.searchParams.get("docID");
-
 var selectedActivity = localStorage.getItem('selectedActivity');
 console.log('Selected activity from previous page:', selectedActivity);
 
 function getActivityName(id) {
   console.log("id:", id)
-  activityName.innerHTML = id + "!";
-  // // Get the document for the current user.
-  // db.collection("reviews")
-  //   .doc(id)
-  //   .get()
-  //   .then((thisActivity) => {
-  //     var activityName = thisActivity.data().activityID;
-  //     console.log("activityName: ", activityName)
-  //     document.getElementById("activityName").innerHTML = activityName;
-  //   });
+  chatActivityName.innerHTML = id + "!";
 }
 getActivityName(selectedActivity);
 
@@ -29,24 +17,36 @@ function displayCardsDynamically() {
     if (user) {
       db.collection("chats")
         .doc(selectedActivity)
-        .collection(entries)
-        .doc()
-        //.where("userID", "==", user.uid) // Filter reviews by user ID
+        .collection("entries")
         .onSnapshot((activityMessages) => {
+          console.log("inside db in displayCardsDynamically")
           // Clear existing cards before updating
           messageCardGroup.innerHTML = '';
           activityMessages.forEach((doc) => {
-            let activityName = doc.data().activityID;
-            let activityDate = doc.data().date.toDate();
-            let docID = doc.id;
-            localStorage.setItem('reviewsDocID', docID);
+            console.log("doc id: ", doc.id);
+            let message = doc.data().message;
 
-            // Clone template and populate with data
-            let newcard = messageCardTemplate.content.cloneNode(true);
-            newcard.querySelector(".card-title").textContent = activityName;
-            newcard.querySelector(".card-text").textContent = activityDate.toLocaleString(); // to display the date
-            newcard.querySelector("a").href = "review.html?docID=" + docID;
-            messageCardGroup.appendChild(newcard);
+            let timestamp = doc.data().timestamp.toDate();
+            let date = (timestamp.getMonth() + 1) + "/" + timestamp.getDate() + "/" + timestamp.getFullYear();
+            let time = timestamp.getHours() + ":" + timestamp.getMinutes()
+            date += " " + time;
+
+            let senderUserID = doc.data().userID;
+
+            db.collection("users")
+              .doc(senderUserID)
+              .get()
+              .then((sender) => {
+                let senderName = sender.data().name;
+
+                let newcard = messageCardTemplate.content.cloneNode(true);
+                
+                newcard.querySelector(".card-title").textContent = senderName;
+                newcard.querySelector(".card-date").textContent = date
+                newcard.querySelector(".card-text").textContent = message;
+
+                messageCardGroup.appendChild(newcard);
+              });
           });
         }, (error) => {
           console.log("Error getting past activities: ", error);
