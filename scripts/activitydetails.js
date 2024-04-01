@@ -20,7 +20,6 @@ console.log('Selected mood from previous page:', selectedGroup);
 var selectedActivity = localStorage.getItem('selectedActivity');
 console.log('Selected activity from previous page:', selectedActivity);
 
-
 var activitiesContainer = document.getElementById('activitiesContainer');
 activitiesContainer.innerHTML = '';
 
@@ -67,6 +66,7 @@ function fillReviews() {
             if (snapshot.empty) {
                 reviewsContainer.innerHTML = '<p>No reviews yet, be the first!</p>';
             } else {
+                let colorIndex = 0;
                 snapshot.forEach((doc) => {
                     let stars = doc.data().stars;
                     if (!isNaN(stars)) {
@@ -74,17 +74,19 @@ function fillReviews() {
                         let rating = stars;
                         let starsHTML = generateSmallStarsHTML(rating);
                         let description = doc.data().description || "No Description";
+                        let bgColor = colorIndex % 2 === 0 ? "#174B62" : "#3D3264";
                         let reviewDetails = `
-                                <section class="flex flex-col my-4">  
+                                <section class="flex flex-col mt-2 mb-2 p-2 rounded-lg bg-[${bgColor}]">  
                                     <div class="flex flex-row justify-between my-1"> 
-                                        <h3 class="text-sm sm:text-base">${title}</h3>
+                                        <h3 class="font-bold tracking-wider text-[#E22866] text-sm sm:text-base">${title}</h3>
                                         <div class="text-sm sm:text-base">${starsHTML}</div>
                                     </div>
+                                    <div class="border-[#F4C015] border-b my-1"></div>
                                     <p class="text-sm sm:text-base my-1">${description}</p>
                                 </section>
                             `;
                         reviewsContainer.innerHTML += reviewDetails;
-
+                        colorIndex++;
                     }
                 });
             }
@@ -112,10 +114,12 @@ function fillActivityContainer() {
                 console.log("Rating Average", ratingAverage);
                 let stars = generateLargeStarsHTML(ratingAverage)
                 let activityDetails = `
-                <img src='./images/${image}' class='activity-image'>
-                <h1 class="font-bold mb-2" id="activity-detail-title">${activityID}</h1>
-                <div>${stars}</div>
-                <p>${description}</p>
+                <section class="bg-[#003952] rounded-lg p-4 flex flex-col place-items-center">
+                    <img src='./images/${image}' class='activity-image bg-[#F8D04F] rounded-lg'>
+                    <h1 class="font-bold mb-2 tracking-wider my-4" id="activity-detail-title">${activityID}</h1>
+                    <div>${stars}</div>
+                    <p class="text-sm sm:text-base my-1">${description}</p>
+                </section>
                 `;
                 activitiesContainer.innerHTML += activityDetails;
             }
