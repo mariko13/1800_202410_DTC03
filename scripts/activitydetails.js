@@ -76,12 +76,12 @@ function fillReviews() {
                         let starsHTML = generateSmallStarsHTML(rating);
                         let description = doc.data().description || "No Description";
                         let reviewDetails = `
-                                <section class="flex flex-col my-2">  
-                                    <div class="flex flex-row justify-between"> 
-                                        <h3>${title}</h3>
-                                        <div>${starsHTML}</div>
+                                <section class="flex flex-col my-4">  
+                                    <div class="flex flex-row justify-between my-1"> 
+                                        <h3 class="text-sm sm:text-base">${title}</h3>
+                                        <div class="text-sm sm:text-base">${starsHTML}</div>
                                     </div>
-                                    <p>${description}</p>
+                                    <p class="text-sm sm:text-base my-1">${description}</p>
                                 </section>
                             `;
                         reviewsContainer.innerHTML += reviewDetails;
