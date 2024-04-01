@@ -1,4 +1,3 @@
-
 function goBack() {
     var sections = ['moodSection', 'timeSection', 'doorsSection', 'groupSection'];
     for (var i = 0; i < sections.length; i++) {
@@ -8,6 +7,7 @@ function goBack() {
             if (i > 0) {
                 var prevSection = document.getElementById(sections[i - 1]);
                 prevSection.classList.remove('d-none');
+                updateNavbarBrand(prevSection.id);
             } else if (i === 0) {
                 navigateToPage('home.html');
             }
@@ -16,10 +16,33 @@ function goBack() {
     }
 }
 
+function updateNavbarBrand(sectionId) {
+    var navbarBrand = document.querySelector('.navbar-brand');
+    switch (sectionId) {
+        case 'moodSection':
+            navbarBrand.textContent = "How are you feeling?";
+            break;
+        case 'timeSection':
+            navbarBrand.textContent = "How much time?";
+            break;
+        case 'doorsSection':
+            navbarBrand.textContent = "Prefer indoors/outdoors?";
+            break;
+        case 'groupSection':
+            navbarBrand.textContent = "Prefer group/alone?";
+            break;
+        default:
+            navbarBrand.textContent = "How are you feeling?";
+            break;
+    }
+}
+
+
 function selectMood(mood) {
     selectedMood = mood;
     localStorage.setItem('selectedMood', selectedMood);
     console.log('Selected mood:', selectedMood);
+    updateNavbarBrand('timeSection');
 }
 
 // function selectCost(cost) {
@@ -32,12 +55,14 @@ function selectTime(time) {
     selectedTime = time;
     localStorage.setItem('selectedTime', selectedTime);
     console.log('Selected time:', selectedTime);
+    updateNavbarBrand('doorsSection');
 }
 
 function selectDoors(doors) {
     selectedDoors = doors;
     localStorage.setItem('selectedDoors', selectedDoors);
     console.log('Selected doors:', selectedDoors);
+    updateNavbarBrand('groupSection');
 }
 
 function selectGroup(group) {
