@@ -29,7 +29,7 @@ function fillTopTenContainer() {
                 activityRankings.push({ activityID, averageStars: roundedAverageStars });
             }
             activityRankings.sort((a, b) => b.averageStars - a.averageStars);
-            activityRankings.slice(0, 20).forEach((activity, index) => {
+            activityRankings.forEach((activity, index) => {
                 console.log(`${index + 1}. Activity: ${activity.activityID}, Average Stars: ${activity.averageStars}`);
                 let activityClass = '';
                 if (index === 0) {
