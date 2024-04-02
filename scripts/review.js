@@ -2,10 +2,9 @@ let params = new URL(window.location.href) //get the url from the search bar
 let activityDocID = params.searchParams.get("docID");
 
 function getActivityName(id) {
-  console.log("id:",id)
-  
+  console.log("id:", id)
   // Get the document for the current user.
-  db.collection("reviews") //giving the error !!!
+  db.collection("reviews")
     .doc(id)
     .get()
     .then((thisActivity) => {
@@ -14,7 +13,6 @@ function getActivityName(id) {
       document.getElementById("activityName").innerHTML = activityName;
     });
 }
-
 getActivityName(activityDocID);
 
 
@@ -34,6 +32,49 @@ stars.forEach((star, index) => {
     }
   });
 });
+
+
+function populateReviewFields() {
+  firebase.auth().onAuthStateChanged(user => { //authenticated user
+    // Check if user is signed in:
+    if (user) {
+      //get the document for review.
+      db.collection("reviews")
+        .doc(activityDocID)
+        .get()
+        .then(currentReviews => { // .then so we wait until .get() reads everything that we want
+          //get the data fields of the user
+          let reviewTitle = currentReviews.data().title;
+          let reviewDescription = currentReviews.data().description;
+          let rating = currentReviews.data().stars;
+          console.log("title:", reviewTitle)
+          console.log("description:", reviewDescription)
+          console.log("rating:", rating)
+
+          //if the data fields are not empty, then write them in to the form.
+          if (reviewTitle != null) {
+            document.getElementById("title").value = reviewTitle;
+          }
+          if (reviewDescription != null) {
+            document.getElementById("description").value = reviewDescription;
+          }
+          if (rating != null) {
+            stars.forEach(() => {
+              // Fill in clicked star and stars before it
+              for (let i = 0; i < rating; i++) {
+                // Change the text content of stars to 'star' (filled)
+                document.getElementById(`star${i + 1}`).textContent = 'star';
+              }
+            });
+          }
+        })
+    } else {
+      // No user is signed in.
+      console.log("No user is signed in");
+    }
+  });
+}
+populateReviewFields()
 
 
 function writeReview() {
@@ -59,18 +100,33 @@ function writeReview() {
 
   var user = firebase.auth().currentUser;
   if (user) {
-    var currentUser = db.collection("users").doc(user.uid);
-    var userID = user.uid;
+    // Get the document for the current activity review.
+    db.collection("reviews")
+      .doc(activityDocID)
+      .update({
+        title: reviewTitle,
+        description: reviewDescription,
+        stars: activityRating, // Include the rating in the review
+      }).then(() => {
+        confirm("confirm!!");
+        // console.log("in modal");
+        // const modalElement = document.getElementById('confirmReviewChangeModal');
+        // const confirmReviewChangeModal = new bootstrap.Modal(modalElement);
 
-    // Get the document for the current user.
-    db.collection("reviews").add({
-      title: reviewTitle,
-      description: reviewDescription,
-      stars: activityRating, // Include the rating in the review
-    })
+        // // Access modal elements and set their content
+        // const modalTitle = modalElement.querySelector('.modal-title');
+        // const modalBody = modalElement.querySelector('.modal-body');
+
+        // // Set modal title and body content
+        // modalTitle.textContent = "Changes Confirmed";
+        // modalBody.textContent = "Your review has been successfully updated!";
+
+        // // Show the modal
+        // confirmReviewChangeModal.show();
+      });
   } else {
     console.log("No user is signed in");
-    window.location.href = 'review.html';
+    window.location.href = 'index.html';
   }
 }
 

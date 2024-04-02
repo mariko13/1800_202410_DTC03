@@ -131,7 +131,7 @@ function fillActivityContainer() {
 
 fillActivityContainer();
 
-function createReviewDoc() {
+function createReviewDoc(callback) {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
             console.log(`user ID: ${user.uid}`);
@@ -142,6 +142,9 @@ function createReviewDoc() {
                 .then((snapshot) => {
                     if (!snapshot.empty) {
                         console.log("User already has a review document for this activity");
+                        if (callback) {
+                            callback();
+                        }
                         return;
                     }
                     db.collection("reviews").doc(user.uid + '_' + selectedActivity).set({
@@ -150,7 +153,10 @@ function createReviewDoc() {
                         date: new Date()
                     })
                         .then(() => {
-                            console.log("Review doc created successfully.")
+                            console.log("Review doc created successfully.");
+                            if (callback) {
+                                callback();
+                            }
                         })
                         .catch((error) => {
                             console.log("Error creating review doc:", error)
@@ -163,7 +169,21 @@ function createReviewDoc() {
     })
 }
 
-document.getElementById('startMingleButton').addEventListener('click', createReviewDoc);
+firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+        console.log(`user ID: ${user.uid}`);
+    } else {
+        console.log("No user is logged in.")
+    }
+})
+
+function navigateToChat() {
+    window.location.href = 'chat.html';
+}
+
+document.getElementById('startMingleButton').addEventListener('click', function() {
+    createReviewDoc(navigateToChat);
+});
 
 function generateLargeStarsHTML(rating) {
     const numFullStars = Math.floor(rating);
