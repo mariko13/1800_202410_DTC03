@@ -10,7 +10,7 @@ function getActivityName(id) {
     .then((thisActivity) => {
       var activityName = thisActivity.data().activityID;
       console.log("activityName: ", activityName)
-      document.getElementById("activityName").innerHTML = activityName;
+      document.getElementById("reviewActivityName").innerHTML = activityName;
     });
 }
 getActivityName(activityDocID);
@@ -35,6 +35,7 @@ stars.forEach((star, index) => {
 
 
 function populateReviewFields() {
+  submitConfirmation.innerHTML = "";
   firebase.auth().onAuthStateChanged(user => { //authenticated user
     // Check if user is signed in:
     if (user) {
@@ -78,6 +79,7 @@ populateReviewFields()
 
 
 function writeReview() {
+  submitConfirmation.innerHTML = "";
   console.log("inside write review");
   let reviewTitle = document.getElementById("title").value;
   let reviewDescription = document.getElementById("description").value;
@@ -108,21 +110,7 @@ function writeReview() {
         description: reviewDescription,
         stars: activityRating, // Include the rating in the review
       }).then(() => {
-        confirm("confirm!!");
-        // console.log("in modal");
-        // const modalElement = document.getElementById('confirmReviewChangeModal');
-        // const confirmReviewChangeModal = new bootstrap.Modal(modalElement);
-
-        // // Access modal elements and set their content
-        // const modalTitle = modalElement.querySelector('.modal-title');
-        // const modalBody = modalElement.querySelector('.modal-body');
-
-        // // Set modal title and body content
-        // modalTitle.textContent = "Changes Confirmed";
-        // modalBody.textContent = "Your review has been successfully updated!";
-
-        // // Show the modal
-        // confirmReviewChangeModal.show();
+        submitConfirmation.innerHTML = "Your review has been submitted!";
       });
   } else {
     console.log("No user is signed in");
@@ -130,18 +118,45 @@ function writeReview() {
   }
 }
 
-function blockActivity() { //still need to ask for confirmation and show hange once an activity is blocked
+function updateBlockActivity() {
   var user = firebase.auth().currentUser;
   if (user) {
-    var currentUser = db.collection("users").doc(user.uid);
-    var userID = user.uid;
+    db.collection("reviews")
+      .doc(activityDocID)
+      .get()
+      .then((thisActivity) => {
+        var activityID = thisActivity.data().activityID;
 
-    // Get the document for the current user.
-    db.collection("reviews").add({
-      block: true,
-    })
+        let currentUser = db.collection("users").doc(user.uid);
+        // Get the document for the current user.
+        currentUser.get().then((doc) => {
+          let currentBlocks = doc.data().blocks;
+    
+          console.log("currentBlocks: ", currentBlocks);
+          console.log("activityID: ", activityID);
+          console.log("currentBlocks.includes(activityID): ", currentBlocks.includes(activityID))
+          if (currentBlocks.includes(activityID)) {
+            console.log("inside unblock");
+            currentUser.update({
+              blocks: firebase.firestore.FieldValue.arrayRemove(activityID)
+            }).then(() => {
+              blockBtn.innerText = "Unblock Activity";
+              reviewForm.style.borderColor = "#540303";
+            })
+          }
+          else {
+            console.log("inside block");
+            currentUser.update({
+              blocks: firebase.firestore.FieldValue.arrayUnion(activityID)
+            }).then(() => {
+              blockBtn.innerText = "Block Activity";
+              reviewForm.style.borderColor = "#F8D04F";
+            })
+          }
+        })
+      });
   } else {
     console.log("No user is signed in");
-    window.location.href = 'review.html';
+    window.location.href = 'login.html';
   }
 }
