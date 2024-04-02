@@ -15,11 +15,6 @@
   --normal-font-size: 1rem;
 }
 
-#edtpinfo {
-  background-color: aliceblue;
-  color: black; 
-  
-}
 
 * {
   box-sizing: border-box;
@@ -51,7 +46,7 @@ h1#activity-detail-title {
 }
 
 .activity-image {
-  width:300px;
+  width: 300px;
 }
 
 .navbar-brand {
@@ -188,4 +183,14 @@ a.text-light:hover {
 #messageCardGroup {
   /* margin-bottom: 122px; */
   overflow: auto;
+}
+
+#edtpinfo {
+  background-color: var(--container-color);
+  color: var(--white-color);
+  font-family: var(--body-font);
+}
+
+#profileInfo {
+  font-family: var(--body-font);
 }

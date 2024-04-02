@@ -51,47 +51,58 @@
   </div>
   <!------------------------------>
   <!-- Stuff for body goes here -->
-  <h1 class="display-4">Welcome, <span id="name-goes-here"></span></h1>
-  <!--enter age-->
-  <div class="d-flex flex-column border">
-    <div class="p-2">
-      <p> Enter your age</p>
+  <div class="pb-20" style="font-family:Arial, sans-serif;">
+    <h1 class="display-4 p-2">Welcome, <span id="name-goes-here"></span></h1>
+    <!--upload profile picture-->
+    <div>
+      <p class="p-2">Upload your profile picture</p>
+      <form>
+        <div class="container py-3">
+          <input type="file" id="mypic-input" accept="image/*" />
+          <!-- <img id="mypic-goes-here" width=100 height=100 /> -->
+        </div>
+        <div class="d-flex mt-2 p-2">
+          <button type="button" class="btn" style="background-color: #F4C015;" onclick="savePost()">Post Now</button>
+        </div>
+      </form>
+    </div>
+    <!--enter age-->
+    <div class="d-flex flex-column p-2">
+      <div class="">
+        <p> Enter your age</p>
+      </div>
+      <div class="">
+        <input id="age" type="text" placeholder="eg: 25">
+      </div>
+    </div>
+    <!--choose gender-->
+    <div class="d-flex flex-column p-2">
+      <div class="">
+        <p> Choose your gender</p>
+      </div>
+      <div class="input-group  ">
+        <label class="input-group-text" for="inputGroupSelect01">Options</label>
+        <select class="form-select" id="genderselect" placeholder="eg: 25">
+          <option selected>Choose...</option>
+          <option value="female">Female</option>
+          <option value="male">Male</option>
+          <option value="other">Prefer not to say</option>
+        </select>
+      </div>
+    </div>
+    <!--enter location-->
+    <div class="d-flex flex-column p-2">
+      <div>
+        <p> Enter your Location</p>
+      </div>
+      <div>
+        <input id="location" type="text" placeholder="eg: Vancouver">
+      </div>
     </div>
     <div class="p-2">
-      <input id="age" type="text" placeholder="eg: 25">
+      <button class="btn" style="background-color: #F4C015;" onclick="saveUserInfo()">Confirm</button>
+      <!-- <a href="home.html"></a> -->
     </div>
-  </div>
-  </div>
-  <br>
-  <!--choose gender-->
-  <div class="d-flex flex-column">
-    <div class="p-2">
-      <p> Choose your gender</p>
-    </div>
-    <div class="input-group mb-3">
-      <label class="input-group-text" for="inputGroupSelect01">Options</label>
-      <select class="form-select" id="genderselect" placeholder="eg: 25">
-        <option selected>Choose...</option>
-        <option value="female">Female</option>
-        <option value="male">Male</option>
-        <option value="other">Prefer not to say</option>
-      </select>
-    </div>
-  </div>
-  <br>
-  <!--enter location-->
-  <div class="d-flex flex-column border">
-    <div class="p-2">
-      <p> Enter your Location</p>
-    </div>
-    <div class="p-2">
-      <input id="location" type="text" placeholder="eg: Vancouver">
-    </div>
-  </div>
-  </div>
-  <div class="p-2">
-    <button onclick="saveUserInfo()">Confirm</button>
-    <!-- <a href="home.html"></a> -->
   </div>
 
   <!-- Sticky footer -->
@@ -115,7 +126,7 @@
   <script src="./scripts/authentication.js"></script>
   <script src="./scripts/script.js"></script>
   <script src="./scripts/personalinfo.js"></script>
-  <!-- <script src="./scripts/personalinfo.js"></script> -->
+  <script src="./scripts/profile_image.js"></script>
 
 </body>
 
