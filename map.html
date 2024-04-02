@@ -53,6 +53,17 @@
       bottom: 0;
       width: 100%;
     }
+
+    .mapboxgl-popup {
+        max-width: 400px;
+        color: black;
+        font:
+            14px/20px 'Helvetica Neue',
+            Arial,
+            Helvetica,
+            sans-serif;
+    }
+
   </style>
 
 </head>
@@ -63,6 +74,16 @@
   <div style="height: 62px;">
     <nav class="navbar p fixed-top d-block">
       <div class="container-fluid text-center">
+        <a href="#" onclick="navigateToPage('home.html')">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-left position-absolute"
+            width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#F4C015" fill="none"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M5 12l14 0" />
+            <path d="M5 12l6 6" />
+            <path d="M5 12l6 -6" />
+          </svg>
+        </a>
         <a class="navbar-brand col-12" href="#">
           Map
         </a>
@@ -72,14 +93,21 @@
   <!------------------------------>
   <!-- Stuff for body goes here -->
 
-  <!-- Load the `mapbox-gl-geocoder` plugin. -->
+  <!-- Load the `mapbox-gl-geocoder` plugin -->
   <script
     src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
   <link rel="stylesheet"
     href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
+  
+  <!-- Load the `mapbox-gl-directions` plugin -->
+  <!-- <script
+    src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.2.0/mapbox-gl-directions.js"></script>
+  <link rel="stylesheet"
+    href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.2.0/mapbox-gl-directions.css"
+    type="text/css"> -->
 
 
-  <div class="mt-16" id="map"></div>
+  <div class="mt-16 mb-6" id="map"></div>
 
 
   <!------------------------------>
