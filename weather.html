@@ -41,7 +41,7 @@
       <div class="container-fluid text-center">
         <a href="#" onclick="navigateToPage('home.html')">
           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-left position-absolute"
-            width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+            width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#F4C015" fill="none"
             stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
             <path d="M5 12l14 0" />
@@ -55,8 +55,21 @@
       </div>
     </nav>
   </div>
-  <div id="result_city" class="text-center start-50  my-4"></div>
-  <div id="result" class="p-2"></div>
+  <div style="font-family:Arial, sans-serif;" class="pb-5">
+    <div id="result_city" class="text-center start-50  my-4"></div>
+    <div id="result" class="p-2"></div>
+  </div>
+  <!-- Sticky footer -->
+  <footer class="navbar justify-content-evenly fixed-bottom footer">
+    <div class="container">
+      <a id="footer_icon" class="material-icons text-decoration-none md-68" href="#"
+        onclick="navigateToPage('history.html')">history</a>
+      <a id="footer_icon" class="material-icons text-decoration-none md-68" href="#"
+        onclick="navigateToPage('home.html')">home</a>
+      <a id="footer_icon" class="material-icons text-decoration-none md-68" href="#"
+        onclick="navigateToPage('profile.html')">account_circle</a>
+    </div>
+  </footer>
   <script src="./scripts/firebaseAPI_DTC03.js"></script>
   <script src="./scripts/authentication.js"></script>
   <script src="./scripts/script.js"></script>
