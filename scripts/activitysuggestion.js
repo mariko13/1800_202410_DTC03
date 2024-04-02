@@ -77,7 +77,7 @@ function displayActivities() {
                         <div class="card_data">
                             <h3 class="card_name font-bold text-2xl tracking-wide" id="name_${activityID}">${activityID}</h3>
                             <p class="card_description id="description_${activityID}">${description}</p>
-                            <a href="" class="card_button" onclick="navigateToPage('activitydetails.html'); viewMore('${activityID}')">View More</a>
+                            <a href="#" class="card_button" onclick="navigateToPage('activitydetails.html'); viewMore('${activityID}')">View More</a>
                         </div>
                     </article>
                 `;
