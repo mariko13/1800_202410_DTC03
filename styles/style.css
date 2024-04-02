@@ -7,18 +7,11 @@
   --body-color: #792A76;
   --container-color: #003952;
   --card1-color: #3D3264;
-  --card2-color: #174B62
-
-  --body-font: "Arial", sans-serif;
+  --card2-color: #174B62 --body-font: "Arial", sans-serif;
   --h2-font-size: 1.25rem;
   --normal-font-size: 1rem;
 }
 
-#edtpinfo {
-  background-color: aliceblue;
-  color: black; 
-  
-}
 
 * {
   box-sizing: border-box;
@@ -50,7 +43,7 @@ h1#activity-detail-title {
 }
 
 .activity-image {
-  width:300px;
+  width: 300px;
 }
 
 .navbar-brand {
@@ -184,4 +177,14 @@ a.text-light:hover {
 #messageCardGroup {
   /* margin-bottom: 122px; */
   overflow: auto;
+}
+
+#edtpinfo {
+  background-color: var(--container-color);
+  color: var(--white-color);
+  font-family: var(--body-font);
+}
+
+#profileInfo {
+  font-family: var(--body-font);
 }
