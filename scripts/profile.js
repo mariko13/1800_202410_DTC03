@@ -25,4 +25,37 @@ function insertNameFromFirestore() {
     })
 }
 
-insertNameFromFirestore(); 
+insertNameFromFirestore();
+
+function insertPictureFromFirestore() {
+    // Check if the user is logged in:
+    firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+            currentUser = db.collection("users").doc(user.uid); // Go to the Firestore document of the user
+            currentUser.get().then(userDoc => {
+                // Get the last picture associated with the user's posts
+                let userPosts = userDoc.data().myposts;
+                if (userPosts && userPosts.length > 0) {
+                    let lastPostID = userPosts[userPosts.length - 1]; // Get the last post ID
+                    db.collection("posts").doc(lastPostID).get().then(picDoc => {
+                        let picURL = picDoc.data().image;
+                        console.log(picURL);
+                        const imageElement = document.getElementById("mypic-goes-here");
+                        imageElement.src = picURL;
+                    }).catch(error => {
+                        console.error("Error getting last post:", error);
+                    });
+                } else {
+                    console.log("User has no posts.");
+                }
+            }).catch(error => {
+                console.error("Error getting user document:", error);
+            });
+        } else {
+            console.log("No user is logged in."); // Log a message when no user is logged in
+        }
+    });
+}
+
+insertPictureFromFirestore();
+

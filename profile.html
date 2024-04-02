@@ -51,20 +51,20 @@
       </div>
     </nav>
   </div>
-  <div class="d-flex flex-row justify-content-around border-bottom">
-    <img src="https://randomuser.me/api/portraits/women/14.jpg" alt="profile picture"
-      class="rounded-circle img-thumbnail my-2">
-    <div class="mt-2">
+  <div class="d-flex flex-row justify-content-around border-bottom pb-2">
+    <img src="" id="mypic-goes-here" alt="profile picture" class="rounded-circle img-thumbnail my-2" width="120"
+      height="120">
+    <div class="mt-2" id="profileInfo" style="font-family:Arial, sans-serif;">
       <h1>Name: <span id="name-goes-here"></span></h1>
       <h6>Age: <span id="age-goes-here"></span></h6>
       <h6>Gender: <span id="gender-goes-here"></span></h6>
       <h6>Location: <span id="location-goes-here"></span></h6>
     </div>
   </div>
-  <div class="d-flex flex-column px-2">
-    <div class="d-flex flex-row justify-content-between pt-2 rounded-pill my-2 "
-      onclick="navigateToPage('preferences.html')" id="edtpinfo">
-      <svg width="31" height="31" viewBox="0 0 31 31" fill="None" xmlns="http://www.w3.org/2000/svg"
+  <div class="d-flex flex-column px-2" style="font-family:Arial, sans-serif;">
+    <div class="d-flex flex-row justify-content-between pt-2 rounded my-2 " onclick="navigateToPage('preferences.html')"
+      id="edtpinfo">
+      <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink">
         <rect width="31" height="31" fill="url(#pattern0)" />
         <defs>
@@ -78,7 +78,7 @@
       <p>Edit Personal information</p>
       <p class="pe-2">></p>
     </div>
-    <div class="d-flex flex-row justify-content-between pt-2 rounded-pill my-2 height=20 px" id="edtpinfo">
+    <div class="d-flex flex-row justify-content-between pt-2 rounded my-2 height=20 px" id="edtpinfo">
       <svg width="28" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
           d="M23.1275 15.6358C23.1758 15.2733 23.2 14.8987 23.2 14.5C23.2 14.1133 23.1758 13.7267 23.1154 13.3642L25.5683 11.455C25.7858 11.2858 25.8463 10.9596 25.7133 10.7179L23.3933 6.70624C23.2483 6.44041 22.9463 6.35583 22.6804 6.44041L19.7925 7.60041C19.1883 7.14124 18.5479 6.75458 17.835 6.46458L17.4 3.39541C17.3517 3.10541 17.11 2.89999 16.82 2.89999H12.18C11.89 2.89999 11.6604 3.10541 11.6121 3.39541L11.1771 6.46458C10.4642 6.75458 9.81167 7.15333 9.21958 7.60041L6.33167 6.44041C6.06583 6.34374 5.76375 6.44041 5.61875 6.70624L3.31083 10.7179C3.16583 10.9717 3.21417 11.2858 3.45583 11.455L5.90875 13.3642C5.84833 13.7267 5.8 14.1254 5.8 14.5C5.8 14.8746 5.82417 15.2733 5.88458 15.6358L3.43167 17.545C3.21417 17.7142 3.15375 18.0404 3.28667 18.2821L5.60667 22.2937C5.75167 22.5596 6.05375 22.6442 6.31958 22.5596L9.2075 21.3996C9.81167 21.8587 10.4521 22.2454 11.165 22.5354L11.6 25.6046C11.6604 25.8946 11.89 26.1 12.18 26.1H16.82C17.11 26.1 17.3517 25.8946 17.3879 25.6046L17.8229 22.5354C18.5358 22.2454 19.1883 21.8587 19.7804 21.3996L22.6683 22.5596C22.9342 22.6562 23.2362 22.5596 23.3813 22.2937L25.7013 18.2821C25.8463 18.0162 25.7858 17.7142 25.5562 17.545L23.1275 15.6358ZM14.5 18.85C12.1075 18.85 10.15 16.8925 10.15 14.5C10.15 12.1075 12.1075 10.15 14.5 10.15C16.8925 10.15 18.85 12.1075 18.85 14.5C18.85 16.8925 16.8925 18.85 14.5 18.85Z"
@@ -87,7 +87,7 @@
       <p>settings</p>
       <p class="pe-2">></p>
     </div>
-    <div class="d-flex flex-row justify-content-between pt-2 rounded-pill my-2" id="edtpinfo" onclick="logout()">
+    <div class="d-flex flex-row justify-content-between pt-2 rounded my-2" id="edtpinfo" onclick="logout()">
       <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="35" height="32"
         viewBox="0 0 24 24" stroke-width="1.5" stroke="#080607" fill="none" stroke-linecap="round"
         stroke-linejoin="round">
@@ -122,6 +122,7 @@
   <script src="./scripts/script.js"></script>
   <!-- <script src="./scripts/home.js"></script> -->
   <script src="./scripts/profile.js"></script>
+  <!-- <script src="./scripts/profile_image.js"></script> -->
 
 </body>
 
