@@ -21,7 +21,16 @@ function displayCardsDynamically() {
             newcard.querySelector(".card-title").textContent = activityName;
             newcard.querySelector(".card-text").textContent = activityDate.toLocaleString(); // to display the date
             newcard.querySelector("a").href = "review.html?docID=" + docID;
-            activityCardGroup.appendChild(newcard);
+
+            db.collection("activities")
+              .doc(activityName)
+              .get()
+              .then((activityDoc) => {
+                let activityImage = activityDoc.data().image;
+                newcard.querySelector(".activity-image").src = `./images/${activityImage}`;
+                activityCardGroup.appendChild(newcard);
+              })
+
           });
         }, (error) => {
           console.log("Error getting past activities: ", error);
