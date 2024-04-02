@@ -152,20 +152,6 @@ a.text-light:hover {
   transform: scale(1.0);
 }
 
-.review-btn {
-  background-color: #484870;
-  color: white;
-}
-
-.review-btn:hover {
-  background-color: #D81E5B;
-  color: white;
-}
-
-.review-form-label {
-  color: #D81E5B;
-}
-
 .chatUserName {
   color: #F6CD46;
   font-size: 17px;
@@ -173,7 +159,6 @@ a.text-light:hover {
 
 #chatActivityName {
   color: #D81E5B;
-  /* font-weight: 800; */
 }
 
 .sendMessageBtn {
@@ -181,7 +166,6 @@ a.text-light:hover {
 }
 
 #messageCardGroup {
-  /* margin-bottom: 122px; */
   overflow: auto;
 }
 
