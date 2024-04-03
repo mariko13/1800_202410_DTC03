@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+  <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
   <!-- Bootstrap Library CSS CDN go here -->
@@ -33,6 +33,35 @@
   <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
   <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+  <style>
+    /* CSS styles for the container of weather data */
+    #weather-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    /* CSS styles for each individual weather item */
+    .weather-item {
+      margin: auto;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 200px;
+      /* Adjust width as needed */
+      text-align: center;
+    }
+
+    /* CSS styles for specific elements within each weather item */
+    .weather-item img {
+      margin: auto;
+      width: 80px;
+      /* Adjust image size as needed */
+      height: 80px;
+    }
+
+    /* Additional styles can be added as needed */
+  </style>
 </head>
 
 <body>
@@ -56,8 +85,8 @@
     </nav>
   </div>
   <div style="font-family:Arial, sans-serif;" class="pb-5">
-    <div id="result_city" class="text-center start-50  my-4"></div>
-    <div id="result" class="p-2"></div>
+    <div id="result_city" class="text-center start-50 text-3xl my-4"></div>
+    <div id="result" class="text-center p-2"></div>
   </div>
   <!-- Sticky footer -->
   <footer class="navbar justify-content-evenly fixed-bottom footer">

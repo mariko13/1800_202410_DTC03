@@ -169,7 +169,7 @@ a.text-light:hover {
   overflow: auto;
 }
 
-#edtpinfo {
+#editinfo {
   background-color: var(--container-color);
   color: var(--white-color);
   font-family: var(--body-font);

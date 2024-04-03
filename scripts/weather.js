@@ -1,6 +1,6 @@
 var currentUser;               //points to the document of the user who is logged in
 
-function insertNameFromFirestore() {
+function insertLocationFromFirestore() {
   // Check if the user is logged in:
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
@@ -20,28 +20,47 @@ function insertNameFromFirestore() {
   })
 }
 
-insertNameFromFirestore();
+insertLocationFromFirestore();
 
-// myForm = document.querySelector("form");
-//       myForm.addEventListener("submit", (e) => {
-//         e.preventDefault();
 function weather(userLocation) {
   fetch(
     `https://api.openweathermap.org/data/2.5/forecast?q=${userLocation}&appid=b660f3402c54cb9a9c48f89c35249e5c&units=metric`)
     .then((resp) => resp.json())
     .then((data) => {
       console.log(data);
-      result_city.innerHTML += ` <h1> ${data.city.name} </h1>`;
+      // Clear previous weather data
+      result.innerHTML = '';
+      result_city.innerHTML = '';
+
+      // Display city name
+      result_city.innerHTML += `<h1>${data.city.name}</h1>`;
+
+      // Display weather items
       data.list.forEach(item => {
-        console.log(item);
         const dateTime = new Date(item.dt * 1000); // Convert UNIX timestamp to milliseconds
+        const dayOfWeek = getDayOfWeek(dateTime.getDay());
         const time = dateTime.toLocaleTimeString(); // Convert to local time string
-        result.innerHTML += `<div>${time}</div>`; // Display time
-        result.innerHTML += `<div> ${item.main.temp} </div>`;
-        result.innerHTML += `<div> ${item.weather[0].description} </div>`;
-        result.innerHTML += `<div> <img src="https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png" </div>`;
+
+        // Create a div for each weather item and apply styles
+        const weatherItem = document.createElement('div');
+        weatherItem.classList.add('weather-item');
+
+        // Populate the weather item with data and append to the result container
+        weatherItem.innerHTML = `
+          <div>${dayOfWeek}</div>
+          <div>${time}</div>
+          <div>${item.main.temp} °C</div>
+          <div>${item.weather[0].description}</div>
+          <div><img src="https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png"></div>
+        `;
+        result.appendChild(weatherItem);
       });
     })
     .catch((err) => console.log(err));
 }
-// });
+
+function getDayOfWeek(dayIndex) {
+  const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  return daysOfWeek[dayIndex];
+}
+
