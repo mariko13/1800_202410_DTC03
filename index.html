@@ -58,25 +58,15 @@
 
     <!-- Welcome -->
     <div class="px-4 mt-5 text-center mx-auto lg:w-1/2">
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-semibold">
-            Choose your <span class="text-[#D81E5B]">adventure</span> today! Let <span class="text-[#F4C015]">Mood
-                Mingle</span> brighten your mood!
-        </h1>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-semibold">Choose your <span class="text-[#D81E5B]">adventure</span> today! Let <span class="text-[#F4C015]">Mood Mingle</span> brighten your mood!</h1>
         <br>
         <div class="flex flex-col justify-center items-center mx-auto lg:w-3/4">
-            <p class="text-base md:text-2xl lg:text-3xl text-light">
-                Mood Mingle takes away the complexity of searching for what you want to do. It suggests activities best
-                tailored to how you feel.
-            </p>
+            <p class="text-base md:text-2xl lg:text-3xl text-light">Mood Mingle takes away the complexity of searching for what you want to do. It suggests activities best tailored to how you feel.</p>
             <div class="mt-10">
-                <a role="button" href="login.html"
-                    class="text-xl font-semibold px-4 py-3 bg-[#F4C015] text-[#792A76] font-bold rounded-full mx-auto">Login
-                    or Get Started</a>
+                <a role="button" href="login.html" class="text-xl font-semibold px-4 py-3 bg-[#F4C015] text-[#792A76] font-bold rounded-full mx-auto">Login or Get Started</a>
             </div>
         </div>
-        <dotlottie-player src="https://lottie.host/d1bba15a-db7c-49e1-9916-a8beaea109b3/goomYm3HxE.json"
-            class="mx-auto size-full" background="transparent" speed="1" direction="1" playMode="normal" loop
-            autoplay></dotlottie-player>
+        <dotlottie-player src="https://lottie.host/d1bba15a-db7c-49e1-9916-a8beaea109b3/goomYm3HxE.json" class="mx-auto size-full" background="transparent" speed="1" direction="1" playMode="normal" loop autoplay></dotlottie-player>
     </div>
 
     <section class="bg-[#FDFFFC] py-8">
@@ -85,7 +75,7 @@
                 Activity Matchmaker</h1>
             <p class="text-sm md:text-lg lg:text-xl font-thin text-slate-500 text-center my-2 tracking-wide">Find the perfect activity for
                 your mood, preferences, and start mingling!</p>
-            <div class="swiper-container overflow-hidden">
+            <div class="swiper-container overflow-hidden relative">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide px-4 flex flex-col justify-center items-center">
                         <dotlottie-player src="https://lottie.host/0160f3dc-1c8f-4e87-9502-2fc00325bf94/GQYr9rqigm.json" background="transparent" speed="1" style="width: 300px; height: 300px" direction="1" playMode="normal" loop autoplay></dotlottie-player>
@@ -98,8 +88,11 @@
                     <div class="swiper-slide px-4 flex flex-col justify-center items-center">
                         <dotlottie-player src="https://lottie.host/68051da4-3006-4b58-ab61-59ba804a6232/VIcBHfXaFB.json" background="transparent" speed="1" style="width: 300px; height: 300px" direction="1" playMode="normal" loop autoplay></dotlottie-player>                        
                         <p class="font-bold text-lg text-base text-center text-slate-700">Start mingling with others!</p>
-                    </div>                
+                    </div>         
                 </div>
+                <div class="swiper-button-prev absolute left-0 top-1/2 transform -translate-y-1/2"></div>
+                <div class="swiper-button-next absolute right-0 top-1/2 transform -translate-y-1/2"></div>
+                <div class="swiper-pagination relative mt-2"></div>   
             </div>
         </article>
     </section>
@@ -107,11 +100,9 @@
 
     <section class="bg-[#F8D04F] py-8">
         <article class="flex flex-col lg:w-3/4 p-4 mx-auto">
-            <h1 class="font-bold text-2xl md:text-3xl lg:text-4xl font-bold text-pink-900 text-center tracking-normal">Explore Beyond
-                Your Personal Bubble</h1>
-            <p class="text-sm md:text-lg lg:text-xl font-thin text-pink-600 text-center my-2 tracking-wide">Socialize with others, explore
-                local events, and stay ahead in weather updates!</p>
-            <div class="swiper-container overflow-hidden">
+            <h1 class="font-bold text-2xl md:text-3xl lg:text-4xl font-bold text-pink-900 text-center tracking-normal">Explore Beyond Your Personal Bubble</h1>
+            <p class="text-sm md:text-lg lg:text-xl font-thin text-pink-600 text-center my-2 tracking-wide">Socialize with others, explore local events, and stay ahead in weather updates!</p>
+            <div class="swiper-container overflow-hidden relative">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide px-4 flex flex-col justify-center items-center">
                         <dotlottie-player src="https://lottie.host/9f41b19f-e429-4828-9d81-63d2171fa772/mHzjBb5COD.json" background="transparent" speed="1" style="width: 300px; height: 300px" direction="1" playMode="normal" loop autoplay></dotlottie-player>
@@ -124,8 +115,11 @@
                     <div class="swiper-slide px-4 flex flex-col justify-center items-center">
                         <dotlottie-player src="https://lottie.host/378815f8-baf3-42c8-9042-5fb45398988e/jYZwUryOph.json" background="transparent" speed="1" style="width: 300px; height: 300px" direction="1" playMode="normal" loop autoplay></dotlottie-player>                        
                         <p class="font-bold text-lg text-base text-center text-pink-800">Join others in their activities!</p>
-                    </div>                
+                    </div>               
                 </div>
+                <div class="swiper-button-prev absolute left-0 top-1/2 transform -translate-y-1/2"></div>
+                <div class="swiper-button-next absolute right-0 top-1/2 transform -translate-y-1/2"></div>
+                <div class="swiper-pagination relative mt-2"></div>   
             </div>
         </article>
     </section>
@@ -142,6 +136,15 @@
             slidesPerView: 1,
             loop: false,
             spaceBetween: 32,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+                dynamicBullets: false,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
             breakpoints: {
                 600: {
                     slidesPerView: 2,
