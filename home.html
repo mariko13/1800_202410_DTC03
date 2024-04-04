@@ -8,11 +8,14 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <!-- Tailwind Library CSS CDN go here-->
     <script src="https://cdn.tailwindcss.com"></script>
+
     <!-- Bootstrap Library CSS CDN go here -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
     <!-- Boostrap Library JS CDN  go here -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
@@ -24,12 +27,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+    <!-- Firestore Cloud -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+
     <!-- Link to styles of your own -->
     <script src="https://kit.fontawesome.com/b36d3b3870.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./styles/style.css">
 </head>
 
 <body class="flex flex-col">
+
+    <!-- Top Fixed Navbar -->
     <div style="height: 62px;">
         <nav class="navbar p fixed-top d-block navbar-shadow">
             <div class="container-fluid">
@@ -40,6 +54,7 @@
         </nav>
     </div>
 
+    <!-- Main and Sub Buttons -->
     <div class="mx-auto pb-20 pt-10">
         <div class="relative">
             <button class="main-button text-[#E22866] bg-gradient-to-br from-[#F4C015] via-[#F4C015] to-[#E22866]" onclick="navigateToPage('currentstate.html')">Mingle!</button>
@@ -49,25 +64,17 @@
         </div>
     </div>
 
-
+    <!-- Bottom Fixed Navbar -->
     <div style="height: 62px;">
         <footer class="navbar justify-content-evenly fixed-bottom footer d-block">
             <div class="container">
-                <a id="footer_icon" class="material-icons text-decoration-none md-68" href="#"
-                    onclick="navigateToPage('history.html')">history</a>
-                <a id="footer_icon" class="material-icons text-decoration-none md-68" href="#"
-                    onclick="navigateToPage('home.html')">home</a>
-                <a id="footer_icon" class="material-icons text-decoration-none md-68" href="#"
-                    onclick="navigateToPage('profile.html')">account_circle</a>
+                <a id="footer_icon" class="material-icons text-decoration-none md-68" href="#" onclick="navigateToPage('history.html')">history</a>
+                <a id="footer_icon" class="material-icons text-decoration-none md-68" href="#" onclick="navigateToPage('home.html')">home</a>
+                <a id="footer_icon" class="material-icons text-decoration-none md-68" href="#" onclick="navigateToPage('profile.html')">account_circle</a>
             </div>
         </footer>
     </div>
 
-    <!---------------------------------------------->
-    <!-- Your own JavaScript functions go here    -->
-    <!---------------------------------------------->
-
-    <!-- Link to scripts of your own -->
     <script src="./scripts/script.js"></script>
 
 </body>
