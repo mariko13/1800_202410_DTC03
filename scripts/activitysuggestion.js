@@ -1,3 +1,4 @@
+// ==== Go Back Function for Page Navigation ====
 function goBack() {
     if (document.referrer) {
         window.location.href = document.referrer;
@@ -6,13 +7,10 @@ function goBack() {
     }
 }
 
+
 // Retrieve selected mood from local storage: either 'content', 'neutral', 'sad'
 var selectedMood = localStorage.getItem('selectedMood');
 console.log('Selected mood from previous page:', selectedMood);
-
-// Retrieve selected cost from local storage: either '$', '$$', '$$$'
-// var selectedCost = localStorage.getItem('selectedCost');
-// console.log('Selected mood from previous page:', selectedCost);
 
 // Retrieve selected time from local storage: either 'short', 'mediunm', 'long'
 var selectedTime = localStorage.getItem('selectedTime');
@@ -27,20 +25,11 @@ var selectedGroup = localStorage.getItem('selectedGroup');
 console.log('Selected mood from previous page:', selectedGroup);
 
 
+// ==== Function to Display Activities Based on User Input Stored in Local Storage ====
 function displayActivities() {
     var activitiesContainer = document.getElementById('activitiesContainer');
 
-    // Clear previous content
     activitiesContainer.innerHTML = '';
-
-    // var costFilter = null;
-    // if (selectedCost === '$$$') {
-    //     costFilter = ['$', '$$', '$$$'];
-    // } else if (selectedCost === '$$') {
-    //     costFilter = ['$', '$$'];
-    // } else if (selectedCost === '$') {
-    //     costFilter = ['$'];
-    // }
 
     var timeFilter = null;
     if (selectedTime === 'long') {
@@ -51,27 +40,20 @@ function displayActivities() {
         timeFilter = ['short'];
     }
 
-    // From collection 'activities',
     db.collection('activities')
         .where('mood', 'array-contains', selectedMood)
-        // .where('cost', 'in', costFilter)
         .where('time', 'in', timeFilter)
         .where('doors', '==', selectedDoors)
         .where('group', '==', selectedGroup)
-        // Fetch all documents,
         .get()
         .then(snapshot => {
-            // Check if any matching documents exist
             if (snapshot.empty) {
                 activitiesContainer.innerHTML = '<p>No activities found.</p>';
             } else {
-                // Iterate through matching documents
                 snapshot.forEach(doc => {
-                    // Create item for each activity
                     var activityID = doc.data().activityID;
                     var description = doc.data().description;
                     var image = doc.data().image;
-                    // For each item, add basic information on each of the activities 
                     var activitiesItem = `
                     <article class="card_article swiper-slide">
                         <div class="card_image flex justify-center items-center">
@@ -85,7 +67,6 @@ function displayActivities() {
                         </div>
                     </article>
                 `;
-                    // Append item to the container
                     activitiesContainer.innerHTML += activitiesItem;
                 });
             }
@@ -95,14 +76,17 @@ function displayActivities() {
         });
 }
 
+
+// ==== Function to be Invoked for View More Button ====
 function viewMore(activity) {
     selectedActivity = activity;
     localStorage.setItem('selectedActivity', activity);
     console.log('Selected activity:', selectedActivity);
 }
 
-// Call the function to display filtered activities
+
 displayActivities();
+
 
 // Swiper initiation
 let swiperCards = new Swiper(".card_content", {
