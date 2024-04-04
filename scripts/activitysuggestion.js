@@ -114,15 +114,19 @@ let swiperCards = new Swiper(".card_content", {
         el: ".swiper-pagination",
         clickable: true,
         dynamicBullets: false,
-
+    },
+    
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
     },
 
     breakpoints: {
         600: {
-            slidesPerView: 2,
+            slidesPerView: 1,
         },
         968: {
-            slidesPerView: 3,
+            slidesPerView: 2,
         },
     },
 });
