@@ -1,3 +1,4 @@
+// ==== Go Back Function to Manipulate Visible/Hidden Sections ====
 function goBack() {
     var sections = ['moodSection', 'timeSection', 'doorsSection', 'groupSection'];
     for (var i = 0; i < sections.length; i++) {
@@ -16,6 +17,8 @@ function goBack() {
     }
 }
 
+
+// ==== Function to Update Navbar Based on Current Section ====
 function updateNavbarBrand(sectionId) {
     var navbarBrand = document.querySelector('.navbar-brand');
     switch (sectionId) {
@@ -38,18 +41,13 @@ function updateNavbarBrand(sectionId) {
 }
 
 
+// ==== Functions for Setting Local Storage Based on User Input ====
 function selectMood(mood) {
     selectedMood = mood;
     localStorage.setItem('selectedMood', selectedMood);
     console.log('Selected mood:', selectedMood);
     updateNavbarBrand('timeSection');
 }
-
-// function selectCost(cost) {
-//     selectedCost = cost;
-//     localStorage.setItem('selectedCost', selectedCost);
-//     console.log('Selected cost:', selectedCost);
-// }
 
 function selectTime(time) {
     selectedTime = time;
@@ -71,15 +69,13 @@ function selectGroup(group) {
     console.log('Selected group:', selectedGroup);
 }
 
+
+// ==== Functions for Setting Sections Visibility ====
 function showMoodSection() {
     document.getElementById('timeSection').classList.add('d-none');
     document.getElementById('moodSection').classList.remove('d-none');
 }
 
-// function showCostSection() {
-//     document.getElementById('moodSection').classList.add('d-none');
-//     document.getElementById('costSection').classList.remove('d-none');
-// }
 
 function showTimeSection() {
     document.getElementById('moodSection').classList.add('d-none');
