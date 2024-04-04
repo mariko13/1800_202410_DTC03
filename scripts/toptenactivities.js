@@ -1,9 +1,5 @@
 function goBack() {
-    if (document.referrer) {
-        window.location.href = document.referrer;
-    } else {
-        navigateToPage('home.html');
-    }
+    navigateToPage('home.html');
 }
 
 function navigateToPage(pageUrl) {
