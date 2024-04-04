@@ -1,5 +1,9 @@
 function goBack() {
-    navigateToPage('activitysuggestion.html');
+    if (document.referrer) {
+        window.location.href = document.referrer;
+    } else {
+        navigateToPage('home.html');
+    }
 }
 
 var selectedMood = localStorage.getItem('selectedMood');

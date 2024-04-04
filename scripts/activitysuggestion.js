@@ -1,5 +1,9 @@
 function goBack() {
-    navigateToPage('currentstate.html');
+    if (document.referrer) {
+        window.location.href = document.referrer;
+    } else {
+        navigateToPage('home.html');
+    }
 }
 
 // Retrieve selected mood from local storage: either 'content', 'neutral', 'sad'
