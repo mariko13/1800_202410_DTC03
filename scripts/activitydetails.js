@@ -10,7 +10,9 @@ firebase.auth().onAuthStateChanged(user => {
 
 // ==== Go Back Function for Page Navigation ====
 function goBack() {
-    if (document.referrer) {
+    if (document.referrer.includes('chat.html')) {
+        navigateToPage('activitysuggestion.html');
+    } else if (document.referrer) {
         window.location.href = document.referrer;
     } else {
         navigateToPage('home.html');
