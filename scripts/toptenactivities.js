@@ -1,13 +1,18 @@
+// ==== Go Back Function for Page Navigation ====
 function goBack() {
     navigateToPage('home.html');
 }
 
+// ==== Function for Page Navigation ====
 function navigateToPage(pageUrl) {
     window.location.href = pageUrl;
 }
+
 // Store the Page activitydetails.html was Accessed From for Navigation
 localStorage.setItem('originOfActivityDetails', window.location.href);
 
+
+// ==== Function to Fill for Rank of Activities ====
 function fillTopTenContainer() {
     db.collection('reviews')
         .get()
