@@ -45,7 +45,7 @@ function fillTopTenContainer() {
                 let topTenActivities = '';
                 if (index === 0) {
                     topTenActivities += `
-                    <a id="rankedActivity-${index}" class="rankedActivity flex flex-col place-items-center my-2 text-2xl font-bold bg-[#E22866] rounded-lg py-2" onclick="localStorage.setItem('selectedActivity', '${activity.activityID}'); window.location.href='activitydetails.html';">
+                    <a id="rankedActivity-${index}" class="rankedActivity flex flex-col place-items-center my-2 text-2xl font-bold bg-[#E22866] border-b-4 border-[#7E1135] rounded-lg py-2" onclick="localStorage.setItem('selectedActivity', '${activity.activityID}'); window.location.href='activitydetails.html';">
                         <div class="pb-2 text-6xl"><i class="fa-solid fa-crown text-[#F4C015]"></i></div>
                         <div class="bg-[#F8D04F] py-2 w-full"><img src="./images/${activity.activityID}.svg" class='activity-image w-80 mx-auto'></div>
                         <div class="">${activity.activityID}</div>
@@ -54,7 +54,7 @@ function fillTopTenContainer() {
                 `;
                 } else if (index === 1) {
                     topTenActivities += `
-                    <a id="rankedActivity-${index}" class="rankedActivity flex flex-col place-items-center my-2 text-2xl font-bold bg-[#AE296E] rounded-lg py-2" onclick="localStorage.setItem('selectedActivity', '${activity.activityID}'); window.location.href='activitydetails.html';">
+                    <a id="rankedActivity-${index}" class="rankedActivity flex flex-col place-items-center my-2 text-2xl font-bold bg-[#AE296E] border-b-4 border-[#741B49] rounded-lg py-2" onclick="localStorage.setItem('selectedActivity', '${activity.activityID}'); window.location.href='activitydetails.html';">
                         <div class="pb-2 text-[#F4C015] text-4xl">${index + 1}nd</div>
                         <div class="bg-[#F8D04F] py-2 w-full"><img src="./images/${activity.activityID}.svg" class='activity-image w-64 mx-auto'> </div>
                         <div class="">${activity.activityID}</div>
@@ -63,7 +63,7 @@ function fillTopTenContainer() {
                 `;
                 } else if (index === 2) {
                     topTenActivities += `
-                    <a id="rankedActivity-${index}" class="rankedActivity flex flex-col place-items-center my-2 text-xl font-bold bg-[#3D3264] rounded-lg py-2" onclick="localStorage.setItem('selectedActivity', '${activity.activityID}'); window.location.href='activitydetails.html';">
+                    <a id="rankedActivity-${index}" class="rankedActivity flex flex-col place-items-center my-2 text-xl font-bold bg-[#3D3264] border-b-4 border-[#211B36] rounded-lg py-2" onclick="localStorage.setItem('selectedActivity', '${activity.activityID}'); window.location.href='activitydetails.html';">
                         <div class="pb-2 text-[#F4C015] text-2xl">${index + 1}rd</div>
                         <div class="bg-[#F8D04F] py-2 w-full"><img src="./images/${activity.activityID}.svg" class='activity-image w-56 mx-auto'> </div>
                         <div class="">${activity.activityID}</div>
@@ -72,7 +72,7 @@ function fillTopTenContainer() {
                 `;
                 } else {
                     topTenActivities += `
-                    <a id="rankedActivity-${index}" class="rankedActivity flex flex-col place-items-center my-2 text-xl font-bold bg-[#003952] rounded-lg py-2" onclick="localStorage.setItem('selectedActivity', '${activity.activityID}'); window.location.href='activitydetails.html';">
+                    <a id="rankedActivity-${index}" class="rankedActivity flex flex-col place-items-center my-2 text-xl font-bold bg-[#003952] border-b-4 border-[#001D29] rounded-lg py-2" onclick="localStorage.setItem('selectedActivity', '${activity.activityID}'); window.location.href='activitydetails.html';">
                         <div class="pb-2 text-[#F8D04F] text-2xl">${index + 1}</div>
                         <div class="bg-[#F8D04F] py-2 w-full"><img src="./images/${activity.activityID}.svg" class='activity-image w-44 mx-auto'> </div>
                         <div class="">${activity.activityID}</div>
