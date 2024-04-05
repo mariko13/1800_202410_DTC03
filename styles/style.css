@@ -67,7 +67,7 @@ h1#activity-detail-title {
 
 button#startMingleButton {
   background-color: var(--first-color);
-  color: var(--button-color);
+  color: var(--container-color);
 }
 
 nav {
