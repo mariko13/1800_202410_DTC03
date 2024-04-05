@@ -1,10 +1,6 @@
 // ==== Go Back Function for Page Navigation ====
 function goBack() {
-    if (document.referrer) {
-        window.location.href = document.referrer;
-    } else {
-        navigateToPage('home.html');
-    }
+    navigateToPage('currentstate.html');
 }
 
 
