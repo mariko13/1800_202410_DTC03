@@ -7,15 +7,21 @@ firebase.auth().onAuthStateChanged(user => {
     }
 })
 
+// Get the Page activitydetails.html was Accessed From for Navigation
+var originOfActivityDetails = localStorage.getItem('originOfActivityDetails');
+console.log('Page Origin of Activity Details: ', originOfActivityDetails)
 
 // ==== Go Back Function for Page Navigation ====
 function goBack() {
     if (document.referrer.includes('chat.html')) {
-        navigateToPage('activitysuggestion.html');
-    } else if (document.referrer) {
-        window.location.href = document.referrer;
+        if (originOfActivityDetails.includes('activitysuggestion.html')) {
+            navigateToPage('activitysuggestion.html');
+        }
+        else if (originOfActivityDetails.includes('toptenactivities.html')) {
+            navigateToPage('toptenactivities.html');
+        }
     } else {
-        navigateToPage('home.html');
+        window.location.href = document.referrer;
     }
 }
 

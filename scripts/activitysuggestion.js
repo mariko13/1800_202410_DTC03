@@ -3,6 +3,8 @@ function goBack() {
     navigateToPage('currentstate.html');
 }
 
+// Store the Page activitydetails.html was Accessed From for Navigation
+localStorage.setItem('originOfActivityDetails', window.location.href);
 
 // Retrieve selected mood from local storage: either 'content', 'neutral', 'sad'
 var selectedMood = localStorage.getItem('selectedMood');

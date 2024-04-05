@@ -5,6 +5,8 @@ function goBack() {
 function navigateToPage(pageUrl) {
     window.location.href = pageUrl;
 }
+// Store the Page activitydetails.html was Accessed From for Navigation
+localStorage.setItem('originOfActivityDetails', window.location.href);
 
 function fillTopTenContainer() {
     db.collection('reviews')
