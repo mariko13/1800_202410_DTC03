@@ -12,7 +12,7 @@ function goBack() {
 var selectedMood = localStorage.getItem('selectedMood');
 console.log('Selected mood from previous page:', selectedMood);
 
-// Retrieve selected time from local storage: either 'short', 'mediunm', 'long'
+// Retrieve selected time from local storage: either 'short', 'medium', 'long'
 var selectedTime = localStorage.getItem('selectedTime');
 console.log('Selected mood from previous page:', selectedTime);
 

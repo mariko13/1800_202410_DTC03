@@ -1,3 +1,14 @@
+// ==== Check if User is Logged In ====
+firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+        console.log(`user ID: ${user.uid}`);
+    } else {
+        console.log("No user is logged in.")
+    }
+})
+
+
+// ==== Go Back Function for Page Navigation ====
 function goBack() {
     if (document.referrer) {
         window.location.href = document.referrer;
@@ -6,34 +17,43 @@ function goBack() {
     }
 }
 
+
+// Retrieve selected mood from local storage: either 'content', 'neutral', 'sad'
 var selectedMood = localStorage.getItem('selectedMood');
 console.log('Selected mood from previous page:', selectedMood);
 
-var selectedCost = localStorage.getItem('selectedCost');
-console.log('Selected mood from previous page:', selectedCost);
-
+// Retrieve selected time from local storage: either 'short', 'medium', 'long'
 var selectedTime = localStorage.getItem('selectedTime');
 console.log('Selected mood from previous page:', selectedTime);
 
+// Retrieve selected doors from local storage: either 'indoors', 'outdoors'
 var selectedDoors = localStorage.getItem('selectedDoors');
 console.log('Selected mood from previous page:', selectedDoors);
 
+// Retrieve selected group from local storage: either 'alone', 'group'
 var selectedGroup = localStorage.getItem('selectedGroup');
 console.log('Selected mood from previous page:', selectedGroup);
 
+// Retrieve selected activity from local storage: activityID
 var selectedActivity = localStorage.getItem('selectedActivity');
 console.log('Selected activity from previous page:', selectedActivity);
 
+
+// Empty out activitiesContainer
 var activitiesContainer = document.getElementById('activitiesContainer');
 activitiesContainer.innerHTML = '';
 
+// Empty out reviewsContainer
 var reviewsContainer = document.getElementById('reviewsContainer');
 reviewsContainer.innerHTML = '';
 
+// Initialize Variables for Rating
 let totalStars = 0;
 let totalReviews = 0;
 let activityRatingRounded;
 
+
+// ==== Function for Average Rating of Selected Activity ====
 function findStarsAverage() {
     db.collection('reviews')
         .where('activityID', '==', selectedActivity)
@@ -58,10 +78,10 @@ function findStarsAverage() {
             console.log('Error getting documents: ', error);
         });
 }
-
-findStarsAverage();
 let useActivityRatingRounded = () => activityRatingRounded;
 
+
+// ==== Function to Fill #reviewsContainer HTML Element ====
 function fillReviews() {
     db.collection('reviews')
         .where('activityID', '==', selectedActivity)
@@ -100,8 +120,8 @@ function fillReviews() {
         });
 }
 
-fillReviews();
 
+// ==== Function to Fill #activitiesContainer HTML Element ====
 function fillActivityContainer() {
     db.collection('activities').doc(selectedActivity)
         .get()
@@ -133,8 +153,8 @@ function fillActivityContainer() {
         });
 }
 
-fillActivityContainer();
 
+// ==== Function that Creates Firestore Document Under "reviews" Collection ====
 function createReviewDoc(callback) {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
@@ -173,22 +193,18 @@ function createReviewDoc(callback) {
     })
 }
 
-firebase.auth().onAuthStateChanged(user => {
-    if (user) {
-        console.log(`user ID: ${user.uid}`);
-    } else {
-        console.log("No user is logged in.")
-    }
-})
-
+// ==== Function to Navigate to chat.html ====
 function navigateToChat() {
     window.location.href = 'chat.html';
 }
 
+// Add Event Listener to #startMinglueButton
 document.getElementById('startMingleButton').addEventListener('click', function() {
     createReviewDoc(navigateToChat);
 });
 
+
+// ==== Function to Generate Icons for Total Average Rating of All Reviews for an Activity ====
 function generateLargeStarsHTML(rating) {
     const numFullStars = Math.floor(rating);
     const hasHalfStar = rating % 1 !== 0;
@@ -213,6 +229,8 @@ function generateLargeStarsHTML(rating) {
     return starsHTML;
 }
 
+
+// ==== Function to Generate Icons for Individual Rating of a Review for an Activity ====
 function generateSmallStarsHTML(rating) {
     const numFullStars = Math.floor(rating);
     const hasHalfStar = rating % 1 !== 0;
@@ -237,6 +255,12 @@ function generateSmallStarsHTML(rating) {
     return starsHTML;
 }
 
+
+// ==== Function to Round to Nearest Half ====
 function roundToNearestHalf(number) {
     return Math.round(number * 2) / 2;
 }
+
+findStarsAverage();
+fillReviews();
+fillActivityContainer();
