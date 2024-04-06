@@ -20,6 +20,9 @@ function goBack() {
         else if (originOfActivityDetails.includes('toptenactivities.html')) {
             navigateToPage('toptenactivities.html');
         }
+        else if (originOfActivityDetails.includes('review.html')) {
+            navigateToPage('history.html');
+        }
     } else {
         window.location.href = document.referrer;
     }
