@@ -116,7 +116,6 @@ a.text-light:hover {
   height: 300px;
   border-radius: 50%;
   font-size: 64px;
-  border: none;
   cursor: pointer;
   font-family: 'pacifico', cursive;
 }
@@ -136,7 +135,6 @@ a.text-light:hover {
   background-color: var(--first-color);
   color: var(--title-color);
   font-size: 36px;
-  border: none;
   cursor: pointer;
   font-family: 'pacifico', cursive;
   transition: transform 0.2s;
