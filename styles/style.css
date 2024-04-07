@@ -176,3 +176,9 @@ a.text-light:hover {
 #profileInfo {
   font-family: var(--body-font);
 }
+
+#mypic-goes-here {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
