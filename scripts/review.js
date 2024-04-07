@@ -1,5 +1,6 @@
 let params = new URL(window.location.href) //get the url from the search bar
 let activityDocID = params.searchParams.get("docID");
+var currentUser;
 
 function getActivityName(id) {
   console.log("id:", id)
@@ -35,10 +36,10 @@ stars.forEach((star, index) => {
 
 
 function populateReviewFields() {
-  submitConfirmation.innerHTML = "";
   firebase.auth().onAuthStateChanged(user => { //authenticated user
     // Check if user is signed in:
     if (user) {
+      currentUser = db.collection("users").doc(user.uid);
       //get the document for review.
       db.collection("reviews")
         .doc(activityDocID)
@@ -48,6 +49,7 @@ function populateReviewFields() {
           let reviewTitle = currentReviews.data().title;
           let reviewDescription = currentReviews.data().description;
           let rating = currentReviews.data().stars;
+          let activityId = currentReviews.data().activityID;
           console.log("title:", reviewTitle)
           console.log("description:", reviewDescription)
           console.log("rating:", rating)
@@ -68,7 +70,7 @@ function populateReviewFields() {
               }
             });
           }
-        })
+        });
     } else {
       // No user is signed in.
       console.log("No user is signed in");
@@ -79,7 +81,6 @@ populateReviewFields()
 
 
 function writeReview() {
-  submitConfirmation.innerHTML = "";
   console.log("inside write review");
   let reviewTitle = document.getElementById("title").value;
   let reviewDescription = document.getElementById("description").value;
@@ -110,53 +111,20 @@ function writeReview() {
         description: reviewDescription,
         stars: activityRating, // Include the rating in the review
       }).then(() => {
-        submitConfirmation.innerHTML = "Your review has been submitted!";
+        // Store the Page activitydetails.html was Accessed From for Navigation
+        localStorage.setItem('originOfActivityDetails', window.location.href);
+
+        db.collection("reviews")
+          .doc(activityDocID)
+          .get()
+          .then((doc) => {
+            let activity = doc.data().activityID
+            localStorage.setItem('selectedActivity', activity);
+            window.location.href = 'activitydetails.html';
+          })
       });
   } else {
     console.log("No user is signed in");
     window.location.href = 'index.html';
-  }
-}
-
-function updateBlockActivity() {
-  var user = firebase.auth().currentUser;
-  if (user) {
-    db.collection("reviews")
-      .doc(activityDocID)
-      .get()
-      .then((thisActivity) => {
-        var activityID = thisActivity.data().activityID;
-
-        let currentUser = db.collection("users").doc(user.uid);
-        // Get the document for the current user.
-        currentUser.get().then((doc) => {
-          let currentBlocks = doc.data().blocks;
-    
-          console.log("currentBlocks: ", currentBlocks);
-          console.log("activityID: ", activityID);
-          console.log("currentBlocks.includes(activityID): ", currentBlocks.includes(activityID))
-          if (currentBlocks.includes(activityID)) {
-            console.log("inside unblock");
-            currentUser.update({
-              blocks: firebase.firestore.FieldValue.arrayRemove(activityID)
-            }).then(() => {
-              blockBtn.innerText = "Unblock Activity";
-              reviewForm.style.borderColor = "#540303";
-            })
-          }
-          else {
-            console.log("inside block");
-            currentUser.update({
-              blocks: firebase.firestore.FieldValue.arrayUnion(activityID)
-            }).then(() => {
-              blockBtn.innerText = "Block Activity";
-              reviewForm.style.borderColor = "#F8D04F";
-            })
-          }
-        })
-      });
-  } else {
-    console.log("No user is signed in");
-    window.location.href = 'login.html';
   }
 }
