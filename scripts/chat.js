@@ -19,38 +19,28 @@ function displayCardsDynamically() {
         .doc(selectedActivity)
         .collection("entries")
         .orderBy("timestamp")
-        .limit(50)
+        //.limit(50)
         .onSnapshot((activityMessages) => {
           console.log("inside db in displayCardsDynamically")
-          // Clear existing cards before updating
           messageCardGroup.innerHTML = '';
+          //messageCardGroup.innerHTML = "<p class='text-center pt-8 px-3'>Let other Minglers know what you're up to. Be the first to leave a message!</p>";;
           activityMessages.forEach((doc) => {
             console.log("doc id: ", doc.id);
             let message = doc.data().message;
+            let date = doc.data().timestamp.toDate().toLocaleString();
+            let name = doc.data().userName;
+            let profilePic = doc.data().userProfilePic;
 
-            let timestamp = doc.data().timestamp.toDate();
-            console.log("timestamp: ", timestamp);
-            let date = (timestamp.getMonth() + 1) + "/" + timestamp.getDate() + "/" + timestamp.getFullYear();
-            let time = timestamp.getHours() + ":" + timestamp.getMinutes()
-            date += " " + time;
+            console.log("profilepic:", profilePic)
 
             let newcard = messageCardTemplate.content.cloneNode(true);
 
             newcard.querySelector(".card-date").textContent = date
             newcard.querySelector(".card-text").textContent = message;
+            newcard.querySelector(".card-title").textContent = name;
+            newcard.querySelector(".profilePic").src = profilePic;
 
-            let senderUserID = doc.data().userID;
-
-            db.collection("users")
-              .doc(senderUserID)
-              .get()
-              .then((sender) => {
-                let senderName = sender.data().name;
-
-                newcard.querySelector(".card-title").textContent = senderName;
-
-                messageCardGroup.appendChild(newcard);
-              });
+            messageCardGroup.appendChild(newcard);
           });
         }, (error) => {
           console.log("Error getting past activities: ", error);
@@ -64,6 +54,7 @@ function displayCardsDynamically() {
 displayCardsDynamically();
 
 
+
 function sendMessage() {
   console.log("inside send message");
   let usersMessage = document.getElementById("message").value;
@@ -72,16 +63,43 @@ function sendMessage() {
 
   var user = firebase.auth().currentUser;
   if (user) {
-    db.collection("chats")
-      .doc(selectedActivity)
-      .collection("entries")
-      .add({
-        userID: user.uid,
-        message: usersMessage,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp()
-      }).then(() => {
-        message.value = "";
-      })
+    let usersName = "";
+    let usersProfilePic = "images/MoodMingleLogoCircle.png";
+    db.collection("users")
+      .doc(user.uid)
+      .get()
+      .then((doc) => {
+        usersName = doc.data().name;
+
+        let userPosts = doc.data().myposts;
+        if (userPosts && userPosts.length > 0) {
+          let lastPostID = userPosts[userPosts.length - 1]; // Get the last post ID
+          db.collection("posts")
+            .doc(lastPostID)
+            .get()
+            .then(picDoc => {
+              usersProfilePic = picDoc.data().image;
+              console.log("name in posts", usersName);
+              console.log("pic in posts", usersProfilePic);
+
+              db.collection("chats")
+                .doc(selectedActivity)
+                .collection("entries")
+                .add({
+                  userID: user.uid,
+                  message: usersMessage,
+                  timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                  userName: usersName,
+                  userProfilePic: usersProfilePic
+                }).then(() => {
+                  message.value = "";
+                });
+
+            }).catch(error => {
+              console.error("Error getting last post:", error);
+            });
+        }
+      });
   } else {
     console.log("No user is signed in");
     window.location.href = 'index.html';

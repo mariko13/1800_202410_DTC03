@@ -37,6 +37,21 @@
   <!-- Link to styles of your own -->
   <link rel="stylesheet" href="./styles/style.css">
 
+  <style>
+    .profilePic {
+      max-width: 50px;
+      max-height: 50px;
+    }
+    
+    .card-title {
+      font-size: 15px;
+    }
+
+    .card-date {
+      font-size: 14px;
+    }
+  </style>
+
 </head>
 
 <body>
@@ -66,10 +81,6 @@
   <!------------------------------>
   <!-- Stuff for body goes here -->
 
-  <!-- <div class="container">
-    <h1 class="fs-3">Chat about <span id="chatActivityName"></span></h1>
-  </div> -->
-
   <!-- Container for messages -->
   <div class="container" id="messageCardGroup"></div>
 
@@ -78,7 +89,7 @@
     <div class="">
       <div class="d-flex p-2 m-2 messageCards">
         <div style="min-width: 50px; height: 50px;">
-          <img src="images/MoodMingleLogoCircle.png" width="50" height="50">
+          <img src="images/MoodMingleLogoCircle.png" width="50" height="50" class="profilePic rounded-circle bg-light">
         </div>
         <div class="pl-2">
           <div class="d-flex">
