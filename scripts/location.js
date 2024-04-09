@@ -39,5 +39,4 @@ function saveUserInfo() {
           alert('Your location has been updated');
           navigateToPage('preferences.html')
       })
-  //c) disable edit 
 }
