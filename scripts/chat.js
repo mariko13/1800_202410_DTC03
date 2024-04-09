@@ -19,11 +19,13 @@ function displayCardsDynamically() {
         .doc(selectedActivity)
         .collection("entries")
         .orderBy("timestamp")
-        //.limit(50)
         .onSnapshot((activityMessages) => {
           console.log("inside db in displayCardsDynamically")
           messageCardGroup.innerHTML = '';
-          //messageCardGroup.innerHTML = "<p class='text-center pt-8 px-3'>Let other Minglers know what you're up to. Be the first to leave a message!</p>";;
+          console.log("activityMessages.empty:", activityMessages.empty);
+          if (activityMessages.empty) {
+            messageCardGroup.innerHTML = "<p class='text-center pt-12 px-3'>Be the first to leave a message!</p>";
+          }
           activityMessages.forEach((doc) => {
             console.log("doc id: ", doc.id);
             let message = doc.data().message;
@@ -39,7 +41,6 @@ function displayCardsDynamically() {
             newcard.querySelector(".card-text").textContent = message;
             newcard.querySelector(".card-title").textContent = name;
             newcard.querySelector(".profilePic").src = profilePic;
-
             messageCardGroup.appendChild(newcard);
           });
         }, (error) => {
