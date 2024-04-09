@@ -39,5 +39,4 @@ function saveUserInfo() {
           alert('Your age has been updated');
           navigateToPage('preferences.html')
       })
-  //c) disable edit 
 }
