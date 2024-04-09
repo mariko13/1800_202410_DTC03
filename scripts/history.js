@@ -10,6 +10,10 @@ function displayCardsDynamically() {
         .onSnapshot((usersPastActivities) => {
           // Clear existing cards before updating
           activityCardGroup.innerHTML = '';
+          console.log("usersPastActivities.empty:", usersPastActivities.empty);
+          if (usersPastActivities.empty) {
+            activityCardGroup.innerHTML = "<p class='text-center pt-12 px-3'>Your past activities will appear here.<br>Go to the home page and click the <i>Mingle!</i> button to start!</p>";
+          }
           usersPastActivities.forEach((doc) => {
             let activityName = doc.data().activityID;
             let activityDate = doc.data().date.toDate();
