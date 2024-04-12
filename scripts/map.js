@@ -1,6 +1,8 @@
+// Set up and display map
 async function setUpMapFeatures(userLocation) {
   console.log(userLocation);
   let response;
+  // Fetch mapbox API for users location
   try {
     resp = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${userLocation}.json?access_token=pk.eyJ1IjoibWhvY2tlcnR6IiwiYSI6ImNsdWE1Z3VvbzA0eGIyanF0MG9vc2FpNXIifQ.SQhGqkRDLSqW9Mc2QM5nQQ`);
     response = await resp.json();
@@ -9,14 +11,19 @@ async function setUpMapFeatures(userLocation) {
     console.log(`There was an error: ${err}`);
     return 0;
   }
+  // Default coordinates is Vancouver
+  let userLat = "-123.113952";
+  let userLong = "49.260872";
   console.log(response);
-  console.log(response.features[0].geometry.coordinates);
-  let userLat = response.features[0].geometry.coordinates[0];
-  let userLong = response.features[0].geometry.coordinates[1];
-  console.log(userLat, userLong);
-  let coordinate = [userLat, userLong];
-  console.log("coordinate", coordinate);
+  console.log("features length:", response.features.length)
+  // Get the coordinates for the users location if the user has the location correctly entered in profile
+  if (response.features.length > 0) {
+    console.log(response.features[0].geometry.coordinates);
+    userLat = response.features[0].geometry.coordinates[0];
+    userLong = response.features[0].geometry.coordinates[1];
+  }
 
+  // Display map centered on the coordinates
   mapboxgl.accessToken = 'pk.eyJ1IjoibWhvY2tlcnR6IiwiYSI6ImNsdWE1Z3VvbzA0eGIyanF0MG9vc2FpNXIifQ.SQhGqkRDLSqW9Mc2QM5nQQ';
   const map = new mapboxgl.Map({
     container: 'map',
@@ -32,15 +39,6 @@ async function setUpMapFeatures(userLocation) {
     mapboxgl: mapboxgl
   });
   map.addControl(geocoder, 'top-left');
-
-
-  // Add control to the map - give user direction from Point A to Point B
-  // map.addControl(
-  //   new MapboxDirections({
-  //     accessToken: mapboxgl.accessToken
-  //   }),
-  //   'top-left'
-  // );
 
 
   // Add zoom and rotation controls to the map.
@@ -60,13 +58,15 @@ async function setUpMapFeatures(userLocation) {
   );
 
 
-    // Display events
+  // Display events
   map.on('load', () => {
     console.log("trying to add events here")
+    // Access the documents in the collection "events"
     db.collection("events")
       .get()
       .then((querySnapshot) => {
         const features = [];
+        // Loop through each events and push them as GeoJSON features to the features array
         querySnapshot.forEach((doc) => {
           const event = doc.data();
           // Construct GeoJSON feature for each event
@@ -74,11 +74,11 @@ async function setUpMapFeatures(userLocation) {
             'type': 'Feature',
             'geometry': {
               'type': 'Point',
-              'coordinates': [event.location.longitude, event.location.latitude] 
+              'coordinates': [event.location.longitude, event.location.latitude]
             },
             'properties': {
-              'title': event.name, 
-              'description': event.description 
+              'title': event.name,
+              'description': event.description
             }
           };
           features.push(feature);
@@ -120,7 +120,7 @@ async function setUpMapFeatures(userLocation) {
       });
   });
 
-  // click event 
+  // Click event for the events pins 
   map.on('click', 'events', (e) => {
     const coordinates = e.features[0].geometry.coordinates.slice();
     const description = e.features[0].properties.description;
@@ -133,6 +133,7 @@ async function setUpMapFeatures(userLocation) {
       coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
     }
 
+    // Display popup when the events pins are clicked
     new mapboxgl.Popup({ offset: 50 })
       .setLngLat(coordinates)
       .setHTML(`<strong>${title}</strong><p>${description}</p>`)
@@ -148,35 +149,28 @@ async function setUpMapFeatures(userLocation) {
   map.on('mouseleave', 'events', () => {
     map.getCanvas().style.cursor = '';
   });
-
-
-
 }
 
 
-// async function displayEvents() {
-
-// }
-
-
+// Get the users locations and call function
 async function main() {
-      // Check if user is logged in
-      firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-          db.collection("users")
-            .doc(user.uid)
-            .get()
-            .then((doc) => {
-              let userLocation = doc.data().location;
-              setUpMapFeatures(userLocation);
-            }, (error) => {
-              console.log("Error getting user location: ", error);
-              window.location.href = 'location.html';
-            }).then(() => {
-              // displayEvents()
-            })
-        }
-      });
+  // Check if user is logged in
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      // Access the correct document in the "users" collection
+      db.collection("users")
+        .doc(user.uid)
+        .get()
+        .then((doc) => {
+          let userLocation = doc.data().location;
+          // Call setUpMapFeatures function with the users location as parameter
+          setUpMapFeatures(userLocation);
+        }, (error) => {
+          console.log("Error getting user location: ", error);
+          window.location.href = 'location.html';
+        })
     }
+  });
+}
 
 main();

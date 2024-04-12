@@ -1,10 +1,14 @@
-let params = new URL(window.location.href) //get the url from the search bar
+// Get the url from the search bar
+let params = new URL(window.location.href) 
+// Get correct docID from search bar
 let activityDocID = params.searchParams.get("docID");
 var currentUser;
 
+
+// Write the correct activity name on the top navbar
 function getActivityName(id) {
   console.log("id:", id)
-  // Get the document for the current user.
+  // Access the correct document in the "reviews" collection
   db.collection("reviews")
     .doc(id)
     .get()
@@ -35,26 +39,26 @@ stars.forEach((star, index) => {
 });
 
 
+// If a review for the specific user and activity already exists, populate the message fields with the data
 function populateReviewFields() {
   firebase.auth().onAuthStateChanged(user => { //authenticated user
-    // Check if user is signed in:
+    // Check if user is signed in
     if (user) {
       currentUser = db.collection("users").doc(user.uid);
-      //get the document for review.
+      // Access the correct document in the "reviews" collection
       db.collection("reviews")
         .doc(activityDocID)
         .get()
-        .then(currentReviews => { // .then so we wait until .get() reads everything that we want
-          //get the data fields of the user
+        .then(currentReviews => { 
+          // Get the data fields of the user
           let reviewTitle = currentReviews.data().title;
           let reviewDescription = currentReviews.data().description;
           let rating = currentReviews.data().stars;
-          let activityId = currentReviews.data().activityID;
           console.log("title:", reviewTitle)
           console.log("description:", reviewDescription)
           console.log("rating:", rating)
 
-          //if the data fields are not empty, then write them in to the form.
+          // If the data fields are not empty, then write them in to the form.
           if (reviewTitle != null) {
             document.getElementById("title").value = reviewTitle;
           }
@@ -80,6 +84,7 @@ function populateReviewFields() {
 populateReviewFields()
 
 
+// Write review to database
 function writeReview() {
   console.log("inside write review");
   let reviewTitle = document.getElementById("title").value;
@@ -101,9 +106,10 @@ function writeReview() {
 
   console.log(reviewTitle, reviewDescription, activityRating);
 
+  // Verify logged in user
   var user = firebase.auth().currentUser;
   if (user) {
-    // Get the document for the current activity review.
+    // Update the fields in the correct document in the "reviews" collection
     db.collection("reviews")
       .doc(activityDocID)
       .update({
@@ -113,13 +119,14 @@ function writeReview() {
       }).then(() => {
         // Store the Page activitydetails.html was Accessed From for Navigation
         localStorage.setItem('originOfActivityDetails', window.location.href);
-
+        // Access the correct document in the "reviews" collection
         db.collection("reviews")
           .doc(activityDocID)
           .get()
           .then((doc) => {
             let activity = doc.data().activityID
             localStorage.setItem('selectedActivity', activity);
+            // Redirect to the activities detail page after submit button is clicked
             window.location.href = 'activitydetails.html';
           })
       });
