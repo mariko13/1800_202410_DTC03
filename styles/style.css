@@ -148,23 +148,6 @@ a.text-light:hover {
   transform: scale(1.0);
 }
 
-.chatUserName {
-  color: #F6CD46;
-  font-size: 17px;
-}
-
-#chatActivityName {
-  color: #D81E5B;
-}
-
-.sendMessageBtn {
-  background-color: #D81E5B;
-}
-
-#messageCardGroup {
-  overflow: auto;
-}
-
 #editinfo {
   background-color: var(--container-color);
   color: var(--white-color);
